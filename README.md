@@ -1,6 +1,6 @@
 # Karpatica Travel
-Proiect IS 2021-2022 <br>
-Aplication Type: Web
+Project IS 2021-2022 <br>
+Application Type: Web
 
 ## Team Members
 Petre Mihai Bogdan (10LF293) (TL) <br>
