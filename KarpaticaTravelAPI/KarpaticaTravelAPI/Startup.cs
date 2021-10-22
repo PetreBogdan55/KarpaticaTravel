@@ -38,6 +38,8 @@ namespace KarpaticaTravelAPI
 
             services.TryAddScoped<IUserRepository, UserRepository>();
 
+            services.TryAddScoped<ICountryRepository, CountryRepository>();
+
             services.Configure<ApiBehaviorOptions>(options => options.SuppressInferBindingSourcesForParameters = true);
 
             services.AddSwaggerGen(c =>
