@@ -1,6 +1,5 @@
 using FluentValidation.AspNetCore;
 using KarpaticaTravelAPI.Models;
-using KarpaticaTravelAPI.Models.Dbcontext;
 using KarpaticaTravelAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +33,7 @@ namespace KarpaticaTravelAPI
 
             services.AddMvc().AddFluentValidation(validationConfig => validationConfig.RegisterValidatorsFromAssemblies(GetAssembliesWithPossibleValidation()));
 
-            services.AddDbContext<KarpaticaDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KarpaticaDbConnectionString")));
+            services.AddDbContext<KarpaticaTravelContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KarpaticaDbConnectionString")));
 
             services.TryAddScoped<IUserRepository, UserRepository>();
 
