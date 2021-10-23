@@ -6,7 +6,7 @@ namespace KarpaticaTravelAPI.Models.Mapping
     {
         public MapperProfile()
         {
-            CreateMap<User, UserUpdateView>();
+            //CreateMap<User, UserUpdateView>();
         }
     }
 }

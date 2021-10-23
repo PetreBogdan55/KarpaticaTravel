@@ -7,17 +7,19 @@ using System.Collections.Generic;
 
 namespace KarpaticaTravelAPI.Models
 {
-    public partial class Country
+    public partial class City
     {
-        public Country()
+        public City()
         {
-            City = new HashSet<City>();
+            Location = new HashSet<Location>();
         }
 
         public int Id { get; set; }
-        public string CountryCode { get; set; }
+        public int CountryId { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
 
-        public virtual ICollection<City> City { get; set; }
+        public virtual Country Country { get; set; }
+        public virtual ICollection<Location> Location { get; set; }
     }
 }

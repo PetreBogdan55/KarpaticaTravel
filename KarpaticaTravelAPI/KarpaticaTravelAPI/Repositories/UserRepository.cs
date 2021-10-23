@@ -1,5 +1,4 @@
 using KarpaticaTravelAPI.Models;
-using KarpaticaTravelAPI.Models.Dbcontext;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +8,10 @@ namespace KarpaticaTravelAPI.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public KarpaticaDbContext _context;
+        public KarpaticaTravelContext _context;
 
 
-        public UserRepository(KarpaticaDbContext context)
+        public UserRepository(KarpaticaTravelContext context)
         {
             _context = context;
         }
@@ -27,7 +26,8 @@ namespace KarpaticaTravelAPI.Repositories
 
         public async Task<bool> DeleteUser(int id)
         {
-            var user = await _context.User.FindAsync(id);
+            var user = await _context.User.FindAsync(id)
+;
 
             if (user == null)
             {
@@ -42,7 +42,8 @@ namespace KarpaticaTravelAPI.Repositories
 
         public async Task<User> GetUser(int id)
         {
-            User user = await _context.User.FindAsync(id);
+            User user = await _context.User.FindAsync(id)
+;
 
             return user;
         }

@@ -1,5 +1,4 @@
 using KarpaticaTravelAPI.Models;
-using KarpaticaTravelAPI.Models.Dbcontext;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +8,10 @@ namespace KarpaticaTravelAPI.Repositories
 {
     public class CountryRepository : ICountryRepository
     {
-        public KarpaticaDbContext _context;
+        public KarpaticaTravelContext _context;
 
 
-        public CountryRepository(KarpaticaDbContext context)
+        public CountryRepository(KarpaticaTravelContext context)
         {
             _context = context;
         }
@@ -27,7 +26,8 @@ namespace KarpaticaTravelAPI.Repositories
 
         public async Task<bool> DeleteCountry(int id)
         {
-            Country country = await _context.Country.FindAsync(id);
+            Country country = await _context.Country.FindAsync(id)
+;
 
             if (country == null)
             {
@@ -42,7 +42,8 @@ namespace KarpaticaTravelAPI.Repositories
 
         public async Task<Country> GetCountry(int id)
         {
-            Country country = await _context.Country.FindAsync(id);
+            Country country = await _context.Country.FindAsync(id)
+;
 
             return country;
         }

@@ -1,3 +1,4 @@
+using KarpaticaTravelAPI.Models.DtoModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KarpaticaTravelAPI.Models.Requests

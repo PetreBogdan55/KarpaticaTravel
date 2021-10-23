@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KarpaticaTravelAPI.Models;
-using KarpaticaTravelAPI.Models.Dbcontext;
 using NotesAPI.Controllers;
 using KarpaticaTravelAPI.Repositories;
 

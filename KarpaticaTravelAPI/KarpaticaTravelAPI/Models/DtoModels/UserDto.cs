@@ -1,5 +1,5 @@
 
-namespace KarpaticaTravelAPI.Models
+namespace KarpaticaTravelAPI.Models.DtoModels
 {
     public class UserDto
     {
