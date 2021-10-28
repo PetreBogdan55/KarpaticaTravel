@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { NgModel } from '@angular/forms'
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-register',
@@ -11,12 +12,14 @@ import { NgModel } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
   public signupForm!: FormGroup
+  siteKey: string = environment.siteKey
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.signupForm = this.formBuilder.group({
       email: ['', Validators.email],
       password: ['', [Validators.minLength(5), Validators.maxLength(15)]],
       username: ['', [Validators.minLength(5), Validators.maxLength(15)]],
+      recaptcha: ['', Validators.required],
     })
   }
 

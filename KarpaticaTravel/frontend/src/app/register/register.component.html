@@ -20,6 +20,11 @@
           <input type="password" matInput required placeholder="Password" name="password" formControlName="password">
         </mat-form-field>
 
+        <ngx-recaptcha2 [siteKey]="siteKey" formControlName="recaptcha">
+
+        </ngx-recaptcha2>
+
+
       </mat-card-content>
 
       <button mat-stroked-button color="accent" class="btn-block" [disabled]="!form.valid">Register</button>
