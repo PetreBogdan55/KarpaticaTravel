@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { LoginComponent } from './components/login/login.component'
 import { StartComponent } from './components/start/start.component'
-import { RegisterComponent } from './register/register.component'
+import { RegisterComponent } from './components/register/register.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full' },

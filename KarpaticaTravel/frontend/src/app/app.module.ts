@@ -7,7 +7,7 @@ import { AppComponent } from './app.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { LoginComponent } from './components/login/login.component'
 import { StartComponent } from './components/start/start.component'
-import { RegisterComponent } from './register/register.component'
+import { RegisterComponent } from './components/register/register.component'
 
 @NgModule({
   declarations: [
