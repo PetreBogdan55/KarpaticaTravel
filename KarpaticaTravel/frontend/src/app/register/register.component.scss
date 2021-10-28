@@ -1,28 +1,8 @@
-@keyframes login-box-animation {
-  0% {
-    transform: translateY(-50%);
-  }
-
-  50% {
-    transform: translateY(30%);
-  }
-
-  100% {
-    transform: translateY(0%);
-  }
-}
-
-html,
 body {
-  height : 100%;
-  margin : 0;
-  padding: 0;
-}
-
-body {
-  min-height      : 100vh;
-  background-color: #e5e5e5;
-  font-family     : 'Roboto', sans-serif;
+  margin     : 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height : 100vh;
+  background : #e2e2e2;
 }
 
 .app-header {
@@ -35,18 +15,11 @@ body {
   box-shadow     : 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
 
-.main-wrapper {
-  height         : 100%;
-  display        : flex;
-  align-items    : center;
-  justify-content: center;
-  animation      : 2s ease-in-out login-box-animation;
+.register-wrapper {
+  height: 100%;
 }
 
-.positronx {
-  text-decoration: none;
-  color          : #ffffff;
-}
+
 
 .box {
   position         : relative;
@@ -88,43 +61,45 @@ body {
   z-index          : -1;
 }
 
-.main-wrapper .example-form {
+.register-wrapper .register-form {
   min-width: 100%;
   max-width: 300px;
   width    : 100%;
 }
 
-.main-wrapper .example-full-width,
-.main-wrapper .btn-block {
+.register-wrapper .example-full-width,
+.register-wrapper .btn-block {
   width: 100%;
 }
 
-.main-wrapper mat-card-header {
+.register-wrapper mat-card-header {
   text-align : center;
   width      : 100%;
   display    : block;
   font-weight: 700;
 }
 
-.main-wrapper mat-card-header mat-card-title {
+.register-wrapper mat-card-header mat-card-title {
   font-size: 30px;
   margin   : 0;
 }
 
-.main-wrapper .mat-card {
-  padding: 45px 70px 55px;
+.register-wrapper .mat-card {
+  padding: 40px 70px 50px;
 }
 
-.main-wrapper .mat-stroked-button {
+.register-wrapper {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.register-wrapper .mat-stroked-button {
   border     : 1px solid currentColor;
   line-height: 54px;
   background : #FFF7FA;
 }
 
-.main-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
+.register-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
-}
-
-.register-button {
-  margin-top: 2em;
 }

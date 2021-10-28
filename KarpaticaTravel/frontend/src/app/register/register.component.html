@@ -1,0 +1,29 @@
+<div class="register-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="signupForm" #form="ngForm" class="register-form">
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input type="text" matInput required placeholder="Username" ngModel formControlName="username">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="email" matInput required placeholder="Email" name="email" formControlName="email">
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="password" matInput required placeholder="Password" name="password" formControlName="password">
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" class="btn-block" [disabled]="!form.valid">Register</button>
+
+    </form>
+  </mat-card>
+</div>
