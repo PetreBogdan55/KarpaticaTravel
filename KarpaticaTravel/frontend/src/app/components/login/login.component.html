@@ -7,17 +7,44 @@
     <form #form="ngForm" class="example-form" (ngSubmit)="login(form)">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input type="text" name="username" matInput placeholder="Username" required ngModel minlength="3" />
+          <input
+            type="text"
+            name="username"
+            matInput
+            placeholder="Username"
+            required
+            ngModel
+            minlength="3"
+          />
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input name="password" type="password" matInput placeholder="Password" required ngModel minlength="5" />
+          <input
+            name="password"
+            type="password"
+            matInput
+            placeholder="Password"
+            required
+            ngModel
+            minlength="5"
+          />
         </mat-form-field>
       </mat-card-content>
-      <button mat-stroked-button color="accent" class="btn-block" [disabled]="!form.valid">
+      <button
+        mat-stroked-button
+        color="accent"
+        class="btn-block"
+        [disabled]="!form.valid"
+      >
         Sign-in
       </button>
-      <button mat-stroked-button routerLink="/register" class="btn-block register-button">Register</button>
+      <button
+        mat-stroked-button
+        routerLink="/register"
+        class="btn-block register-button"
+      >
+        Go to register
+      </button>
     </form>
   </mat-card>
 </div>
