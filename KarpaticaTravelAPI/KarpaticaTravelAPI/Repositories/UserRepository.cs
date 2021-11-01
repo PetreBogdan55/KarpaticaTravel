@@ -1,4 +1,5 @@
 using KarpaticaTravelAPI.Models;
+using KarpaticaTravelAPI.Models.UserModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,7 @@ namespace KarpaticaTravelAPI.Repositories
 
         public async Task<bool> DeleteUser(int id)
         {
-            var user = await _context.User.FindAsync(id)
-;
+            var user = await _context.User.FindAsync(id);
 
             if (user == null)
             {

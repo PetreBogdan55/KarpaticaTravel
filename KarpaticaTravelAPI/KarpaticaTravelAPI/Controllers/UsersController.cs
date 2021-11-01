@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using KarpaticaTravelAPI.Models;
 using NotesAPI.Controllers;
 using KarpaticaTravelAPI.Repositories;
+using KarpaticaTravelAPI.Models.UserModel;
 
 namespace KarpaticaTravelAPI.Controllers
 {

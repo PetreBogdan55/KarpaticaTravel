@@ -1,4 +1,5 @@
 ﻿using KarpaticaTravelAPI.Models;
+using KarpaticaTravelAPI.Models.CountryModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

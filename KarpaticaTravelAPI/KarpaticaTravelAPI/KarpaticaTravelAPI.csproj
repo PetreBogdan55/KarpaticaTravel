@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Processors\" />
+    <Folder Include="Models\DtoModels\" />
   </ItemGroup>
 
 

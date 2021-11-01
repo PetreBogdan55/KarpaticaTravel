@@ -1,4 +1,4 @@
-using KarpaticaTravelAPI.Models.DtoModels;
+using KarpaticaTravelAPI.Models.UserModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KarpaticaTravelAPI.Models.Requests
@@ -6,7 +6,7 @@ namespace KarpaticaTravelAPI.Models.Requests
     public class CreateUserRequest
     {
         [FromBody]
-        public UserDto UserDto { get; set; }
+        public UserDTO UserDTO { get; set; }
 
     }
 }
