@@ -1,4 +1,9 @@
-﻿using System;
+﻿using KarpaticaTravelAPI.Models.ActivityModel;
+using KarpaticaTravelAPI.Models.BookingModel;
+using KarpaticaTravelAPI.Models.CityModel;
+using KarpaticaTravelAPI.Models.ReviewModel;
+using KarpaticaTravelAPI.Models.UserModel;
+using System;
 using System.Collections.Generic;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.

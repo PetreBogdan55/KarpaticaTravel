@@ -1,4 +1,10 @@
 ﻿using System;
+using KarpaticaTravelAPI.Models.ActivityModel;
+using KarpaticaTravelAPI.Models.BookingModel;
+using KarpaticaTravelAPI.Models.CityModel;
+using KarpaticaTravelAPI.Models.CountryModel;
+using KarpaticaTravelAPI.Models.ReviewModel;
+using KarpaticaTravelAPI.Models.UserModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 

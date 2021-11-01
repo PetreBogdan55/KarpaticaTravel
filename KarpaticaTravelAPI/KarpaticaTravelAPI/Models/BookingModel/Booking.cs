@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using KarpaticaTravelAPI.Models.UserModel;
+using System;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace KarpaticaTravelAPI.Models
+namespace KarpaticaTravelAPI.Models.BookingModel
 {
     public partial class Booking
     {
@@ -17,6 +17,6 @@ namespace KarpaticaTravelAPI.Models
         public bool IsCancellable { get; set; }
 
         public virtual Location Location { get; set; }
-        public virtual User User { get; set; }
+        public virtual User User { get; set; }  
     }
 }

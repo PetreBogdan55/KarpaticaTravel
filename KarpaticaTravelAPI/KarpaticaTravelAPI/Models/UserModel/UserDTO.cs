@@ -1,9 +1,10 @@
 
-namespace KarpaticaTravelAPI.Models
+namespace KarpaticaTravelAPI.Models.UserModel
 {
-    public class UserUpdateView
+    public class UserDTO
     {
-        
+        public int Id { get; set; }
+
         public string Email { get; set; }
 
         public string Username { get; set; }
