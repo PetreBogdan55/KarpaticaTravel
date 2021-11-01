@@ -7,5 +7,7 @@ namespace KarpaticaTravelAPI.Models.ActivityModel
 {
     public class ActivityUpdateDTO
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

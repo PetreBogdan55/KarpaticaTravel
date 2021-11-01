@@ -70,10 +70,10 @@ namespace KarpaticaTravelAPI.Controllers
 
             if (!result)
             {
-                return NotFound("City could not be created.");
+                return NotFound("City could not be created");
             }
 
-            return Ok("City created successfully.");
+            return Ok("City created successfully");
         }
 
         [HttpPut("{id}")]
@@ -85,17 +85,17 @@ namespace KarpaticaTravelAPI.Controllers
 
             if (string.IsNullOrWhiteSpace(updateCity.Name))
             {
-                return BadRequest("Invalid paramteres for city update.");
+                return BadRequest("Invalid paramteres for city update");
             }
 
             bool res = await _cityProcessor.UpdateCity(id, updateCity).ConfigureAwait(false);
 
             if (!res)
             {
-                return NotFound("Unable to update city.");
+                return NotFound("Unable to update city");
             }
 
-            return Ok($"City with id {id} updated successfully.");
+            return Ok($"City with id {id} updated successfully");
         }
 
         [HttpDelete("{id}")]
@@ -107,17 +107,17 @@ namespace KarpaticaTravelAPI.Controllers
         {
             if (id < 0)
             {
-                return BadRequest("Invalid paramter for city deletion.");
+                return BadRequest("Invalid paramter for city deletion");
             }
 
             bool res = await _cityProcessor.DeleteCity(id).ConfigureAwait(false);
 
             if (!res)
             {
-                return NotFound("Unable to delete city.");
+                return NotFound("Unable to delete city");
             }
 
-            return Ok("City deleted successfully.");
+            return Ok($"City {id} deleted successfully");
         }
 
     }

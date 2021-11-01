@@ -1,4 +1,5 @@
 using AutoMapper;
+using KarpaticaTravelAPI.Models.ActivityModel;
 using KarpaticaTravelAPI.Models.CityModel;
 
 namespace KarpaticaTravelAPI.Models.Mapping
@@ -10,6 +11,10 @@ namespace KarpaticaTravelAPI.Models.Mapping
             CreateMap<City, CityDTO>();
             CreateMap<CityDTO, City>();
             CreateMap<CityUpdateDTO, City>();
+
+            CreateMap<Activity, ActivityDTO>();
+            CreateMap<ActivityDTO, Activity>();
+            CreateMap<ActivityUpdateDTO, Activity>();
         }
     }
 }
