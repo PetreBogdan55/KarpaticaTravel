@@ -1,5 +1,7 @@
 using FluentValidation.AspNetCore;
 using KarpaticaTravelAPI.Models;
+using KarpaticaTravelAPI.Models.Mapping;
+using KarpaticaTravelAPI.Processors.CityProcessor;
 using KarpaticaTravelAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,9 +37,13 @@ namespace KarpaticaTravelAPI
 
             services.AddDbContext<KarpaticaTravelContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KarpaticaDbConnectionString")));
 
-            services.TryAddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(typeof(MapperProfile));
 
+            services.TryAddScoped<IUserRepository, UserRepository>();
+            services.TryAddScoped<ICityRepository, CityRepository>();
             services.TryAddScoped<ICountryRepository, CountryRepository>();
+
+            services.TryAddScoped<ICityProcessor, CityProcessor>();
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressInferBindingSourcesForParameters = true);
 

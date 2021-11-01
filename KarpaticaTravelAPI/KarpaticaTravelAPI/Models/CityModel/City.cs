@@ -1,23 +1,26 @@
-﻿using System;
+﻿using KarpaticaTravelAPI.Models.CountryModel;
+using System;
 using System.Collections.Generic;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace KarpaticaTravelAPI.Models
+namespace KarpaticaTravelAPI.Models.CityModel
 {
-    public partial class Activity
+    public partial class City
     {
-        public Activity()
+        public City()
         {
             Location = new HashSet<Location>();
         }
 
-        public int ActivityId { get; set; }
+        public int Id { get; set; }
+        public int CountryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public virtual Country Country { get; set; }
         public virtual ICollection<Location> Location { get; set; }
     }
 }

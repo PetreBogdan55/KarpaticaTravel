@@ -1,4 +1,5 @@
 using AutoMapper;
+using KarpaticaTravelAPI.Models.CityModel;
 
 namespace KarpaticaTravelAPI.Models.Mapping
 {
@@ -6,7 +7,9 @@ namespace KarpaticaTravelAPI.Models.Mapping
     {
         public MapperProfile()
         {
-            //CreateMap<User, UserUpdateView>();
+            CreateMap<City, CityDTO>();
+            CreateMap<CityDTO, City>();
+            CreateMap<CityUpdateDTO, City>();
         }
     }
 }

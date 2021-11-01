@@ -5,19 +5,19 @@ using System.Collections.Generic;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace KarpaticaTravelAPI.Models
+namespace KarpaticaTravelAPI.Models.ActivityModel
 {
-    public partial class Country
+    public partial class Activity
     {
-        public Country()
+        public Activity()
         {
-            City = new HashSet<City>();
+            Location = new HashSet<Location>();
         }
 
-        public int Id { get; set; }
-        public string CountryCode { get; set; }
+        public int ActivityId { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
 
-        public virtual ICollection<City> City { get; set; }
+        public virtual ICollection<Location> Location { get; set; }
     }
 }
