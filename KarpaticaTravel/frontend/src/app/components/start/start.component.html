@@ -1,1 +1,213 @@
-<p>start works!</p>
+<div class="centered">
+  <table>
+    <tr>
+      <th colspan="5"><h1>Search for a location...</h1></th>
+    </tr>
+    <tr>
+      <td>
+        <ul class="dropdown">
+          <li>
+            <a>Select a package</a>
+            <ul>
+              <li>
+                <a>
+                  Package Type <br />
+                  <select
+                    class="form-control"
+                    name="packageType"
+                    id="packageType"
+                  >
+                    <option value="" disabled selected>
+                      Choose package type
+                    </option>
+                    <option
+                      *ngFor="let packageType of packageTypes"
+                      [value]="packageType"
+                    >
+                      {{ packageType }}
+                    </option>
+                  </select></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul class="dropdown">
+          <li>
+            <a>Choose your destination</a>
+            <ul>
+              <li>
+                <a>
+                  Destination Country <br />
+                  <select class="form-control" name="country" id="country">
+                    <option value="" disabled selected>Select Country</option>
+                    <option
+                      *ngFor="let country of countries"
+                      [value]="country.name"
+                    >
+                      {{ country.name }}
+                    </option>
+                  </select></a
+                >
+              </li>
+              <li>
+                <a>
+                  Destination City <br />
+                  <select class="form-control" name="city" id="city">
+                    <option value="" disabled selected>Select City</option>
+                    <option *ngFor="let city of cities" [value]="city.name">
+                      {{ city.name }}
+                    </option>
+                  </select></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul class="dropdown">
+          <li>
+            <a>Select check-in date</a>
+            <ul>
+              <li>
+                <a>
+                  Check-In Date: <br />
+
+                  <input
+                    type="date"
+                    id="start"
+                    name="trip-start"
+                    value="2018-07-22"
+                    min="2018-01-01"
+                    max="2048-12-31"
+                /></a>
+                >
+              </li>
+              <li>
+                <a>
+                  Number of nights <br />
+                  <select class="form-control" name="night" id="night">
+                    <option value="" disabled selected>
+                      Select Number of Nights
+                    </option>
+                    <option
+                      *ngFor="let night of numberOfNights"
+                      [value]="night"
+                    >
+                      {{ night }}
+                    </option>
+                  </select></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul class="dropdown">
+          <li>
+            <a>Choose your room</a>
+            <ul>
+              <li>
+                <a>
+                  Room Type <br />
+                  <select class="form-control" name="room" id="room">
+                    <option value="" disabled selected>Select Room Type</option>
+                    <option *ngFor="let room of roomTypes" [value]="room">
+                      {{ room }}
+                    </option>
+                  </select></a
+                >
+              </li>
+              <li>
+                <a>
+                  Number of Rooms<br />
+                  <select class="form-control" name="roomNr" id="roomNr">
+                    <option value="" disabled selected>
+                      Select Number of Rooms
+                    </option>
+                    <option
+                      *ngFor="let roomNr of numberOfRooms"
+                      [value]="roomNr"
+                    >
+                      {{ roomNr }}
+                    </option>
+                  </select></a
+                >
+              </li>
+              <li>
+                <a>
+                  Number of Adults<br />
+                  <select class="form-control" name="adultNr" id="adultNr">
+                    <option value="" disabled selected>
+                      Select Number of Adults
+                    </option>
+                    <option
+                      *ngFor="let adultNr of adultsNumber"
+                      [value]="adultNr"
+                    >
+                      {{ adultNr }}
+                    </option>
+                  </select></a
+                >
+              </li>
+              <li>
+                <a>
+                  Number of Kids<br />
+                  <select class="form-control" name="kidNr" id="kidNr">
+                    <option value="" disabled selected>
+                      Select Number of Kids
+                    </option>
+                    <option *ngFor="let kidNr of kidsNumber" [value]="kidNr">
+                      {{ kidNr }}
+                    </option>
+                  </select></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td>
+        <button>Search for packages...</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<br />
+<br />
+<br />
+<div class="centered2">
+  <h1>All Activities</h1>
+</div>
+<div class="centered2">
+  <div class="square"></div>
+  <span></span>
+  <div class="square"></div>
+  <span></span>
+  <div class="square"></div>
+  <span></span>
+  <div class="square"></div>
+  <span></span>
+  <div class="square"></div>
+</div>
+<br />
+<br />
+<br />
+<div class="centered2">
+  <h1>Favourite Locations</h1>
+</div>
+<div class="centered2">
+  <div class="square"></div>
+  <span></span>
+  <div class="square"></div>
+  <span></span>
+  <div class="square"></div>
+  <span></span>
+  <div class="square"></div>
+  <span></span>
+  <div class="square"></div>
+</div>

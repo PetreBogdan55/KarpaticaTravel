@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
-import { MaterialModule } from './material.module'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { NgxCaptchaModule } from 'ngx-captcha'
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from './material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 const sharedModules: any[] = [
   CommonModule,
@@ -10,7 +10,7 @@ const sharedModules: any[] = [
   ReactiveFormsModule,
   FormsModule,
   NgxCaptchaModule,
-]
+];
 @NgModule({
   declarations: [],
   imports: sharedModules,
