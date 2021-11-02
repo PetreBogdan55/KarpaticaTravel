@@ -107,3 +107,18 @@ body {
 .register-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
 }
+
+
+mat-card-header {
+  margin-bottom: 3em;
+}
+
+.alert {
+  color : red;
+  height: 10%;
+}
+
+
+mat-error {
+  margin-bottom: 15px;
+}
