@@ -1,7 +1,7 @@
 using KarpaticaTravelAPI.Models.UserModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace KarpaticaTravelAPI.Models.Requests
+namespace KarpaticaTravelAPI.Models.Requests.User
 {
     public class CreateUserRequest
     {

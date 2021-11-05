@@ -1,5 +1,4 @@
-﻿using KarpaticaTravelAPI.Models;
-using KarpaticaTravelAPI.Models.UserModel;
+﻿using KarpaticaTravelAPI.Models.UserModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

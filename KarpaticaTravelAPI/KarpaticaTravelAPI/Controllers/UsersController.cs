@@ -1,30 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using KarpaticaTravelAPI.Models;
 using NotesAPI.Controllers;
-using KarpaticaTravelAPI.Repositories;
 using KarpaticaTravelAPI.Models.UserModel;
+using KarpaticaTravelAPI.Processors.UserProcessor;
+using System.Net;
+using KarpaticaTravelAPI.Models.Requests.User;
+using FluentValidation;
 
 namespace KarpaticaTravelAPI.Controllers
 {
     public class UsersController : BaseController
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserProcessor _userProcessor;
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUserProcessor userRepository)
         {
-            _userRepository = userRepository;
+            _userProcessor = userRepository;
         }
 
-        // GET: api/Users1
+
+        [ProducesResponseType(typeof(IEnumerable<UserDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<IActionResult> GetUsersAsync()
         {
-            IEnumerable<User> result = await _userRepository.GetUsers().ConfigureAwait(false);
+            IEnumerable<UserDTO> result = await _userProcessor.GetUsers().ConfigureAwait(false);
 
             if (result == null)
             {
@@ -34,58 +36,105 @@ namespace KarpaticaTravelAPI.Controllers
             return Ok(result);
         }
 
-        // GET: api/Users1/5
+        [ProducesResponseType(typeof(UserDTO), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<IActionResult> GetUserAsync(GetUserRequest request)
         {
-            User result = await _userRepository.GetUser(id).ConfigureAwait(false);
-
-            if (result == null)
+            try
             {
-                return NotFound("No user found.");
-            }
+                GetUserRequestValidator rules = new GetUserRequestValidator();
+                await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
 
-            return Ok(result);
+                UserDTO result = await _userProcessor.GetUser(request.Id).ConfigureAwait(false);
+
+                if (result == null)
+                {
+                    return NotFound("No user found.");
+                }
+
+                return Ok(result);
+            }
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
-        // PUT: api/Users1/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUserAsync(UpdateUserRequest request)
         {
-            if (!await _userRepository.UpdateUser(id, user).ConfigureAwait(false))
+            try
             {
-                return BadRequest();
+                UpdateUserRequestValidator rules = new UpdateUserRequestValidator();
+                await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
+
+                if (!await _userProcessor.UpdateUser(request.Id, request.UserUpdateDTO).ConfigureAwait(false))
+                {
+                    return BadRequest();
+                }
+
+                return NoContent();
             }
-
-            return NoContent();
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
-        // POST: api/Users1
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<IActionResult> PostUserAsync(CreateUserRequest request)
         {
-            User userCreated = await _userRepository.CreateUser(user).ConfigureAwait(false);
+            try
+            {
+                CreateUserRequestValidator rules = new CreateUserRequestValidator();
+                await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
 
-            if (userCreated == null)
-                return BadRequest(userCreated);
+                bool isCreated = await _userProcessor.CreateUser(request.UserDTO).ConfigureAwait(false);
 
-            return Ok(userCreated);
+                if (!isCreated)
+                    return BadRequest(isCreated);
+
+                return Ok(isCreated);
+            }
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
-        // DELETE: api/Users1/5
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<IActionResult> DeleteUserAsync(DeleteUserRequest request)
         {
-            bool result = await _userRepository.DeleteUser(id).ConfigureAwait(false);
+            try
+            {
+                DeleteUserRequestValidator rules = new DeleteUserRequestValidator();
+                await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
 
-            if (!result)
-                return NotFound();
+                bool result = await _userProcessor.DeleteUser(request.Id).ConfigureAwait(false);
 
-            return Ok(result);
+                if (!result)
+                    return NotFound();
+
+                return Ok(result);
+            }
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
     }
 }
