@@ -4,64 +4,69 @@
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
 
-    <form
-      [formGroup]="signupForm"
-      #form="ngForm"
-      class="register-form"
-      (ngSubmit)="register(signupForm)"
-    >
+    <form [formGroup]="this.formService.form" #form="ngForm" class="register-form"
+      (ngSubmit)="register(this.formService.form)">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input
-            type="text"
-            matInput
-            required
-            placeholder="Username"
-            ngModel
-            formControlName="username"
-          />
+          <input type="text" matInput required placeholder="Username" ngModel formControlName="username" />
         </mat-form-field>
+        <div *ngIf="this.formService.isInvalid(this.formService.getUsername())">
+
+          <mat-error *ngIf="this.formService.getUsername().errors?.minlength">*At
+            least
+            5 characters</mat-error>
+          <mat-error *ngIf="this.formService.getUsername().errors?.maxlength">
+            *At
+            most
+            15 characters</mat-error>
+
+          <mat-error *ngIf="this.formService.getUsername().errors?.required">
+            *Please enter username
+          </mat-error>
+        </div>
+
 
         <mat-form-field class="example-full-width">
-          <input
-            type="email"
-            matInput
-            required
-            placeholder="Email"
-            name="email"
-            formControlName="email"
-          />
+          <input type="email" matInput required placeholder="Email" name="email" formControlName="email" />
+
         </mat-form-field>
+
+        <div *ngIf="this.formService.isInvalid(this.formService.getEmail())">
+
+          <mat-error *ngIf="this.formService.getEmail().errors?.required">
+            *Please enter your email
+          </mat-error>
+          <mat-error *ngIf="this.formService.getEmail().errors?.email">
+            *Invalid email
+          </mat-error>
+        </div>
 
         <mat-form-field class="example-full-width">
-          <input
-            type="password"
-            matInput
-            required
-            placeholder="Password"
-            name="password"
-            formControlName="password"
-          />
+          <input type="password" matInput required placeholder="Password" name="password" formControlName="password" />
         </mat-form-field>
+        <div *ngIf="this.formService.isInvalid(this.formService.getPassword())">
 
-        <ngx-recaptcha2 [siteKey]="siteKey" formControlName="recaptcha">
+          <mat-error *ngIf="this.formService.getPassword().errors?.minlength">*At
+            least
+            5 characters</mat-error>
+          <mat-error *ngIf="this.formService.getPassword().errors?.maxlength">*At
+            most
+            15 characters</mat-error>
+
+          <mat-error *ngIf="this.formService.getPassword().errors?.required">
+            *Please enter your password
+          </mat-error>
+        </div>
+
+
+        <ngx-recaptcha2 [siteKey]="siteKey" formControlName="recaptcha" class="hei">
         </ngx-recaptcha2>
       </mat-card-content>
 
-      <button
-        mat-stroked-button
-        color="accent"
-        class="btn-block"
-        [disabled]="!form.valid"
-      >
+      <button mat-stroked-button color="accent" class="btn-block" [disabled]="!form.valid">
         Register
       </button>
-      <button
-        mat-stroked-button
-        color="primary"
-        routerLink="/login"
-        class="btn-block register-button"
-      >
+      <button mat-stroked-button color="primary" routerLink="/login" class="btn-block register-button">
         Go to login
       </button>
     </form>
