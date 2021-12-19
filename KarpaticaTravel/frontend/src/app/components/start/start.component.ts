@@ -8,6 +8,12 @@ import { countries } from './../../models/country';
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnInit {
+  public chosenPackage: string = 'Choose package type';
+  public chosenCountry: string = 'Select Country';
+  public chosenCity: string = 'Select City';
+  public chosenDate: string = '2018-07-22';
+  public chosenNumberOfNights: number = 1;
+
   public countries: any = countries;
   public cities: any = countries;
   public packageTypes: string[] = ['Accommodation only', 'Resort', 'Circuit'];

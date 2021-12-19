@@ -28,22 +28,29 @@
       <td>
         <ul class="dropdown">
           <li>
-            <a>Select a package</a>
+            <a
+              >{{
+                chosenPackage != "Choose package type"
+                  ? chosenPackage
+                  : "Select a package"
+              }}
+            </a>
             <ul>
               <li>
                 <a>
                   Package Type <br />
                   <select
+                    [(ngModel)]="chosenPackage"
                     class="form-control"
                     name="packageType"
                     id="packageType"
                   >
-                    <option value="" disabled selected>
+                    <option [ngValue]="" disabled selected>
                       Choose package type
                     </option>
                     <option
                       *ngFor="let packageType of packageTypes"
-                      [value]="packageType"
+                      [ngValue]="packageType"
                     >
                       {{ packageType }}
                     </option>
@@ -57,16 +64,27 @@
       <td>
         <ul class="dropdown">
           <li>
-            <a>Choose your destination</a>
+            <a>{{
+              chosenCountry != "Select Country" && chosenCity != "Select City"
+                ? chosenCountry + ", " + chosenCity
+                : "Select Destnation"
+            }}</a>
             <ul>
               <li>
                 <a>
                   Destination Country <br />
-                  <select class="form-control" name="country" id="country">
-                    <option value="" disabled selected>Select Country</option>
+                  <select
+                    [(ngModel)]="chosenCountry"
+                    class="form-control"
+                    name="country"
+                    id="country"
+                  >
+                    <option [ngValue]="" disabled selected>
+                      Select Country
+                    </option>
                     <option
                       *ngFor="let country of countries"
-                      [value]="country.name"
+                      [ngValue]="country.name"
                     >
                       {{ country.name }}
                     </option>
@@ -76,9 +94,14 @@
               <li>
                 <a>
                   Destination City <br />
-                  <select class="form-control" name="city" id="city">
-                    <option value="" disabled selected>Select City</option>
-                    <option *ngFor="let city of cities" [value]="city.name">
+                  <select
+                    [(ngModel)]="chosenCity"
+                    class="form-control"
+                    name="city"
+                    id="city"
+                  >
+                    <option [ngValue]="" disabled selected>Select City</option>
+                    <option *ngFor="let city of cities" [ngValue]="city.name">
                       {{ city.name }}
                     </option>
                   </select></a
@@ -91,7 +114,7 @@
       <td>
         <ul class="dropdown">
           <li>
-            <a>Select check-in date</a>
+            <a>{{ chosenDate + ", " + chosenNumberOfNights + " nights" }}</a>
             <ul>
               <li>
                 <a>
@@ -101,7 +124,7 @@
                     type="date"
                     id="start"
                     name="trip-start"
-                    value="2018-07-22"
+                    [(ngModel)]="chosenDate"
                     min="2018-01-01"
                     max="2048-12-31"
                 /></a>
@@ -110,13 +133,18 @@
               <li>
                 <a>
                   Number of nights <br />
-                  <select class="form-control" name="night" id="night">
-                    <option value="" disabled selected>
+                  <select
+                    [(ngModel)]="chosenNumberOfNights"
+                    class="form-control"
+                    name="night"
+                    id="night"
+                  >
+                    <option [ngValue]="" disabled selected>
                       Select Number of Nights
                     </option>
                     <option
                       *ngFor="let night of numberOfNights"
-                      [value]="night"
+                      [ngValue]="night"
                     >
                       {{ night }}
                     </option>
