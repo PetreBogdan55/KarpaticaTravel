@@ -45,7 +45,11 @@ export class AppComponent {
     this._router.navigate(['start']);
   }
 
-  public navigateToError() {
-    //this._router.navigate(['error']);
+  public navigateToSettings() {
+    this._router.navigate(['settings']);
+  }
+
+  public navigateToBookings() {
+    this._router.navigate(['bookings']);
   }
 }

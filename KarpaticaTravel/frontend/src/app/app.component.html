@@ -28,8 +28,15 @@
     <mat-divider></mat-divider>
 
     <button mat-button class="menu-button">
+      <mat-icon>book</mat-icon>
+      <span (click)="navigateToBookings()">My Bookings</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
       <mat-icon>settings</mat-icon>
-      <span (click)="navigateToError()">Settings</span>
+      <span (click)="navigateToSettings()">Settings</span>
     </button>
 
     <br /><br /><br />

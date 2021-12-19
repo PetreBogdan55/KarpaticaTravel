@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { countries } from './../../models/country';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start',
@@ -23,7 +24,7 @@ export class StartComponent implements OnInit {
   public adultsNumber: number[] = [1, 2, 3, 4, 5, 6];
   public kidsNumber: number[] = [0, 1, 2, 3, 4];
 
-  constructor(private toastr: ToastrService) {}
+  constructor(private _router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
@@ -41,5 +42,6 @@ export class StartComponent implements OnInit {
       return;
     }
     this.toastr.success('Hello world!', 'Toastr fun!');
+    this._router.navigate(['results']);
   }
 }
