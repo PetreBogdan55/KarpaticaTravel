@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SidebarComponent } from '@syncfusion/ej2-angular-navigations';
 import { countries } from './../../models/country';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-start',
@@ -34,7 +35,23 @@ export class StartComponent implements OnInit {
     this.sidebar.show();
   }
 
-  constructor() {}
+  constructor(private toastr: ToastrService) {}
 
   ngOnInit(): void {}
+
+  onSearch(): void {
+    if (this.chosenPackage === 'Choose package type') {
+      this.toastr.error('Please choose a package type!', 'Missing fields!');
+      return;
+    }
+    if (this.chosenCountry === 'Select Country') {
+      this.toastr.error('Please choose a country!', 'Missing fields!');
+      return;
+    }
+    if (this.chosenCity === 'Select City') {
+      this.toastr.error('Please choose a city!', 'Missing fields!');
+      return;
+    }
+    this.toastr.success('Hello world!', 'Toastr fun!');
+  }
 }
