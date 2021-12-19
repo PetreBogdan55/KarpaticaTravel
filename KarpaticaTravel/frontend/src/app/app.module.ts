@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from './shared/shared.module';
-import { SidebarModule } from '@syncfusion/ej2-angular-navigations';
 import {
   ToastrModule,
   ToastNoAnimation,
@@ -28,7 +27,6 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     SharedModule,
-    SidebarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
