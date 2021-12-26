@@ -7,7 +7,7 @@ namespace KarpaticaTravelAPI.Models.CityModel
 {
     public class CityUpdateDTO
     {
-        public int CountryId { get; set; }
+        public Guid CountryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
