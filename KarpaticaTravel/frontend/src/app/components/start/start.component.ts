@@ -1,6 +1,10 @@
-import { Activity } from './../../models/activity'
-import { Component, OnInit } from '@angular/core'
-import { ApiService } from 'src/app/services/api.service'
+import { SearchService } from './../../services/search.service';
+import { SearchFilters } from './../../models/searchFilters';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { Search } from 'src/app/models/search';
 
 @Component({
   selector: 'app-start',
@@ -8,19 +12,50 @@ import { ApiService } from 'src/app/services/api.service'
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnInit {
-  public countries: any
-  public cities: any
-  public packageTypes: string[] = ['Accommodation only', 'Resort', 'Circuit']
-  public numberOfNights: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  public roomTypes: string[] = ['Single', 'Double', 'Triple', 'Apartament']
-  public numberOfRooms: number[] = [1, 2, 3, 4, 5]
-  public adultsNumber: number[] = [1, 2, 3, 4, 5, 6]
-  public kidsNumber: number[] = [0, 1, 2, 3, 4]
+  public minSearchDate: string;
+  public maxSearchDate: string;
 
-  constructor(private apiService: ApiService) {}
+  public searchObject: Search = new Search();
+
+  constructor(
+    private _router: Router,
+    public searchService: SearchService,
+    private toastr: ToastrService //private apiService: ApiService
+  ) {
+    let date = new Date();
+    let maxDate = new Date();
+    this.searchService.searchFiltersObject.chosenDate = date
+      .toISOString()
+      .split('T')[0]
+      .toString();
+    this.minSearchDate = this.searchService.searchFiltersObject.chosenDate;
+    maxDate.setDate(date.getDate() + 3);
+    this.maxSearchDate = maxDate.toISOString().split('T')[0].toString();
+  }
 
   ngOnInit(): void {
-    this.countries = this.apiService.getCountries()
-    this.cities = this.apiService.getCities()
+    //this.countries = this.apiService.getCountries();
+    //this.cities = this.apiService.getCities();
+  }
+
+  onSearch(): void {
+    if (
+      this.searchService.searchFiltersObject.chosenPackage ===
+      'Choose package type'
+    ) {
+      this.toastr.error('Please choose a package type!', 'Missing fields!');
+      return;
+    }
+    if (
+      this.searchService.searchFiltersObject.chosenCountry === 'Select Country'
+    ) {
+      this.toastr.error('Please choose a country!', 'Missing fields!');
+      return;
+    }
+    if (this.searchService.searchFiltersObject.chosenCity === 'Select City') {
+      this.toastr.error('Please choose a city!', 'Missing fields!');
+      return;
+    }
+    this._router.navigate(['results']);
   }
 }
