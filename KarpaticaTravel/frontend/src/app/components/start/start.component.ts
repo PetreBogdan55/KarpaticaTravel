@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { countries } from './../../models/country';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-start',
@@ -15,8 +15,8 @@ export class StartComponent implements OnInit {
   public chosenDate: string = '2018-07-22';
   public chosenNumberOfNights: number = 1;
 
-  public countries: any = countries;
-  public cities: any = countries;
+  public countries: any = ['Unknown'];
+  public cities: any = ['Unknown'];
   public packageTypes: string[] = ['Accommodation only', 'Resort', 'Circuit'];
   public numberOfNights: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   public roomTypes: string[] = ['Single', 'Double', 'Triple', 'Apartament'];
@@ -24,9 +24,16 @@ export class StartComponent implements OnInit {
   public adultsNumber: number[] = [1, 2, 3, 4, 5, 6];
   public kidsNumber: number[] = [0, 1, 2, 3, 4];
 
-  constructor(private _router: Router, private toastr: ToastrService) {}
+  constructor(
+    private _router: Router,
+    private toastr: ToastrService
+  ) //private apiService: ApiService
+  {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //this.countries = this.apiService.getCountries();
+    //this.cities = this.apiService.getCities();
+  }
 
   onSearch(): void {
     if (this.chosenPackage === 'Choose package type') {

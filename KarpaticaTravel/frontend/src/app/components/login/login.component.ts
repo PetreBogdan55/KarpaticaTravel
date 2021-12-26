@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms'
-import { SharedFormService } from 'src/app/shared/services/shared.form.service'
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { SharedFormService } from 'src/app/shared/services/shared.form.service';
 
 @Component({
   selector: 'app-login',
@@ -9,24 +9,24 @@ import { SharedFormService } from 'src/app/shared/services/shared.form.service'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  URL_API: string = ''
+  URL_API: string = '';
 
   constructor(
     public formService: SharedFormService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.formService.form = this.formBuilder.group(
       {
         password: [''],
-        username: [''],
+        email: ['', Validators.pattern(this.formService.emailPattern)],
       },
-      { updateOn: 'change' },
-    )
+      { updateOn: 'change' }
+    );
   }
 
   login(form: FormGroup): void {
-    console.log(form.value)
+    console.log(form.value);
   }
 }
