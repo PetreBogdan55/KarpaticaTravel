@@ -7,6 +7,7 @@ using KarpaticaTravelAPI.Processors.UserProcessor;
 using System.Net;
 using KarpaticaTravelAPI.Models.Requests.User;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KarpaticaTravelAPI.Controllers
 {
@@ -19,6 +20,23 @@ namespace KarpaticaTravelAPI.Controllers
             _userProcessor = userRepository;
         }
 
+        [ProducesResponseType(typeof(LoginUserResult), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
+        [HttpPost]
+        [AllowAnonymous]
+        [Route(nameof(Login))]
+        public async Task<IActionResult> Login(LoginUserRequest request)
+        {
+            LoginUserResult result = await _userProcessor.LoginUser(request.LoginUser.Email, request.LoginUser.Password).ConfigureAwait(false);
+
+            if (result == null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(result);
+        }
 
         [ProducesResponseType(typeof(IEnumerable<UserDTO>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NoContent)]
@@ -91,6 +109,7 @@ namespace KarpaticaTravelAPI.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> PostUserAsync(CreateUserRequest request)
         {
@@ -102,7 +121,9 @@ namespace KarpaticaTravelAPI.Controllers
                 bool isCreated = await _userProcessor.CreateUser(request.UserDTO).ConfigureAwait(false);
 
                 if (!isCreated)
+                {
                     return BadRequest(isCreated);
+                }
 
                 return Ok(isCreated);
             }
@@ -127,7 +148,9 @@ namespace KarpaticaTravelAPI.Controllers
                 bool result = await _userProcessor.DeleteUser(request.Id).ConfigureAwait(false);
 
                 if (!result)
+                {
                     return NotFound();
+                }
 
                 return Ok(result);
             }

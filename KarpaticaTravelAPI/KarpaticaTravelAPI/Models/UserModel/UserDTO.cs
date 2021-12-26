@@ -1,9 +1,11 @@
 
+using System;
+
 namespace KarpaticaTravelAPI.Models.UserModel
 {
     public class UserDTO
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Email { get; set; }
 
@@ -11,7 +13,11 @@ namespace KarpaticaTravelAPI.Models.UserModel
 
         public string Password { get; set; }
 
+        //public string Salt { get; set; }
+
         public string Phone { get; set; }
+
+        // public bool IsOwner { get; set; }
 
     }
 }

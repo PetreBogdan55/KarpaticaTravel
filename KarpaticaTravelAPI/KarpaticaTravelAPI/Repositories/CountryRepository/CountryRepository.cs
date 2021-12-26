@@ -2,11 +2,12 @@
 using KarpaticaTravelAPI.Models;
 using KarpaticaTravelAPI.Models.CountryModel;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KarpaticaTravelAPI.Repositories
+namespace KarpaticaTravelAPI.Repositories.CountryRepository
 {
     public class CountryRepository : ICountryRepository
     {
@@ -26,10 +27,14 @@ namespace KarpaticaTravelAPI.Repositories
             return country;
         }
 
-        public async Task<bool> DeleteCountry(int id)
+        public async Task<bool> DeleteCountry(Guid id)
         {
-            Country country = await _context.Country.FindAsync(id)
-;
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
+            Country country = await _context.Country.FindAsync(id);
 
             if (country == null)
             {
@@ -42,10 +47,14 @@ namespace KarpaticaTravelAPI.Repositories
             return true;
         }
 
-        public async Task<Country> GetCountry(int id)
+        public async Task<Country> GetCountry(Guid id)
         {
-            Country country = await _context.Country.FindAsync(id)
-;
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
+            Country country = await _context.Country.FindAsync(id);
 
             return country;
         }
@@ -55,8 +64,13 @@ namespace KarpaticaTravelAPI.Repositories
             return await _context.Country.ToListAsync();
         }
 
-        public async Task<bool> UpdateCountry(int id, Country country)
+        public async Task<bool> UpdateCountry(Guid id, Country country)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
             if (id != country.Id)
             {
                 return false;

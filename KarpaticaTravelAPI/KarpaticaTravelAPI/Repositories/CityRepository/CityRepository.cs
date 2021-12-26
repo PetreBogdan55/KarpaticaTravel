@@ -7,7 +7,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KarpaticaTravelAPI.Repositories
+namespace KarpaticaTravelAPI.Repositories.CityRepository
 {
     public class CityRepository : ICityRepository
     {
@@ -34,8 +34,13 @@ namespace KarpaticaTravelAPI.Repositories
 
         }
 
-        public async Task<bool> DeleteCity(int id)
+        public async Task<bool> DeleteCity(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
             try
             {
                 var city = await _context.City.FindAsync(id);
@@ -62,14 +67,24 @@ namespace KarpaticaTravelAPI.Repositories
             return await _context.City.ToListAsync();
         }
 
-        public async Task<City> GetCity(int id)
+        public async Task<City> GetCity(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
             City city = await _context.City.FindAsync(id);
             return city;
         }
 
-        public async Task<bool> UpdateCity(int id, City city)
+        public async Task<bool> UpdateCity(Guid id, City city)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
             if (id != city.Id)
             {
                 return false;

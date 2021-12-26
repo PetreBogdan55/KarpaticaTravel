@@ -8,11 +8,11 @@ namespace KarpaticaTravelAPI.Processors.CityProcessor
 {
     public interface ICityProcessor
     {
-        Task<bool> UpdateCity(int id, CityUpdateDTO cityToUpdate);
-        Task<bool> DeleteCity(int cityId);
+        Task<bool> UpdateCity(Guid id, CityUpdateDTO cityToUpdate);
+        Task<bool> DeleteCity(Guid cityId);
         Task<bool> CreateCity(CityDTO city);
 
-        Task<CityDTO> GetCity(int id);
+        Task<CityDTO> GetCity(Guid id);
 
         Task<IEnumerable<CityDTO>> GetCities();
 

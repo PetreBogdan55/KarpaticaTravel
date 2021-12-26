@@ -7,7 +7,6 @@ namespace KarpaticaTravelAPI.Models.CountryModel
     {
         public CountryDTOValidator()
         {
-            RuleFor(x => x.Id).NotNull().NotEmpty();
             RuleFor(x => x.Name).NotNull().NotEmpty();
             RuleFor(x => x.CountryCode).NotNull().NotEmpty();
         }

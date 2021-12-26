@@ -7,7 +7,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KarpaticaTravelAPI.Repositories
+namespace KarpaticaTravelAPI.Repositories.ActivityRepository
 {
     public class ActivityRepository : IActivityRepository
     {
@@ -33,8 +33,13 @@ namespace KarpaticaTravelAPI.Repositories
             }
         }
 
-        public async Task<bool> DeleteActivity(int id)
+        public async Task<bool> DeleteActivity(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
             try
             {
                 var activity = await _context.Activity.FindAsync(id);
@@ -61,15 +66,25 @@ namespace KarpaticaTravelAPI.Repositories
             return await _context.Activity.ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<Activity> GetActivity(int id)
+        public async Task<Activity> GetActivity(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
             Activity activity = await _context.Activity.FindAsync(id).ConfigureAwait(false);
             return activity;
         }
 
-        public async Task<bool> UpdateActivity(int id, Activity activity)
+        public async Task<bool> UpdateActivity(Guid id, Activity activity)
         {
-            if (id != activity.ActivityId)
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
+            if (id != activity.Id)
             {
                 return false;
             }
@@ -83,7 +98,7 @@ namespace KarpaticaTravelAPI.Repositories
             }
             catch (DbUpdateConcurrencyException dbException)
             {
-                if (!_context.Activity.Any(e => e.ActivityId == id))
+                if (!_context.Activity.Any(e => e.Id == id))
                 {
                     return false;
                 }

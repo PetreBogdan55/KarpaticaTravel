@@ -7,7 +7,6 @@ namespace KarpaticaTravelAPI.Models.UserModel
     {
         public UserDTOValidator()
         {
-            RuleFor(x => x.Id).NotNull().NotEmpty();
             RuleFor(x => x.Password).NotNull().NotEmpty();
             RuleFor(x => x.Phone).NotNull().NotEmpty();
             RuleFor(x => x.Username).NotNull().NotEmpty();

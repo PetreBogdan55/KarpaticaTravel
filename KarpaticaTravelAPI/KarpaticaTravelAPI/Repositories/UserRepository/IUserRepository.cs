@@ -1,15 +1,17 @@
 ﻿using KarpaticaTravelAPI.Models.UserModel;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace KarpaticaTravelAPI.Repositories
+namespace KarpaticaTravelAPI.Repositories.UserRepository
 {
     public interface IUserRepository
     {
         Task<User> CreateUser(User user);
-        Task<bool> DeleteUser(int id);
-        Task<User> GetUser(int id);
+        Task<bool> DeleteUser(Guid id);
+        Task<User> GetUser(Guid id);
+        Task<User> GetUserByEmail(string email);
         Task<IEnumerable<User>> GetUsers();
-        Task<bool> UpdateUser(int id, User user);
+        Task<bool> UpdateUser(Guid id, User user);
     }
 }
