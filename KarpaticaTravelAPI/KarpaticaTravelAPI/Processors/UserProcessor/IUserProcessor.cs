@@ -1,4 +1,5 @@
 ﻿using KarpaticaTravelAPI.Models.UserModel;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,9 +8,10 @@ namespace KarpaticaTravelAPI.Processors.UserProcessor
     public interface IUserProcessor
     {
         Task<bool> CreateUser(UserDTO user);
-        Task<bool> DeleteUser(int userId);
-        Task<UserDTO> GetUser(int id);
+        Task<bool> DeleteUser(Guid userId);
+        Task<UserDTO> GetUser(Guid id);
         Task<IEnumerable<UserDTO>> GetUsers();
-        Task<bool> UpdateUser(int id, UserUpdateDTO userToUpdate);
+        Task<LoginUserResult> LoginUser(string email, string password);
+        Task<bool> UpdateUser(Guid id, UserUpdateDTO userToUpdate);
     }
 }

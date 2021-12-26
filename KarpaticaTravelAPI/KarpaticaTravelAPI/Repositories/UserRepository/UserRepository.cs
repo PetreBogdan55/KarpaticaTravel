@@ -1,11 +1,12 @@
 using KarpaticaTravelAPI.Models;
 using KarpaticaTravelAPI.Models.UserModel;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KarpaticaTravelAPI.Repositories
+namespace KarpaticaTravelAPI.Repositories.UserRepository
 {
     public class UserRepository : IUserRepository
     {
@@ -25,8 +26,13 @@ namespace KarpaticaTravelAPI.Repositories
             return user;
         }
 
-        public async Task<bool> DeleteUser(int id)
+        public async Task<bool> DeleteUser(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
             var user = await _context.User.FindAsync(id);
 
             if (user == null)
@@ -40,10 +46,27 @@ namespace KarpaticaTravelAPI.Repositories
             return true;
         }
 
-        public async Task<User> GetUser(int id)
+        public async Task<User> GetUser(Guid id)
         {
-            User user = await _context.User.FindAsync(id)
-;
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
+            User user = await _context.User.FindAsync(id);
+
+            return user;
+        }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new ArgumentNullException("email", "Email is null or empty.");
+            }
+
+            User user = await _context.User
+                    .Where(b => b.Email == email).FirstOrDefaultAsync();
 
             return user;
         }
@@ -53,8 +76,13 @@ namespace KarpaticaTravelAPI.Repositories
             return await _context.User.ToListAsync();
         }
 
-        public async Task<bool> UpdateUser(int id, User user)
+        public async Task<bool> UpdateUser(Guid id, User user)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
             if (id != user.Id)
             {
                 return false;

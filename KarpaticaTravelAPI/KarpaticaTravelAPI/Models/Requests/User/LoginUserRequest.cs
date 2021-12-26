@@ -4,13 +4,11 @@ using System;
 
 namespace KarpaticaTravelAPI.Models.Requests.User
 {
-    public class UpdateUserRequest
+    public class LoginUserRequest
     {
-        [FromRoute(Name = "id")]
-        public Guid Id { get; set; }
-
         [FromBody]
-        public UserUpdateDTO UserUpdateDTO { get; set; }
+        public LoginUser LoginUser { get; set; }
+
     }
 }
 
