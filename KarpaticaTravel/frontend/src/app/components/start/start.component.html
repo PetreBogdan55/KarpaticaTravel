@@ -10,8 +10,9 @@
             <li>
               <a
                 >{{
-                  chosenPackage != "Choose package type"
-                    ? chosenPackage
+                  searchService.searchFiltersObject.chosenPackage !=
+                  "Choose package type"
+                    ? searchService.searchFiltersObject.chosenPackage
                     : "Select a package"
                 }}
               </a>
@@ -20,7 +21,9 @@
                   <a>
                     Package Type <br />
                     <select
-                      [(ngModel)]="chosenPackage"
+                      [(ngModel)]="
+                        searchService.searchFiltersObject.chosenPackage
+                      "
                       class="form-control"
                       name="packageType"
                       id="packageType"
@@ -29,7 +32,7 @@
                         Choose package type
                       </option>
                       <option
-                        *ngFor="let packageType of packageTypes"
+                        *ngFor="let packageType of searchObject.packageTypes"
                         [ngValue]="packageType"
                       >
                         {{ packageType }}
@@ -45,16 +48,22 @@
           <ul class="dropdown">
             <li>
               <a>{{
-                chosenCountry != "Select Country" && chosenCity != "Select City"
-                  ? chosenCountry + ", " + chosenCity
-                  : "Select Destnation"
+                searchService.searchFiltersObject.chosenCountry !=
+                  "Select Country" &&
+                searchService.searchFiltersObject.chosenCity != "Select City"
+                  ? searchService.searchFiltersObject.chosenCountry +
+                    ", " +
+                    searchService.searchFiltersObject.chosenCity
+                  : "Select Destination"
               }}</a>
               <ul>
                 <li>
                   <a>
                     Destination Country <br />
                     <select
-                      [(ngModel)]="chosenCountry"
+                      [(ngModel)]="
+                        searchService.searchFiltersObject.chosenCountry
+                      "
                       class="form-control"
                       name="country"
                       id="country"
@@ -63,10 +72,10 @@
                         Select Country
                       </option>
                       <option
-                        *ngFor="let country of countries"
-                        [ngValue]="country.name"
+                        *ngFor="let country of searchObject.countries"
+                        [ngValue]="country"
                       >
-                        {{ country.name }}
+                        {{ country }}
                       </option>
                     </select></a
                   >
@@ -75,7 +84,7 @@
                   <a>
                     Destination City <br />
                     <select
-                      [(ngModel)]="chosenCity"
+                      [(ngModel)]="searchService.searchFiltersObject.chosenCity"
                       class="form-control"
                       name="city"
                       id="city"
@@ -83,8 +92,11 @@
                       <option [ngValue]="" disabled selected>
                         Select City
                       </option>
-                      <option *ngFor="let city of cities" [ngValue]="city.name">
-                        {{ city.name }}
+                      <option
+                        *ngFor="let city of searchObject.cities"
+                        [ngValue]="city"
+                      >
+                        {{ city }}
                       </option>
                     </select></a
                   >
@@ -96,7 +108,12 @@
         <td>
           <ul class="dropdown">
             <li>
-              <a>{{ chosenDate + ", " + chosenNumberOfNights + " nights" }}</a>
+              <a>{{
+                searchService.searchFiltersObject.chosenDate +
+                  ", " +
+                  searchService.searchFiltersObject.chosenNumberOfNights +
+                  " nights"
+              }}</a>
               <ul>
                 <li>
                   <a>
@@ -106,9 +123,9 @@
                       type="date"
                       id="start"
                       name="trip-start"
-                      [(ngModel)]="chosenDate"
-                      min="2018-01-01"
-                      max="2048-12-31"
+                      [(ngModel)]="searchService.searchFiltersObject.chosenDate"
+                      min="{{ minSearchDate }}"
+                      max="{{ maxSearchDate }}"
                   /></a>
                   >
                 </li>
@@ -116,7 +133,9 @@
                   <a>
                     Number of nights <br />
                     <select
-                      [(ngModel)]="chosenNumberOfNights"
+                      [(ngModel)]="
+                        searchService.searchFiltersObject.chosenNumberOfNights
+                      "
                       class="form-control"
                       name="night"
                       id="night"
@@ -125,7 +144,7 @@
                         Select Number of Nights
                       </option>
                       <option
-                        *ngFor="let night of numberOfNights"
+                        *ngFor="let night of searchObject.numberOfNights"
                         [ngValue]="night"
                       >
                         {{ night }}
@@ -145,11 +164,21 @@
                 <li>
                   <a>
                     Room Type <br />
-                    <select class="form-control" name="room" id="room">
+                    <select
+                      [(ngModel)]="
+                        searchService.searchFiltersObject.chosenRoomType
+                      "
+                      class="form-control"
+                      name="room"
+                      id="room"
+                    >
                       <option value="" disabled selected>
                         Select Room Type
                       </option>
-                      <option *ngFor="let room of roomTypes" [value]="room">
+                      <option
+                        *ngFor="let room of searchObject.roomTypes"
+                        [value]="room"
+                      >
                         {{ room }}
                       </option>
                     </select></a
@@ -158,12 +187,19 @@
                 <li>
                   <a>
                     Number of Rooms<br />
-                    <select class="form-control" name="roomNr" id="roomNr">
+                    <select
+                      [(ngModel)]="
+                        searchService.searchFiltersObject.chosenNumberOfRooms
+                      "
+                      class="form-control"
+                      name="roomNr"
+                      id="roomNr"
+                    >
                       <option value="" disabled selected>
                         Select Number of Rooms
                       </option>
                       <option
-                        *ngFor="let roomNr of numberOfRooms"
+                        *ngFor="let roomNr of searchObject.numberOfRooms"
                         [value]="roomNr"
                       >
                         {{ roomNr }}
@@ -174,12 +210,19 @@
                 <li>
                   <a>
                     Number of Adults<br />
-                    <select class="form-control" name="adultNr" id="adultNr">
+                    <select
+                      [(ngModel)]="
+                        searchService.searchFiltersObject.chosenNumberOfAdults
+                      "
+                      class="form-control"
+                      name="adultNr"
+                      id="adultNr"
+                    >
                       <option value="" disabled selected>
                         Select Number of Adults
                       </option>
                       <option
-                        *ngFor="let adultNr of adultsNumber"
+                        *ngFor="let adultNr of searchObject.adultsNumber"
                         [value]="adultNr"
                       >
                         {{ adultNr }}
@@ -190,11 +233,21 @@
                 <li>
                   <a>
                     Number of Kids<br />
-                    <select class="form-control" name="kidNr" id="kidNr">
+                    <select
+                      [(ngModel)]="
+                        searchService.searchFiltersObject.chosenNumberOfKids
+                      "
+                      class="form-control"
+                      name="kidNr"
+                      id="kidNr"
+                    >
                       <option value="" disabled selected>
                         Select Number of Kids
                       </option>
-                      <option *ngFor="let kidNr of kidsNumber" [value]="kidNr">
+                      <option
+                        *ngFor="let kidNr of searchObject.kidsNumber"
+                        [value]="kidNr"
+                      >
                         {{ kidNr }}
                       </option>
                     </select></a
@@ -216,7 +269,7 @@
   <div class="centered1">
     <h1>All Activities</h1>
   </div>
-  <div class="centered2">
+  <div class="centered1">
     <div class="square"></div>
     <span></span>
     <div class="square"></div>
@@ -233,7 +286,7 @@
   <div class="centered1">
     <h1>Favourite Locations</h1>
   </div>
-  <div class="centered3">
+  <div class="centered1">
     <div class="square"></div>
     <span></span>
     <div class="square"></div>
