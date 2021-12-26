@@ -1,7 +1,6 @@
-import { Activity } from './../../models/activity';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SidebarComponent } from '@syncfusion/ej2-angular-navigations';
 import { countries } from './../../models/country';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-start',
@@ -17,6 +16,17 @@ export class StartComponent implements OnInit {
   public numberOfRooms: number[] = [1, 2, 3, 4, 5];
   public adultsNumber: number[] = [1, 2, 3, 4, 5, 6];
   public kidsNumber: number[] = [0, 1, 2, 3, 4];
+
+  @ViewChild('sidebar') sidebar: SidebarComponent;
+  public closeOnDocumentClick: boolean = true;
+  public onCreated(args: any) {
+    this.sidebar.hide();
+    this.sidebar.element.style.visibility = '';
+  }
+
+  toggleClick(): void {
+    this.sidebar.show();
+  }
 
   constructor() {}
 
