@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ResultsComponent } from './components/results/results.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
+import { LocationDetailsComponent } from './components/location-details/location-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BookingsComponent } from './components/bookings/bookings.component';
     SettingsComponent,
     ResultsComponent,
     BookingsComponent,
+    LocationDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./results.component.scss'],
 })
 export class ResultsComponent implements OnInit {
+  public locations: Location[];
   constructor(
     private _router: Router,
     public searchService: SearchService,

@@ -1,0 +1,14 @@
+<ng-container class="location-details">
+  <div>location.name</div>
+  <div>location.address</div>
+  <div>location.pricePerDay</div>
+  <div>location.distanceFromCityCenter</div>
+  <div>location.isAvailable</div>
+</ng-container>
+<ng-container>
+  <div *ngFor="let review of reviews">
+    {{ review.username }}
+    {{ review.description }}
+    {{ review.rating }}
+  </div>
+</ng-container>

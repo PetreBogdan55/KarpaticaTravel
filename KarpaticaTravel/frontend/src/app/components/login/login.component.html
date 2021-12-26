@@ -25,14 +25,14 @@
           />
         </mat-form-field>
         <div *ngIf="this.formService.isInvalid(this.formService.getEmail())">
-          <mat-error *ngIf="this.formService.getUsername().errors?.minlength"
+          <mat-error *ngIf="this.formService.getUsername()?.errors?.minlength"
             >*At least 5 characters</mat-error
           >
-          <mat-error *ngIf="this.formService.getEmail().errors?.maxlength">
+          <mat-error *ngIf="this.formService.getEmail()?.errors?.maxlength">
             *At most 15 characters</mat-error
           >
 
-          <mat-error *ngIf="this.formService.getEmail().errors?.required">
+          <mat-error *ngIf="this.formService.getEmail()?.errors?.required">
             *Please enter username
           </mat-error>
         </div>
@@ -51,14 +51,14 @@
           />
         </mat-form-field>
         <div *ngIf="this.formService.isInvalid(this.formService.getPassword())">
-          <mat-error *ngIf="this.formService.getPassword().errors?.minlength"
+          <mat-error *ngIf="this.formService.getPassword()?.errors?.minlength"
             >*At least 5 characters</mat-error
           >
-          <mat-error *ngIf="this.formService.getPassword().errors?.maxlength"
+          <mat-error *ngIf="this.formService.getPassword()?.errors?.maxlength"
             >*At most 15 characters</mat-error
           >
 
-          <mat-error *ngIf="this.formService.getPassword().errors?.required">
+          <mat-error *ngIf="this.formService.getPassword()?.errors?.required">
             *Please enter your password
           </mat-error>
         </div>
