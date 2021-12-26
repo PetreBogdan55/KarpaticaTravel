@@ -39,12 +39,12 @@ namespace KarpaticaTravelAPI.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetActivityAsync(int id)
+        public async Task<IActionResult> GetActivityAsync(Guid id)
         {
-            if (id < 0)
+           /* if (id < 0)
             {
                 return BadRequest("Invalid id");
-            }
+            }*/
 
             var activity = await _activityProcessor.GetActivity(id).ConfigureAwait(false);
 
@@ -62,10 +62,10 @@ namespace KarpaticaTravelAPI.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> PostActivityAsync([FromBody] ActivityDTO activityToPost)
         {
-            if (string.IsNullOrWhiteSpace(activityToPost.Name) || activityToPost.ActivityId < 0)
+           /* if (string.IsNullOrWhiteSpace(activityToPost.Name) || activityToPost.Id < 0)
             {
                 return BadRequest("Invalid parameters for activity creation");
-            }
+            }*/
 
             bool res = await _activityProcessor.CreateActivity(activityToPost).ConfigureAwait(false);
 
@@ -81,7 +81,7 @@ namespace KarpaticaTravelAPI.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> PutActivityAsync(int id, [FromBody] ActivityUpdateDTO updateActivity)
+        public async Task<IActionResult> PutActivityAsync(Guid id, [FromBody] ActivityUpdateDTO updateActivity)
         {
             if (string.IsNullOrWhiteSpace(updateActivity.Name))
             {
@@ -102,12 +102,12 @@ namespace KarpaticaTravelAPI.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> DeleteActivityAsync(int id)
+        public async Task<IActionResult> DeleteActivityAsync(Guid id)
         {
-            if (id < 0)
+            /*if (id < 0)
             {
                 return BadRequest("Invalid parameter for activity deletion");
-            }
+            }*/
 
             bool res = await _activityProcessor.DeleteActivity(id).ConfigureAwait(false);
 
