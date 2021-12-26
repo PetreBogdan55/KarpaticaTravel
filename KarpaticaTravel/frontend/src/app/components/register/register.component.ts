@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgModel } from '@angular/forms';
-import { environment } from 'src/environments/environment';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core'
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
+import { Router } from '@angular/router'
+import { NgModel } from '@angular/forms'
+import { environment } from 'src/environments/environment'
+import { SharedFormService } from 'src/app/shared/services/shared.form.service'
 
 @Component({
   selector: 'app-register',
@@ -11,21 +11,27 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  public signupForm!: FormGroup;
-  siteKey: string = environment.siteKey;
+  siteKey: string = environment.siteKey
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
-    this.signupForm = this.formBuilder.group({
-      email: ['', Validators.email],
-      password: ['', [Validators.minLength(5), Validators.maxLength(15)]],
-      username: ['', [Validators.minLength(5), Validators.maxLength(15)]],
-      recaptcha: ['', Validators.required],
-    });
+  constructor(
+    public formService: SharedFormService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+  ) {
+    this.formService.form = this.formBuilder.group(
+      {
+        email: ['', Validators.required],
+        password: ['', [Validators.minLength(5), Validators.maxLength(15)]],
+        username: ['', [Validators.minLength(5), Validators.maxLength(15)]],
+        recaptcha: ['', Validators.required],
+      },
+      { updateOn: 'change' },
+    )
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   register(form: FormGroup): void {
-    console.log(form.value);
+    console.log(form.value)
   }
 }
