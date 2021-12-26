@@ -15,10 +15,9 @@ namespace KarpaticaTravelAPI.Models.CountryModel
             City = new HashSet<City>();
         }
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string CountryCode { get; set; }
         public string Name { get; set; }
-
         public virtual ICollection<City> City { get; set; }
     }
 }
