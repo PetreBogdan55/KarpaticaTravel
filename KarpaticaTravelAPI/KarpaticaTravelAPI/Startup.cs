@@ -131,9 +131,9 @@ namespace KarpaticaTravelAPI
 
             app.UseHttpsRedirection();
 
-            app.UseAuthentication();
-
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
