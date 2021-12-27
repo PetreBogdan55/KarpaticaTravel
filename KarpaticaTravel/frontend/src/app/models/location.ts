@@ -1,5 +1,5 @@
 export interface Location {
-  _locationId: number;
+  _locationId: string;
   _cityId: number;
   _ownerId: number;
   _activityId: number;

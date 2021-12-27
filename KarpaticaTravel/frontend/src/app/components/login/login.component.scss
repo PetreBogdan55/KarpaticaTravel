@@ -1,14 +1,18 @@
 @keyframes login-box-animation {
   0% {
-    transform: translateY(-50%);
-  }
-
-  50% {
-    transform: translateY(30%);
+    transform        : translateY(150%);
+    -webkit-transform: translateY(150%);
+    -moz-transform   : translateY(150%);
+    -ms-transform    : translateY(150%);
+    -o-transform     : translateY(150%);
   }
 
   100% {
-    transform: translateY(0%);
+    transform        : translateY(0%);
+    -webkit-transform: translateY(0%);
+    -moz-transform   : translateY(0%);
+    -ms-transform    : translateY(0%);
+    -o-transform     : translateY(0%);
   }
 }
 
@@ -36,6 +40,7 @@ body {
 }
 
 .main-wrapper {
+  margin-top     : 20vh;
   height         : 100%;
   display        : flex;
   align-items    : center;
@@ -131,4 +136,8 @@ body {
 
 mat-error {
   margin-bottom: 15px;
+}
+
+mat-input:valid {
+  border-color: #00dd22 !important;
 }

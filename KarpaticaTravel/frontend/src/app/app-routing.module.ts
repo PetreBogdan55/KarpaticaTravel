@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { StartComponent } from './components/start/start.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
+import { LocationDetailsComponent } from './components/location-details/location-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'results', component: ResultsComponent },
+  { path: 'results/:id', component: LocationDetailsComponent },
   { path: 'bookings', component: BookingsComponent },
 ];
 
