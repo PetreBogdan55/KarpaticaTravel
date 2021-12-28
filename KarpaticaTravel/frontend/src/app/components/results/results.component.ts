@@ -115,4 +115,44 @@ export class ResultsComponent implements OnInit {
         this.finalLocations.push(location);
     }
   }
+
+  onSortByAscendingPrice() {
+    this.finalLocations = this.finalLocations.sort(
+      (l1: Location, l2: Location) => {
+        if (l1.pricePerDay > l2.pricePerDay) return 1;
+        if (l1.pricePerDay < l2.pricePerDay) return -1;
+        return 0;
+      }
+    );
+  }
+
+  onSortByDescendingPrice() {
+    this.finalLocations = this.finalLocations.sort(
+      (l1: Location, l2: Location) => {
+        if (l1.pricePerDay > l2.pricePerDay) return -1;
+        if (l1.pricePerDay < l2.pricePerDay) return 1;
+        return 0;
+      }
+    );
+  }
+
+  onSortByAscendingDistance() {
+    this.finalLocations = this.finalLocations.sort(
+      (l1: Location, l2: Location) => {
+        if (l1.distanceFromCityCenter > l2.distanceFromCityCenter) return 1;
+        if (l1.distanceFromCityCenter < l2.distanceFromCityCenter) return -1;
+        return 0;
+      }
+    );
+  }
+
+  onSortByDescendingDistance() {
+    this.finalLocations = this.finalLocations.sort(
+      (l1: Location, l2: Location) => {
+        if (l1.distanceFromCityCenter > l2.distanceFromCityCenter) return -1;
+        if (l1.distanceFromCityCenter < l2.distanceFromCityCenter) return 1;
+        return 0;
+      }
+    );
+  }
 }
