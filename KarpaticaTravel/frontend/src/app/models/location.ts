@@ -8,4 +8,9 @@ export interface Location {
   distanceFromCityCenter: number;
   pricePerDay: number;
   isAvailable: boolean;
+  rooms: number;
+  checkInDate: string;
+  checkOutDate: string;
+  photo: string;
+  package: string;
 }
