@@ -1,13 +1,34 @@
 <div class="main-container">
   <div class="child1">
     <h1>Filters</h1>
-    <p class="text16">Here are some location filters...</p>
+    <p class="text16">Maximum distance from city center</p>
+    <mat-slider
+      min="1"
+      max="200"
+      step="1"
+      (input)="onDistanceChange($event)"
+      [value]="distanceSliderValue"
+    ></mat-slider
+    >{{ distanceSliderValue }} km
+    <p class="text16">Maximum price per day</p>
+    <mat-slider
+      min="1"
+      max="2000"
+      step="1"
+      (input)="onPriceChange($event)"
+      [value]="priceSliderValue"
+    ></mat-slider
+    >{{ priceSliderValue }} EUR
   </div>
   <div class="child2">
     <h1>Results</h1>
     <p class="text18">
-      {{ locations.length }} locations found in
-      {{ searchService.searchFiltersObject.chosenCity }},
+      {{
+        finalLocations.length == 1
+          ? "1 location"
+          : finalLocations.length + " locations"
+      }}
+      found in {{ searchService.searchFiltersObject.chosenCity }},
       {{ searchService.searchFiltersObject.chosenCountry }}
     </p>
     <p class="text14">
@@ -33,6 +54,10 @@
         <td>
           <p class="text22">{{ location.name }}</p>
           <p class="text18">{{ location.address }}</p>
+          <p class="text14">
+            Distance from city center:
+            <B>{{ location.distanceFromCityCenter }} km</B>
+          </p>
         </td>
         <td>
           <p class="text14">

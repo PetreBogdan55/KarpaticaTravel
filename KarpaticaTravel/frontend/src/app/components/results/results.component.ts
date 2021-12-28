@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SearchService } from 'src/app/services/search.service';
 import { Location } from 'src/app/models/location';
-import * as moment from 'moment';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'app-results',
@@ -11,6 +11,8 @@ import * as moment from 'moment';
   styleUrls: ['./results.component.scss'],
 })
 export class ResultsComponent implements OnInit {
+  distanceSliderValue: number;
+  priceSliderValue: number;
   public finalLocations: Location[] = [];
   public locations: Location[] = [
     {
@@ -21,7 +23,7 @@ export class ResultsComponent implements OnInit {
       name: 'Red Roof Inn Asheville West',
       address: 'Asheville (NC), United States',
       distanceFromCityCenter: 120.43,
-      pricePerDay: 12,
+      pricePerDay: 612,
       package: 'Resort',
       isAvailable: true,
       rooms: 5,
@@ -43,12 +45,12 @@ export class ResultsComponent implements OnInit {
       _activityId: 1,
       name: 'Holiday Inn Asheville-airport (i-26)',
       address: 'Asheville (NC), United States',
-      distanceFromCityCenter: 120.43,
-      pricePerDay: 112,
-      package: 'Circuit',
+      distanceFromCityCenter: 80.89,
+      pricePerDay: 400,
+      package: 'Resort',
       isAvailable: false,
-      rooms: 0,
-      checkInDate: new Date('2021-12-24')
+      rooms: 5,
+      checkInDate: new Date('2021-12-28')
         .toISOString()
         .split('T')[0]
         .toString(),
@@ -65,6 +67,30 @@ export class ResultsComponent implements OnInit {
     public searchService: SearchService,
     private toastr: ToastrService //private apiService: ApiService
   ) {
+    this.distanceSliderValue = 200;
+    this.priceSliderValue = 2000;
+    this.findLocationsThatMatch();
+    console.log(this.searchService.searchFiltersObject);
+  }
+
+  ngOnInit(): void {}
+
+  onDistanceChange(event: MatSliderChange) {
+    if (event.value) {
+      this.distanceSliderValue = event.value;
+      this.findLocationsThatMatch();
+    }
+  }
+
+  onPriceChange(event: MatSliderChange) {
+    if (event.value) {
+      this.priceSliderValue = event.value;
+      this.findLocationsThatMatch();
+    }
+  }
+
+  findLocationsThatMatch(): void {
+    this.finalLocations = [];
     for (let location of this.locations) {
       if (
         location.package ==
@@ -82,12 +108,11 @@ export class ResultsComponent implements OnInit {
         (new Date(location.checkOutDate).getTime() -
           new Date(location.checkInDate).getTime()) /
           (1000 * 60 * 60 * 24) ==
-          this.searchService.searchFiltersObject.chosenNumberOfNights
+          this.searchService.searchFiltersObject.chosenNumberOfNights &&
+        location.distanceFromCityCenter <= this.distanceSliderValue &&
+        location.pricePerDay <= this.priceSliderValue
       )
         this.finalLocations.push(location);
     }
-    console.log(this.searchService.searchFiltersObject);
   }
-
-  ngOnInit(): void {}
 }
