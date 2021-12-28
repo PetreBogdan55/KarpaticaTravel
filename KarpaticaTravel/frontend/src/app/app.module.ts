@@ -20,6 +20,7 @@ import { LocationDetailsComponent } from './components/location-details/location
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgxMatIntlTelInputModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       progressBar: true,

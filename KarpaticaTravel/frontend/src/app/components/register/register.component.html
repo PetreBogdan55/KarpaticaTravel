@@ -44,16 +44,6 @@
             formControlName="email"
           />
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input
-            type="tel"
-            matInput
-            required
-            placeholder="Phone"
-            name="phone"
-            formControlName="phone"
-          />
-        </mat-form-field>
 
         <div *ngIf="this.formService.isInvalid(this.formService.getEmail())">
           <mat-error *ngIf="this.formService.getEmail().errors?.required">
@@ -63,6 +53,18 @@
             *Invalid email
           </mat-error>
         </div>
+
+        <mat-form-field class="example-full-width">
+          <ngx-mat-intl-tel-input
+            [preferredCountries]="['us', 'gb']"
+            [enablePlaceholder]="true"
+            [enableSearch]="true"
+            name="phone"
+            describedBy="phoneInput"
+            formControlName="phone"
+            placeholder="Phone"
+          ></ngx-mat-intl-tel-input>
+        </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <input

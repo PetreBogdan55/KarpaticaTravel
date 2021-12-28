@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
         ],
         password: ['', [Validators.minLength(5), Validators.maxLength(15)]],
         username: ['', [Validators.minLength(5), Validators.maxLength(15)]],
+        phone: [''],
         recaptcha: ['', Validators.required],
       },
       { updateOn: 'change' }
@@ -46,12 +47,16 @@ export class RegisterComponent implements OnInit {
 
   register(form: FormGroup): void {
     console.log(form.value);
-    this.authService.createUser({
-      _userId: '00000000-0000-0000-0000-000000000000',
-      email: form.value.email,
-      password: form.value.password,
-      username: form.value.username,
-      phone: form.value.phone,
-    });
+    this.authService
+      .createUser({
+        _userId: '00000000-0000-0000-0000-000000000000',
+        email: form.value.email,
+        password: form.value.password,
+        username: form.value.username,
+        phone: form.value.phone,
+      })
+      .subscribe((next) => {
+        console.log(next);
+      });
   }
 }
