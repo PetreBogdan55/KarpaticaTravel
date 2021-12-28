@@ -57,6 +57,13 @@
           </button>
         </td>
       </tr>
+      <tr *ngIf="finalLocations.length == 0">
+        <td>
+          <p class="text18error">
+            Sorry, no locations matched your search. Please try again later!
+          </p>
+        </td>
+      </tr>
       <tr></tr>
     </table>
   </div>
