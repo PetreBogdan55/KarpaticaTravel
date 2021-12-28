@@ -28,7 +28,7 @@
     </p>
     <br />
     <table>
-      <tr *ngFor="let location of locations">
+      <tr *ngFor="let location of finalLocations">
         <td><img src="{{ location.photo }}" /></td>
         <td>
           <p class="text22">{{ location.name }}</p>
@@ -39,8 +39,7 @@
             {{ location.package }}
           </p>
           <p class="text20price">
-            {{ location.pricePerDay
-            }}<sup>{{ 99 }}</sup>
+            {{ location.pricePerDay }}<sup>{{ 99 }}</sup>
             EUR
           </p>
           <p class="text12">Rooms: {{ location.rooms }}</p>

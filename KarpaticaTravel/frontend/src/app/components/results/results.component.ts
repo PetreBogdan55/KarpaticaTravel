@@ -11,6 +11,7 @@ import * as moment from 'moment';
   styleUrls: ['./results.component.scss'],
 })
 export class ResultsComponent implements OnInit {
+  public finalLocations: Location[] = [];
   public locations: Location[] = [
     {
       _locationId: 1,
@@ -23,12 +24,12 @@ export class ResultsComponent implements OnInit {
       pricePerDay: 12,
       package: 'Resort',
       isAvailable: true,
-      rooms: 6,
-      checkInDate: new Date('2021-12-25')
+      rooms: 5,
+      checkInDate: new Date('2021-12-28')
         .toISOString()
         .split('T')[0]
         .toString(),
-      checkOutDate: new Date('2021-12-27')
+      checkOutDate: new Date('2021-12-30')
         .toISOString()
         .split('T')[0]
         .toString(),
@@ -64,6 +65,27 @@ export class ResultsComponent implements OnInit {
     public searchService: SearchService,
     private toastr: ToastrService //private apiService: ApiService
   ) {
+    for (let location of this.locations) {
+      if (
+        location.package ==
+          this.searchService.searchFiltersObject.chosenPackage &&
+        location.rooms ==
+          this.searchService.searchFiltersObject.chosenNumberOfRooms &&
+        location.checkInDate ==
+          this.searchService.searchFiltersObject.chosenDate &&
+        location.address.includes(
+          this.searchService.searchFiltersObject.chosenCity
+        ) &&
+        location.address.includes(
+          this.searchService.searchFiltersObject.chosenCountry
+        ) &&
+        (new Date(location.checkOutDate).getTime() -
+          new Date(location.checkInDate).getTime()) /
+          (1000 * 60 * 60 * 24) ==
+          this.searchService.searchFiltersObject.chosenNumberOfNights
+      )
+        this.finalLocations.push(location);
+    }
     console.log(this.searchService.searchFiltersObject);
   }
 
