@@ -7,16 +7,17 @@ import { StartComponent } from './components/start/start.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'start', component: StartComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'results', component: ResultsComponent },
   { path: 'results/:id', component: LocationDetailsComponent },
-  { path: 'bookings', component: BookingsComponent },
+  { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

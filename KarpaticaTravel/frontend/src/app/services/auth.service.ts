@@ -37,4 +37,11 @@ export class AuthService {
   getName() {
     return localStorage.getItem('name');
   }
+
+  isAuthenticated() {
+    if (this.getToken()) {
+      return true;
+    }
+    return false;
+  }
 }
