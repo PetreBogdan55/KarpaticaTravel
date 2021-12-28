@@ -17,7 +17,9 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { ResultsComponent } from './components/results/results.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptorService } from './services/error-interceptor.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,19 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true,
+    },
+  ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

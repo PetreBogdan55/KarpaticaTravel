@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { SharedFormService } from 'src/app/shared/services/shared.form.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     public formService: SharedFormService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.formService.form = this.formBuilder.group(
       {
@@ -44,5 +46,12 @@ export class RegisterComponent implements OnInit {
 
   register(form: FormGroup): void {
     console.log(form.value);
+    this.authService.createUser({
+      _userId: '00000000-0000-0000-0000-000000000000',
+      email: form.value.email,
+      password: form.value.password,
+      username: form.value.username,
+      phone: form.value.phone,
+    });
   }
 }

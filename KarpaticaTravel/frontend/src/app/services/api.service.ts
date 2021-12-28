@@ -12,10 +12,6 @@ import { User } from '../models/user';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  createUser(user: User) {
-    return this.http.post(`${environment.API_URL}/Users`, user);
-  }
-
   deleteUser(userId: number) {
     return this.http.delete(`${environment.API_URL}/Users`, {
       params: { Id: `${userId}` },
