@@ -20,20 +20,16 @@
             required
             ngModel
             formControlName="email"
-            minlength="5"
-            maxlength="15"
+            maxlength="30"
           />
         </mat-form-field>
         <div *ngIf="this.formService.isInvalid(this.formService.getEmail())">
-          <mat-error *ngIf="this.formService.getUsername()?.errors?.minlength"
-            >*At least 5 characters</mat-error
-          >
           <mat-error *ngIf="this.formService.getEmail()?.errors?.maxlength">
-            *At most 15 characters</mat-error
+            *At most 30 characters</mat-error
           >
 
           <mat-error *ngIf="this.formService.getEmail()?.errors?.required">
-            *Please enter username
+            *Please enter your email
           </mat-error>
         </div>
 
