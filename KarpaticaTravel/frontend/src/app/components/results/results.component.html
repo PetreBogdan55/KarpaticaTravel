@@ -1,7 +1,12 @@
 <ng-container *ngFor="let location of locations">
-  <div>location.name</div>
-  <div>location.address</div>
-  <div>location.pricePerDay</div>
-  <div>location.distanceFromCityCenter</div>
-  <div>location.isAvailable</div>
+  <div class="wrapper">
+    <div>{{ location.name }}</div>
+    <div>{{ location.address }}</div>
+    <div>{{ location.pricePerDay }}</div>
+    <div>{{ location.distanceFromCityCenter }}</div>
+    <div>{{ location.isAvailable }}</div>
+    <button [routerLink]="['results', location._locationId]">
+      See details
+    </button>
+  </div>
 </ng-container>

@@ -175,7 +175,7 @@ namespace KarpaticaTravelAPI.Models
 
                 entity.Property(e => e.Phone)
                     .IsRequired()
-                    .HasMaxLength(10);
+                    .HasMaxLength(20);
 
                 entity.Property(e => e.Salt)
                     .IsRequired()

@@ -10,6 +10,7 @@ import { NgModel } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { SharedFormService } from 'src/app/shared/services/shared.form.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterComponent implements OnInit {
     public formService: SharedFormService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     this.formService.form = this.formBuilder.group(
       {
@@ -55,8 +57,17 @@ export class RegisterComponent implements OnInit {
         username: form.value.username,
         phone: form.value.phone,
       })
-      .subscribe((next) => {
-        console.log(next);
-      });
+      .subscribe(
+        () => {
+          this.toastr
+            .success('You have successfully created an account!', 'Account')
+            .onHidden.subscribe(() => {
+              this.router.navigateByUrl('login');
+            });
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }
