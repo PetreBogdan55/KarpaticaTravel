@@ -115,6 +115,8 @@ namespace KarpaticaTravelAPI.Processors.UserProcessor
 
                 User newUserObject = _mapper.Map<UserUpdateDTO, User>(userToUpdate);
                 newUserObject.Id = id;
+                
+                (newUserObject.Password, newUserObject.Salt) = HashManager.GenerateHashSetKeys(userToUpdate.Password);
 
                 return await _userRepository.UpdateUser(id, newUserObject).ConfigureAwait(false);
             }
