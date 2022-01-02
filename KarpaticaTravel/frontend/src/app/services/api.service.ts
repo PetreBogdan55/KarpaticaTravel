@@ -19,21 +19,15 @@ export class ApiService {
   }
 
   deleteUser(userId: number) {
-    return this.http.delete(`${environment.API_URL}/Users`, {
-      params: { Id: `${userId}` },
-    });
+    return this.http.delete(`${environment.API_URL}/Users/` + userId);
   }
 
   editUser(userId: number, editedUser: User) {
-    return this.http.put(`${environment.API_URL}/Users`, editedUser, {
-      params: { Id: `${userId}` },
-    });
+    return this.http.put(`${environment.API_URL}/Users/` + userId, editedUser);
   }
 
   getUser(userId: number) {
-    return this.http.get(`${environment.API_URL}/Users`, {
-      params: { Id: `${userId}` },
-    });
+    return this.http.get(`${environment.API_URL}/Users/` + userId);
   }
 
   getUsers() {

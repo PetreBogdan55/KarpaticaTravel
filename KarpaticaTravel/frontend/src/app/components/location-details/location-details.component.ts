@@ -27,4 +27,6 @@ export class LocationDetailsComponent implements OnInit {
       });
     });
   }
+
+  book() {}
 }
