@@ -56,10 +56,6 @@ namespace KarpaticaTravelAPI.Models
 
                 entity.Property(e => e.CheckOutDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Flag)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Booking)
                     .HasForeignKey(d => d.LocationId)
@@ -116,6 +112,10 @@ namespace KarpaticaTravelAPI.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.Property(e => e.Photo)
+                    .IsRequired()
+                    .HasMaxLength(1000);
 
                 entity.HasOne(d => d.Activity)
                     .WithMany(p => p.Location)

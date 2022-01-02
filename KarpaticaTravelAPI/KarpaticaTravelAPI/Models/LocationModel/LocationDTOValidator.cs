@@ -20,6 +20,8 @@ namespace KarpaticaTravelAPI.Models.LocationModel
             RuleFor(x => x.Name).NotNull().NotEmpty();
             RuleFor(x => x.OwnerId).NotNull().NotEmpty();
             RuleFor(x => x.PricePerDay).NotNull().NotEmpty();
+            RuleFor(x => x.Photo).NotNull().NotEmpty();
+            RuleFor(x => x.Capcity).NotNull().NotEmpty();
         }
 
         protected override bool PreValidate(ValidationContext<LocationDTO> context, ValidationResult result)

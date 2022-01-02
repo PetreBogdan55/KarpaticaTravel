@@ -7,6 +7,8 @@ namespace KarpaticaTravelAPI.Models.LocationModel
 {
     public class LocationDTO
     {
+        public string Photo { get; set; }
+        public int Capcity { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public double DistanceFromCenter { get; set; }
