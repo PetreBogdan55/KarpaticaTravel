@@ -55,6 +55,19 @@
         </div>
 
         <mat-form-field class="example-full-width">
+          <ngx-mat-intl-tel-input
+            [preferredCountries]="['us', 'gb']"
+            [enablePlaceholder]="true"
+            [enableSearch]="true"
+            name="phone"
+            describedBy="phoneInput"
+            formControlName="phone"
+            placeholder="Phone"
+            [required]="true"
+          ></ngx-mat-intl-tel-input>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
           <input
             type="password"
             matInput

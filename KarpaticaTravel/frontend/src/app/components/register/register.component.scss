@@ -16,7 +16,8 @@ body {
 }
 
 .register-wrapper {
-  height: 100%;
+  height    : 100%;
+  margin-top: 15vh;
 }
 
 
@@ -121,4 +122,9 @@ mat-card-header {
 
 mat-error {
   margin-bottom: 15px;
+}
+
+
+input:valid {
+  border-color: #00dd22;
 }

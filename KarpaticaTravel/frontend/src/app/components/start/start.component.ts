@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Search } from 'src/app/models/search';
+import { Image } from 'src/app/models/image';
 
 @Component({
   selector: 'app-start',
@@ -12,6 +13,7 @@ import { Search } from 'src/app/models/search';
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnInit {
+  images: Array<Image> = new Array<Image>();
   public minSearchDate: string;
   public maxSearchDate: string;
 
@@ -34,6 +36,14 @@ export class StartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*
+    for (let i = 0; i < 10; ++i) {
+      const image: Image = {
+        src: './Full HD Desktop Wallpapers 1920×1080 (42 Wallpapers) – Adorable Wallpapers.jpg',
+      };
+      this.images.push(image);
+    }
+    */
     //this.countries = this.apiService.getCountries();
     //this.cities = this.apiService.getCities();
   }

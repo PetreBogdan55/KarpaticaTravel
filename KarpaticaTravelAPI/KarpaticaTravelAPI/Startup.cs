@@ -28,6 +28,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using KarpaticaTravelAPI.Processors.LocationProcessor;
+using KarpaticaTravelAPI.Repositories.LocationRepository;
 
 namespace KarpaticaTravelAPI
 {
@@ -76,12 +78,14 @@ namespace KarpaticaTravelAPI
             services.TryAddScoped<ICountryRepository, CountryRepository>();
             services.TryAddScoped<IActivityRepository, ActivityRepository>();
             services.TryAddScoped<IReviewRepository, ReviewRepository>();
+            services.TryAddScoped<ILocationRepository, LocationRepository>();
 
             services.TryAddScoped<IUserProcessor, UserProcessor>();
             services.TryAddScoped<ICityProcessor, CityProcessor>();
             services.TryAddScoped<IActivityProcessor, ActivityProcessor>();
             services.TryAddScoped<ICountryProcessor, CountryProcessor>();
             services.TryAddScoped<IReviewProcessor, ReviewProcessor>();
+            services.TryAddScoped<ILocationProcessor, LocationProcessor>();
 
             services.AddScoped<ITokenManager, TokenManager>();
 

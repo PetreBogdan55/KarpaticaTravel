@@ -1,5 +1,5 @@
 export interface Location {
-  _locationId: number;
+  _locationId: string;
   _cityId: number;
   _ownerId: number;
   _activityId: number;
@@ -8,4 +8,9 @@ export interface Location {
   distanceFromCityCenter: number;
   pricePerDay: number;
   isAvailable: boolean;
+  rooms: number;
+  checkInDate: string;
+  checkOutDate: string;
+  photo: string;
+  package: string;
 }
