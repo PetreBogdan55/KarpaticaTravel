@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Country } from '../models/country';
 import { Credentials } from '../models/credentials';
+
 import { User } from '../models/user';
 
 @Injectable({
@@ -11,6 +12,11 @@ import { User } from '../models/user';
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
+
+
+  createUser(user: User) {
+    return this.http.post(`${environment.API_URL}/Users`, user);
+  }
 
   deleteUser(userId: number) {
     return this.http.delete(`${environment.API_URL}/Users`, {
@@ -44,5 +50,9 @@ export class ApiService {
 
   getActivities() {
     return this.http.get(`${environment.API_URL}/Activities`);
+  }
+
+  getLocations() {
+    return this.http.get(`${environment.API_URL}/Locations`);
   }
 }
