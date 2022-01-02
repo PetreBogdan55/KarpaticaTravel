@@ -9,7 +9,7 @@ namespace KarpaticaTravelAPI.Models.CityModel
     {
         public Guid Id { get; set; }
 
-        public int CountryId { get; set; }
+        public Guid CountryId { get; set; }
 
         public string Name { get; set; }
 

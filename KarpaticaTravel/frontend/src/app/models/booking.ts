@@ -1,9 +1,9 @@
-import { Moment } from 'moment'
+import { Moment } from 'moment';
 
 export interface Booking {
-  _userId: number
-  _locationId: number
-  _bookingId: number
-  checkInDate: Moment
-  checkOutDate: Moment
+  _userId: number;
+  _locationId: number;
+  _bookingId: number;
+  checkInDate: Date;
+  checkOutDate: Date;
 }
