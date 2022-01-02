@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using KarpaticaTravelAPI.Models.CityModel;
-using KarpaticaTravelAPI.Repositories;
+using KarpaticaTravelAPI.Repositories.CityRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +25,13 @@ namespace KarpaticaTravelAPI.Processors.CityProcessor
             try
             {
                 City newCity = _mapper.Map<CityDTO, City>(city);
+
+                if (city.Id == Guid.Empty)
+                {
+                    newCity.Id = Guid.NewGuid();
+
+                }
+
                 await _cityRepository.CreateCity(newCity).ConfigureAwait(false);
 
                 return true;
@@ -36,7 +43,7 @@ namespace KarpaticaTravelAPI.Processors.CityProcessor
             }
         }
 
-        public async Task<bool> DeleteCity(int cityId)
+        public async Task<bool> DeleteCity(Guid cityId)
         {
             try
             {
@@ -55,13 +62,13 @@ namespace KarpaticaTravelAPI.Processors.CityProcessor
             return new List<CityDTO>(_mapper.Map<IEnumerable<CityDTO>>(resultList));
         }
 
-        public async Task<CityDTO> GetCity(int id)
+        public async Task<CityDTO> GetCity(Guid id)
         {
             City result = await _cityRepository.GetCity(id).ConfigureAwait(false);
             return (_mapper.Map<City, CityDTO>(result));
         }
 
-        public async Task<bool> UpdateCity(int id, CityUpdateDTO cityToUpdate)
+        public async Task<bool> UpdateCity(Guid id, CityUpdateDTO cityToUpdate)
         {
             try
             {

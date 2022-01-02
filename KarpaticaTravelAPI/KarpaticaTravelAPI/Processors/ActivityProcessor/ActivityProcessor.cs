@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using KarpaticaTravelAPI.Models.ActivityModel;
-using KarpaticaTravelAPI.Repositories;
+using KarpaticaTravelAPI.Repositories.ActivityRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +24,13 @@ namespace KarpaticaTravelAPI.Processors.ActivityProcessor
             try
             {
                 Activity newAct = _mapper.Map<ActivityDTO, Activity>(activity);
+                
+                if (activity.Id == Guid.Empty)
+                {
+                    newAct.Id = Guid.NewGuid();
+
+                }
+
                 await _activityRepository.CreateActivity(newAct).ConfigureAwait(false);
 
                 return true;
@@ -35,7 +42,7 @@ namespace KarpaticaTravelAPI.Processors.ActivityProcessor
             }
         }
 
-        public async Task<bool> DeleteActivity(int id)
+        public async Task<bool> DeleteActivity(Guid id)
         {
             try
             {
@@ -54,18 +61,18 @@ namespace KarpaticaTravelAPI.Processors.ActivityProcessor
             return new List<ActivityDTO>(_mapper.Map<IEnumerable<ActivityDTO>>(resList));
         }
 
-        public async Task<ActivityDTO> GetActivity(int id)
+        public async Task<ActivityDTO> GetActivity(Guid id)
         {
             Activity res = await _activityRepository.GetActivity(id).ConfigureAwait(false);
             return (_mapper.Map<Activity, ActivityDTO>(res));
         }
 
-        public async Task<bool> UpdateActivity(int id, ActivityUpdateDTO activityToUpdate)
+        public async Task<bool> UpdateActivity(Guid id, ActivityUpdateDTO activityToUpdate)
         {
             try
             {
                 Activity newActivity = _mapper.Map<ActivityUpdateDTO, Activity>(activityToUpdate);
-                newActivity.ActivityId = id;
+                newActivity.Id = id;
 
                 return await _activityRepository.UpdateActivity(id, newActivity).ConfigureAwait(false);
             }

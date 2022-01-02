@@ -5,10 +5,10 @@
     </mat-card-header>
 
     <form
-      [formGroup]="signupForm"
+      [formGroup]="this.formService.form"
       #form="ngForm"
       class="register-form"
-      (ngSubmit)="register(signupForm)"
+      (ngSubmit)="register(this.formService.form)"
     >
       <mat-card-content>
         <mat-form-field class="example-full-width">
@@ -21,6 +21,18 @@
             formControlName="username"
           />
         </mat-form-field>
+        <div *ngIf="this.formService.isInvalid(this.formService.getUsername())">
+          <mat-error *ngIf="this.formService.getUsername().errors?.minlength"
+            >*At least 5 characters</mat-error
+          >
+          <mat-error *ngIf="this.formService.getUsername().errors?.maxlength">
+            *At most 15 characters</mat-error
+          >
+
+          <mat-error *ngIf="this.formService.getUsername().errors?.required">
+            *Please enter username
+          </mat-error>
+        </div>
 
         <mat-form-field class="example-full-width">
           <input
@@ -33,6 +45,28 @@
           />
         </mat-form-field>
 
+        <div *ngIf="this.formService.isInvalid(this.formService.getEmail())">
+          <mat-error *ngIf="this.formService.getEmail().errors?.required">
+            *Please enter your email
+          </mat-error>
+          <mat-error *ngIf="this.formService.getEmail().errors?.pattern">
+            *Invalid email
+          </mat-error>
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <ngx-mat-intl-tel-input
+            [preferredCountries]="['us', 'gb']"
+            [enablePlaceholder]="true"
+            [enableSearch]="true"
+            name="phone"
+            describedBy="phoneInput"
+            formControlName="phone"
+            placeholder="Phone"
+            [required]="true"
+          ></ngx-mat-intl-tel-input>
+        </mat-form-field>
+
         <mat-form-field class="example-full-width">
           <input
             type="password"
@@ -43,8 +77,24 @@
             formControlName="password"
           />
         </mat-form-field>
+        <div *ngIf="this.formService.isInvalid(this.formService.getPassword())">
+          <mat-error *ngIf="this.formService.getPassword().errors?.minlength"
+            >*At least 5 characters</mat-error
+          >
+          <mat-error *ngIf="this.formService.getPassword().errors?.maxlength"
+            >*At most 15 characters</mat-error
+          >
 
-        <ngx-recaptcha2 [siteKey]="siteKey" formControlName="recaptcha">
+          <mat-error *ngIf="this.formService.getPassword().errors?.required">
+            *Please enter your password
+          </mat-error>
+        </div>
+
+        <ngx-recaptcha2
+          [siteKey]="siteKey"
+          formControlName="recaptcha"
+          class="hei"
+        >
         </ngx-recaptcha2>
       </mat-card-content>
 

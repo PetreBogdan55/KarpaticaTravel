@@ -102,7 +102,9 @@ namespace KarpaticaTravelAPI.Controllers
                 bool isCreated = await _countryProcessor.CreateCountry(request.CountryDTO).ConfigureAwait(false);
 
                 if (!isCreated)
+                {
                     return BadRequest(isCreated);
+                }
 
                 return Ok(isCreated);
             }
@@ -127,7 +129,9 @@ namespace KarpaticaTravelAPI.Controllers
                 bool result = await _countryProcessor.DeleteCountry(request.Id).ConfigureAwait(false);
 
                 if (!result)
+                {
                     return NotFound();
+                }
 
                 return Ok(result);
             }

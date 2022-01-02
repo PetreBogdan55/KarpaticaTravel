@@ -1,6 +1,11 @@
+import { SearchService } from './../../services/search.service';
+import { SearchFilters } from './../../models/searchFilters';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SidebarComponent } from '@syncfusion/ej2-angular-navigations';
-import { countries } from './../../models/country';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { Search } from 'src/app/models/search';
+import { Image } from 'src/app/models/image';
 
 @Component({
   selector: 'app-start',
@@ -8,27 +13,59 @@ import { countries } from './../../models/country';
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnInit {
-  public countries: any = countries;
-  public cities: any = countries;
-  public packageTypes: string[] = ['Accommodation only', 'Resort', 'Circuit'];
-  public numberOfNights: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  public roomTypes: string[] = ['Single', 'Double', 'Triple', 'Apartament'];
-  public numberOfRooms: number[] = [1, 2, 3, 4, 5];
-  public adultsNumber: number[] = [1, 2, 3, 4, 5, 6];
-  public kidsNumber: number[] = [0, 1, 2, 3, 4];
+  images: Array<Image> = new Array<Image>();
+  public minSearchDate: string;
+  public maxSearchDate: string;
 
-  @ViewChild('sidebar') sidebar: SidebarComponent;
-  public closeOnDocumentClick: boolean = true;
-  public onCreated(args: any) {
-    this.sidebar.hide();
-    this.sidebar.element.style.visibility = '';
+  public searchObject: Search = new Search();
+
+  constructor(
+    private _router: Router,
+    public searchService: SearchService,
+    private toastr: ToastrService //private apiService: ApiService
+  ) {
+    let date = new Date();
+    let maxDate = new Date();
+    this.searchService.searchFiltersObject.chosenDate = date
+      .toISOString()
+      .split('T')[0]
+      .toString();
+    this.minSearchDate = this.searchService.searchFiltersObject.chosenDate;
+    maxDate.setDate(date.getDate() + 3);
+    this.maxSearchDate = maxDate.toISOString().split('T')[0].toString();
   }
 
-  toggleClick(): void {
-    this.sidebar.show();
+  ngOnInit(): void {
+    /*
+    for (let i = 0; i < 10; ++i) {
+      const image: Image = {
+        src: './Full HD Desktop Wallpapers 1920×1080 (42 Wallpapers) – Adorable Wallpapers.jpg',
+      };
+      this.images.push(image);
+    }
+    */
+    //this.countries = this.apiService.getCountries();
+    //this.cities = this.apiService.getCities();
   }
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  onSearch(): void {
+    if (
+      this.searchService.searchFiltersObject.chosenPackage ===
+      'Choose package type'
+    ) {
+      this.toastr.error('Please choose a package type!', 'Missing fields!');
+      return;
+    }
+    if (
+      this.searchService.searchFiltersObject.chosenCountry === 'Select Country'
+    ) {
+      this.toastr.error('Please choose a country!', 'Missing fields!');
+      return;
+    }
+    if (this.searchService.searchFiltersObject.chosenCity === 'Select City') {
+      this.toastr.error('Please choose a city!', 'Missing fields!');
+      return;
+    }
+    this._router.navigate(['results']);
+  }
 }

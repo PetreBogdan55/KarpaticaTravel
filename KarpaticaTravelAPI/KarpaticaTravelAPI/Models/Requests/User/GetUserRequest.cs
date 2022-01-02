@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace KarpaticaTravelAPI.Models.Requests.User
 {
     public class GetUserRequest
     {
         [FromRoute(Name = "id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
     }
 }

@@ -1,7 +1,8 @@
 using AutoMapper;
 using FluentValidation;
+using KarpaticaTravelAPI.Infrastructure;
 using KarpaticaTravelAPI.Models.UserModel;
-using KarpaticaTravelAPI.Repositories;
+using KarpaticaTravelAPI.Repositories.UserRepository;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,11 +14,38 @@ namespace KarpaticaTravelAPI.Processors.UserProcessor
 
         private IUserRepository _userRepository;
         private IMapper _mapper;
+        private readonly ITokenManager _tokenManager;
 
-        public UserProcessor(IUserRepository repository, IMapper mapper)
+        public UserProcessor(IUserRepository repository, ITokenManager tokenManager, IMapper mapper)
         {
             _userRepository = repository;
             _mapper = mapper;
+            _tokenManager = tokenManager;
+        }
+
+        public async Task<LoginUserResult> LoginUser(string email, string password)
+        {
+
+            User user = await _userRepository.GetUserByEmail(email).ConfigureAwait(false);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            if (HashManager.IsPasswordCorrect(password, user.Password, user.Salt))
+            {
+                return new LoginUserResult()
+                {
+                    Token = _tokenManager.GenerateJwtToken(user.Email, user.Username),
+                    Username = user.Username,
+                    Email = user.Email,
+                    Id = user.Id
+                };
+            }
+
+            return null;
+
         }
 
         public async Task<bool> CreateUser(UserDTO user)
@@ -28,6 +56,15 @@ namespace KarpaticaTravelAPI.Processors.UserProcessor
                 await rules.ValidateAndThrowAsync(user).ConfigureAwait(false);
 
                 User newUser = _mapper.Map<UserDTO, User>(user);
+
+                if (user.Id == Guid.Empty)
+                {
+                    newUser.Id = Guid.NewGuid();
+
+                }
+
+                (newUser.Password, newUser.Salt) = HashManager.GenerateHashSetKeys(user.Password);
+
                 await _userRepository.CreateUser(newUser).ConfigureAwait(false);
 
                 return true;
@@ -44,7 +81,7 @@ namespace KarpaticaTravelAPI.Processors.UserProcessor
             }
         }
 
-        public async Task<bool> DeleteUser(int userId)
+        public async Task<bool> DeleteUser(Guid userId)
         {
             try
             {
@@ -63,13 +100,13 @@ namespace KarpaticaTravelAPI.Processors.UserProcessor
             return new List<UserDTO>(_mapper.Map<IEnumerable<UserDTO>>(resultList));
         }
 
-        public async Task<UserDTO> GetUser(int id)
+        public async Task<UserDTO> GetUser(Guid id)
         {
             User result = await _userRepository.GetUser(id).ConfigureAwait(false);
             return (_mapper.Map<User, UserDTO>(result));
         }
 
-        public async Task<bool> UpdateUser(int id, UserUpdateDTO userToUpdate)
+        public async Task<bool> UpdateUser(Guid id, UserUpdateDTO userToUpdate)
         {
             try
             {

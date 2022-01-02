@@ -15,11 +15,10 @@ namespace KarpaticaTravelAPI.Models.CityModel
             Location = new HashSet<Location>();
         }
 
-        public int Id { get; set; }
-        public int CountryId { get; set; }
+        public Guid Id { get; set; }
+        public Guid CountryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
         public virtual Country Country { get; set; }
         public virtual ICollection<Location> Location { get; set; }
     }

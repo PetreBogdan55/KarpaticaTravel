@@ -38,12 +38,12 @@ namespace KarpaticaTravelAPI.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetCityAsync(int id)
+        public async Task<IActionResult> GetCityAsync(Guid id)
         {
-            if (id == 0)
+            /*if (id == 0)
             {
                 return BadRequest("Id must not be empty");
-            }
+            }*/
 
             var city = await _cityProcessor.GetCity(id).ConfigureAwait(false);
 
@@ -61,10 +61,10 @@ namespace KarpaticaTravelAPI.Controllers
         [ProducesResponseType(404)]
         public async Task<IActionResult> PostAsync([FromBody] CityDTO cityToPost)
         {
-            if (string.IsNullOrWhiteSpace(cityToPost.Name) || cityToPost.Id == 0)
+            /*if (string.IsNullOrWhiteSpace(cityToPost.Name) || cityToPost.Id == 0)
             {
                 return BadRequest("Invalid parameters for city creation");
-            }
+            }*/
 
             bool result = await _cityProcessor.CreateCity(cityToPost).ConfigureAwait(false);
 
@@ -80,7 +80,7 @@ namespace KarpaticaTravelAPI.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] CityUpdateDTO updateCity)
+        public async Task<IActionResult> PutAsync(Guid id, [FromBody] CityUpdateDTO updateCity)
         {
 
             if (string.IsNullOrWhiteSpace(updateCity.Name))
@@ -103,12 +103,12 @@ namespace KarpaticaTravelAPI.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
 
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(Guid id)
         {
-            if (id < 0)
+          /*  if (id < 0)
             {
                 return BadRequest("Invalid paramter for city deletion");
-            }
+            }*/
 
             bool res = await _cityProcessor.DeleteCity(id).ConfigureAwait(false);
 
