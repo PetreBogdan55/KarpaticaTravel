@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
     console.log(form.value);
     this.authService
       .createUser({
-        _userId: '00000000-0000-0000-0000-000000000000',
+        id: '00000000-0000-0000-0000-000000000000',
         email: form.value.email,
         password: form.value.password,
         username: form.value.username,

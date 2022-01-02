@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Country } from '../models/country';
 import { Credentials } from '../models/credentials';
+import { Location } from 'src/app/models/location';
 
 import { User } from '../models/user';
 
@@ -12,7 +13,6 @@ import { User } from '../models/user';
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
-
 
   createUser(user: User) {
     return this.http.post(`${environment.API_URL}/Users`, user);
@@ -52,7 +52,11 @@ export class ApiService {
     return this.http.get(`${environment.API_URL}/Activities`);
   }
 
-  getLocations() {
-    return this.http.get(`${environment.API_URL}/Locations`);
+  getLocations(): Observable<Location[]> {
+    return this.http.get<Location[]>(`${environment.API_URL}/Locations`);
+  }
+
+  getLocation(Id: string) {
+    return this.http.get(`${environment.API_URL}/Locations/` + Id);
   }
 }
