@@ -11,7 +11,6 @@ namespace KarpaticaTravelAPI.Models.LocationModel
     {
         public LocationDTOValidator()
         {
-            RuleFor(x => x.Id).NotNull().NotEmpty();
             RuleFor(x => x.ActivityId).NotNull().NotEmpty();
             RuleFor(x => x.Address).NotNull().NotEmpty();
             RuleFor(x => x.CityId).NotNull().NotEmpty();
@@ -21,7 +20,7 @@ namespace KarpaticaTravelAPI.Models.LocationModel
             RuleFor(x => x.OwnerId).NotNull().NotEmpty();
             RuleFor(x => x.PricePerDay).NotNull().NotEmpty();
             RuleFor(x => x.Photo).NotNull().NotEmpty();
-            RuleFor(x => x.Capcity).NotNull().NotEmpty();
+            RuleFor(x => x.Capacity).NotNull().NotEmpty();
         }
 
         protected override bool PreValidate(ValidationContext<LocationDTO> context, ValidationResult result)
