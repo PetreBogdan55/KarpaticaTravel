@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KarpaticaTravelAPI.Repositories.BookingRepository
 {
-    interface IBookingRepository
+    public interface IBookingRepository
     {
         Task<bool> CreateBooking(Booking booking);
         Task<bool> UpdateBooking(Guid id, Booking booking);
