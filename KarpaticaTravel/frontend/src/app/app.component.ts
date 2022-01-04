@@ -60,4 +60,8 @@ export class AppComponent {
   public navigateToReviews() {
     this._router.navigate(['reviews']);
   }
+
+  public navigateToHome() {
+    this._router.navigate(['home']);
+  }
 }

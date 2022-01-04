@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.authService.saveToken(next['token']);
             this.authService.saveName(next['name']);
             this.authService.saveId(next['id']);
-            this.router.navigateByUrl('start');
+            this.router.navigateByUrl('home');
           });
       },
       (err) => {
