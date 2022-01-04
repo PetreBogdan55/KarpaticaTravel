@@ -21,6 +21,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ActivitiesComponent } from './components/activities/activities.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
     ResultsComponent,
     BookingsComponent,
     LocationDetailsComponent,
+    ReviewsComponent,
+    ActivitiesComponent,
   ],
   imports: [
     BrowserModule,

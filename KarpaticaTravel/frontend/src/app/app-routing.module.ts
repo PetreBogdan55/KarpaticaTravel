@@ -1,3 +1,5 @@
+import { ActivitiesComponent } from './components/activities/activities.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ResultsComponent } from './components/results/results.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { NgModule } from '@angular/core';
@@ -16,8 +18,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'results', component: ResultsComponent },
+  { path: 'activities', component: ActivitiesComponent },
   { path: 'results/:id', component: LocationDetailsComponent },
   { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
+  { path: 'reviews', component: ReviewsComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
