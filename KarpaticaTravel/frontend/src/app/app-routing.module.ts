@@ -23,7 +23,11 @@ const routes: Routes = [
   { path: 'activities', component: ActivitiesComponent },
   { path: 'results/:id', component: LocationDetailsComponent },
   { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
-  { path: 'reviews', component: ReviewsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'reviews/:id',
+    component: ReviewsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
