@@ -52,4 +52,12 @@ export class AppComponent {
   public navigateToBookings() {
     this._router.navigate(['bookings']);
   }
+
+  public navigateToActivities() {
+    this._router.navigate(['activities']);
+  }
+
+  public navigateToReviews() {
+    this._router.navigate(['reviews']);
+  }
 }

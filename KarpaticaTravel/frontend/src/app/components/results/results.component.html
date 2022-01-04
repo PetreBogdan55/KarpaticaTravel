@@ -72,20 +72,13 @@
           <p class="text18">{{ location.address }}</p>
           <p class="text14">
             Distance from city center:
-            <B>{{ location.distanceFromCityCenter }} km</B>
+            <B>{{ location.distanceFromCenter }} km</B>
           </p>
         </td>
         <td>
-          <p class="text14">
-            {{ location.package }}
-          </p>
           <p class="text20price">
             {{ location.pricePerDay }}<sup>{{ 99 }}</sup>
             EUR
-          </p>
-          <p class="text12">Rooms: {{ location.rooms }}</p>
-          <p class="text12bold">
-            {{ location.checkInDate }} &#8594; {{ location.checkOutDate }}
           </p>
           <p class="text18" *ngIf="location.isAvailable" style="color: green">
             Available
@@ -93,9 +86,7 @@
           <p class="text18" *ngIf="!location.isAvailable" style="color: red">
             Not available
           </p>
-          <button [routerLink]="['results', location._locationId]">
-            See details
-          </button>
+          <button [routerLink]="[location.id]">See details</button>
         </td>
       </tr>
       <tr *ngIf="finalLocations.length == 0">

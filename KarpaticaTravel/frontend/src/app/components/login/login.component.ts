@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(form: FormGroup): void {
-    console.log(form.value);
     this.authService.loginUser(form.value as Credentials).subscribe(
       (next) => {
         this.toastr

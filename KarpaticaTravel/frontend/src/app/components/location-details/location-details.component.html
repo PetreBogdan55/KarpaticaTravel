@@ -1,14 +1,45 @@
-<ng-container class="location-details">
-  <div>location.name</div>
-  <div>location.address</div>
-  <div>location.pricePerDay</div>
-  <div>location.distanceFromCityCenter</div>
-  <div>location.isAvailable</div>
-</ng-container>
-<ng-container>
-  <div *ngFor="let review of reviews">
-    {{ review.username }}
-    {{ review.description }}
-    {{ review.rating }}
+<div class="wrapper">
+  <mat-card>
+    <div class="location-photo">
+      <img [src]="location.photo" alt="photo" [width]="400" [height]="300" />
+    </div>
+    <div class="location-details" *ngIf="location">
+      <div class="details">
+        <h1 class="name">{{ location.name }}</h1>
+        <h2>{{ location.address }} {{ location.distanceFromCenter }}</h2>
+        <h2>
+          Price per day: {{ location.pricePerDay }} <mat-icon>euro</mat-icon>
+        </h2>
+        <h2
+          [ngClass]="{
+            available: location.isAvailable == true,
+            'not-available': location.isAvailable == false
+          }"
+        >
+          Available
+        </h2>
+      </div>
+    </div>
+    <div class="booking">
+      <button mat-button mat-ripple (click)="book()" mat-raised-button>
+        Book
+      </button>
+    </div>
+  </mat-card>
+  <div>
+    <mat-expansion-panel hideToggle class="reviews-header">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Reviews
+
+          <mat-icon class="right">keyboard_arrow_down</mat-icon>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div *ngFor="let review of reviews" class="review">
+        {{ review.username }}
+        {{ review.description }}
+        {{ review.rating }}
+      </div>
+    </mat-expansion-panel>
   </div>
-</ng-container>
+</div>
