@@ -66,4 +66,9 @@ export class AppComponent {
   public navigateToHome() {
     this._router.navigate(['home']);
   }
+
+  public signOut() {
+    this.authService.clearToken();
+    this.navigateToLogin();
+  }
 }
