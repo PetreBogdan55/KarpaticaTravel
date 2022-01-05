@@ -94,6 +94,14 @@ body {
   margin-top: 2em;
 }
 
+.owner-checkbox {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  gap            : 1rem;
+  margin-top     : 0.5rem;
+}
+
 .register-wrapper mat-card-header {
   text-align : center;
   width      : 100%;
