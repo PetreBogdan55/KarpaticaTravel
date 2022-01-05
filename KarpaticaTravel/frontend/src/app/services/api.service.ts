@@ -53,4 +53,8 @@ export class ApiService {
   getLocation(Id: string) {
     return this.http.get(`${environment.API_URL}/Locations/` + Id);
   }
+
+  getReviewsByUser(Id: string) {
+    return this.http.get(`${environment.API_URL}/Reviews/` + Id);
+  }
 }

@@ -11,10 +11,12 @@ import { RegisterComponent } from './components/register/register.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
 import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'start', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'start', component: StartComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
@@ -22,8 +24,12 @@ const routes: Routes = [
   { path: 'activities', component: ActivitiesComponent },
   { path: 'results/:id', component: LocationDetailsComponent },
   { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
-  { path: 'reviews', component: ReviewsComponent, canActivate: [AuthGuard] },
   { path: 'footer', component: FooterComponent},
+  {
+    path: 'reviews/:id',
+    component: ReviewsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
