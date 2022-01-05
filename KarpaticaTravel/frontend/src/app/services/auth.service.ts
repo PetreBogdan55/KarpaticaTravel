@@ -23,6 +23,10 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
+  clearToken() {
+    localStorage.clear();
+  }
+
   getToken() {
     return localStorage.getItem('token');
   }

@@ -36,23 +36,23 @@ namespace KarpaticaTravelAPI.Controllers
             return Ok(result);
         }
 
-        [ProducesResponseType(typeof(ReviewDTO), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<ReviewDTO>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetReviewAsync(GetReviewRequest request)
+        public async Task<IActionResult> GetReviewsByUserAsync(GetReviewRequest request)
         {
             try
             {
                 GetReviewRequestValidator rules = new GetReviewRequestValidator();
                 await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
 
-                ReviewDTO result = await _reviewProcessor.GetReview(request.Id).ConfigureAwait(false);
+                IEnumerable<ReviewDTO> result = await _reviewProcessor.GetReviewsByUser(request.Id).ConfigureAwait(false);
 
                 if (result == null)
                 {
-                    return NotFound("No review found.");
+                    return NotFound("No reviews found.");
                 }
 
                 return Ok(result);

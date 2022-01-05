@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ export class AppComponent {
 
   constructor(
     private _router: Router,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
+    private authService: AuthService
   ) {
     this.detectDevice();
   }
@@ -51,5 +53,22 @@ export class AppComponent {
 
   public navigateToBookings() {
     this._router.navigate(['bookings']);
+  }
+
+  public navigateToActivities() {
+    this._router.navigate(['activities']);
+  }
+
+  public navigateToReviews() {
+    this._router.navigate(['reviews/' + this.authService.getId()]);
+  }
+
+  public navigateToHome() {
+    this._router.navigate(['home']);
+  }
+
+  public signOut() {
+    this.authService.clearToken();
+    this.navigateToLogin();
   }
 }

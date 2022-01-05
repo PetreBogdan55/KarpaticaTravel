@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   register(form: FormGroup): void {
-    console.log(form.value);
     this.authService
       .createUser({
         id: '00000000-0000-0000-0000-000000000000',

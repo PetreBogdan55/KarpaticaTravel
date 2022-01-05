@@ -30,6 +30,8 @@ using System.Reflection;
 using System.Text;
 using KarpaticaTravelAPI.Processors.LocationProcessor;
 using KarpaticaTravelAPI.Repositories.LocationRepository;
+using KarpaticaTravelAPI.Repositories.BookingRepository;
+using KarpaticaTravelAPI.Processors.BookingProcessor;
 
 namespace KarpaticaTravelAPI
 {
@@ -79,6 +81,7 @@ namespace KarpaticaTravelAPI
             services.TryAddScoped<IActivityRepository, ActivityRepository>();
             services.TryAddScoped<IReviewRepository, ReviewRepository>();
             services.TryAddScoped<ILocationRepository, LocationRepository>();
+            services.TryAddScoped<IBookingRepository, BookingRepository>();
 
             services.TryAddScoped<IUserProcessor, UserProcessor>();
             services.TryAddScoped<ICityProcessor, CityProcessor>();
@@ -86,6 +89,7 @@ namespace KarpaticaTravelAPI
             services.TryAddScoped<ICountryProcessor, CountryProcessor>();
             services.TryAddScoped<IReviewProcessor, ReviewProcessor>();
             services.TryAddScoped<ILocationProcessor, LocationProcessor>();
+            services.TryAddScoped<IBookingProcessor, BookingProcessor>();
 
             services.AddScoped<ITokenManager, TokenManager>();
 
