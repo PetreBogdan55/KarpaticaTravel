@@ -1,0 +1,122 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6
+{
+  color: rgba(255, 255, 255, 0.6);
+  clear: both;
+  font-family: "Karla";
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+a {
+  font-size: 18px;
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 500;
+  font-family: "Karla";
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+}
+
+a:hover {
+  color: white !important;
+}
+
+p:hover {
+  color: white !important;
+}
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.footer-top-area {
+  background-color: #00b2ef
+  ;
+  padding-top: 95px;
+  padding-bottom: 15px;
+}
+
+.section-bg-5 {
+  background-color: #00b2ef
+  !important;
+  .footer-widget .footer-title {
+    color: white;
+  }
+  .container .row {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.footer-widget .footer-title {
+  font-size: 18px;
+  line-height: 1.6em;
+  text-transform: none;
+  margin-bottom: 30px;
+}
+
+.footer-menu ul {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-menu ul li {
+  list-style: none;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  position: relative;
+  a {
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: none;
+    line-height: 28.8px;
+  }
+}
+
+.footer-menu ul li {
+  list-style: none;
+  display: block;
+  margin-top: 5px;
+
+  .footer-address-icon {
+    float: left !important;
+    margin-right: 15px !important;
+  }
+}
+
+.footer-widget p,
+.footer-widget ul li {
+  font-size: 14px;
+  line-height: 28.8px;
+}
+
+.section-bg-5 {
+  color: white;
+}
+
+.copyright-left p {
+  color: white;
+}
+
+.ltn__copyright-design {
+  margin-top: 1rem;
+}
+
+.ltn__border-top-2 {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
