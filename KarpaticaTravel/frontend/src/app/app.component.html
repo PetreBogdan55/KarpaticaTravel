@@ -7,7 +7,7 @@
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
     <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
   </button>
-  KarpaticaTravel
+  <span class="title"> KarpaticaTravel </span>
   <p style="font-size: medium; vertical-align: bottom; margin: 0 0 -4px">
     &nbsp;{{ version_x }}.{{ version_y }}.{{ version_z }}
   </p>
@@ -15,12 +15,20 @@
 
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <mat-icon>person_pin</mat-icon>
+    <br />
+    <p>Welcome!</p>
+    <mat-divider></mat-divider>
     <button mat-button class="menu-button">
       <mat-icon>person</mat-icon>
       <span (click)="navigateToLogin()" id="account">Authenticate</span>
     </button>
 
-    <button mat-button class="menu-button">
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="authService.isAuthenticated()"
+    >
       <mat-icon>person</mat-icon>
       <span (click)="signOut()" id="account">Sign Out</span>
     </button>

@@ -24,7 +24,7 @@ export class AppComponent {
   constructor(
     private _router: Router,
     private deviceService: DeviceDetectorService,
-    private authService: AuthService
+    public authService: AuthService
   ) {
     this.detectDevice();
   }
