@@ -1,3 +1,4 @@
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ResultsComponent } from './components/results/results.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'results/:id', component: LocationDetailsComponent },
   { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
   { path: 'reviews', component: ReviewsComponent, canActivate: [AuthGuard] },
+  { path: 'footer', component: FooterComponent},
 ];
 
 @NgModule({

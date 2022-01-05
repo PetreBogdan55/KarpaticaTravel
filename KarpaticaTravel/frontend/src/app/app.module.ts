@@ -23,6 +23,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ActivitiesComponent } from './components/activities/activities.componen
     LocationDetailsComponent,
     ReviewsComponent,
     ActivitiesComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
