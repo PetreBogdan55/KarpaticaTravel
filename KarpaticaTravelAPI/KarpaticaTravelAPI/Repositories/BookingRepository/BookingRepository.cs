@@ -111,5 +111,16 @@ namespace KarpaticaTravelAPI.Repositories.BookingRepository
             }
         }
 
+        public async Task<IEnumerable<Booking>> GetBookingsByUser(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
+            var bookings = await _context.Booking.Where(b => b.UserId == id).ToListAsync();
+
+            return bookings;
+        }
     }
 }

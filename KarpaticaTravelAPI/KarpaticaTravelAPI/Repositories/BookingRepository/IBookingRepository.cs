@@ -12,6 +12,7 @@ namespace KarpaticaTravelAPI.Repositories.BookingRepository
         Task<bool> UpdateBooking(Guid id, Booking booking);
         Task<bool> DeleteBooking(Guid id);
         Task<Booking> GetBooking(Guid id);
+        Task<IEnumerable<Booking>> GetBookingsByUser(Guid id);
         Task<IEnumerable<Booking>> GetBookings();
     }
 }
