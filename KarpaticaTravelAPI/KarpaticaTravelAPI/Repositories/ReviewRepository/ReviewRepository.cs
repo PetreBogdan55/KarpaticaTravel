@@ -46,16 +46,16 @@ namespace KarpaticaTravelAPI.Repositories.ReviewRepository
             return true;
         }
 
-        public async Task<Review> GetReview(Guid id)
+        public async Task<IEnumerable<Review>> GetReviewsByUser(Guid id)
         {
             if (id == Guid.Empty)
             {
                 throw new ArgumentNullException("id", "Id is null or empty.");
             }
 
-            Review review = await _context.Review.FindAsync(id);
+            IEnumerable<Review> reviews = await _context.Review.Where(b => b.UserId == id).ToListAsync();
 
-            return review;
+            return reviews;
         }
 
         public async Task<IEnumerable<Review>> GetReviews()

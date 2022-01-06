@@ -19,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
   siteKey: string = environment.siteKey;
+  isOwner: boolean = false;
 
   constructor(
     public formService: SharedFormService,
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
         username: ['', [Validators.minLength(5), Validators.maxLength(15)]],
         phone: [''],
         recaptcha: ['', Validators.required],
+        isOwner: [''],
       },
       { updateOn: 'change' }
     );
@@ -48,7 +50,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   register(form: FormGroup): void {
-    console.log(form.value);
+    debugger;
     this.authService
       .createUser({
         id: '00000000-0000-0000-0000-000000000000',
@@ -56,6 +58,7 @@ export class RegisterComponent implements OnInit {
         password: form.value.password,
         username: form.value.username,
         phone: form.value.phone,
+        isOwner: form.value.isOwner,
       })
       .subscribe(
         () => {
