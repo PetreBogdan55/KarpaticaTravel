@@ -140,5 +140,32 @@ namespace KarpaticaTravelAPI.Controllers
                 return BadRequest(exception.Message);
             }
         }
+
+        [ProducesResponseType(typeof(IEnumerable<ReviewDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
+        [HttpGet("Location/{id}")]
+        public async Task<IActionResult> GetReviewsByLocationAsync(GetReviewRequest request)
+        {
+            try
+            {
+                var rules = new GetReviewRequestValidator();
+                await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
+
+                IEnumerable<ReviewDTO> result = await _reviewProcessor.GetReviewsByLocation(request.Id).ConfigureAwait(false);
+
+                if (result == null)
+                {
+                    return NotFound("No reviews found.");
+                }
+
+                return Ok(result);
+            }
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
     }
 }
