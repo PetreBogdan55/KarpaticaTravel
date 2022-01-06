@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           })
           .onHidden.subscribe(() => {
             this.authService.saveToken(next['token']);
-            this.authService.saveName(next['name']);
+            this.authService.saveUsername(next['username']);
             this.authService.saveId(next['id']);
             this.router.navigateByUrl('home');
           });

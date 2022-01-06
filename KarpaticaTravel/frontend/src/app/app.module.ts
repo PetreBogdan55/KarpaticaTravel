@@ -6,7 +6,7 @@ import {
   ToastNoAnimation,
   ToastNoAnimationModule,
 } from 'ngx-toastr';
-
+import { NgxStarRatingModule } from 'ngx-star-rating';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,6 +47,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     BrowserAnimationsModule,
     HttpClientModule,
     NgxMatIntlTelInputModule,
+    NgxStarRatingModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       progressBar: true,

@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Review } from 'src/app/models/review';
+import { Location } from 'src/app/models/location';
 
 @Component({
   selector: 'app-reviews',
@@ -13,6 +14,8 @@ import { Review } from 'src/app/models/review';
 export class ReviewsComponent implements OnInit {
   private readonly unsubscribe$ = new Subject<void>();
   public reviews: Review[] = [];
+  public locations: Location[] = [];
+  public username: string | null;
 
   constructor(
     private authService: AuthService,
@@ -22,12 +25,20 @@ export class ReviewsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.authService.getId();
     if (id) {
+      this.username = this.authService.getUsername();
       this.apiService
         .getReviewsByUser(id)
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe((reviews) => {
           this.reviews = reviews as Review[];
-          console.log(this.reviews);
+          for (let review of this.reviews) {
+            this.apiService
+              .getLocation(review.locationId.toString())
+              .pipe(takeUntil(this.unsubscribe$))
+              .subscribe((location) => {
+                this.locations.push(location as unknown as Location);
+              });
+          }
         });
     }
   }
