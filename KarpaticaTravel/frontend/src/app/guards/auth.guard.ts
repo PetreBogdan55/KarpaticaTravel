@@ -25,7 +25,8 @@ export class AuthGuard implements CanActivate {
           'You need to be authenticated in order to perform this action!'
         )
         .onHidden.subscribe(() => {
-          this.router.navigate(['login']);
+          if (!this.router.url.endsWith('login'))
+            this.router.navigate(['login']);
         });
       return false;
     }
