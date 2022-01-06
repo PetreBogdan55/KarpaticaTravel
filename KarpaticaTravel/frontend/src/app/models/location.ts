@@ -1,11 +1,13 @@
 export interface Location {
-  _locationId: string;
-  _cityId: number;
-  _ownerId: number;
-  _activityId: number;
+  id: string;
+  cityId: number;
+  ownerId: number;
+  activityId: number;
   name: string;
   address: string;
-  distanceFromCityCenter: number;
+  distanceFromCenter: number;
   pricePerDay: number;
   isAvailable: boolean;
+  photo: string;
+  capacity: number;
 }

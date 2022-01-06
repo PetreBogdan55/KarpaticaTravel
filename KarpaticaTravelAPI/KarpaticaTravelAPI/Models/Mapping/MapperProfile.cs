@@ -2,6 +2,7 @@ using AutoMapper;
 using KarpaticaTravelAPI.Models.ActivityModel;
 using KarpaticaTravelAPI.Models.CityModel;
 using KarpaticaTravelAPI.Models.CountryModel;
+using KarpaticaTravelAPI.Models.LocationModel;
 using KarpaticaTravelAPI.Models.ReviewModel;
 using KarpaticaTravelAPI.Models.UserModel;
 
@@ -30,6 +31,10 @@ namespace KarpaticaTravelAPI.Models.Mapping
             CreateMap<Review, ReviewDTO>();
             CreateMap<ReviewDTO, Review>();
             CreateMap<ReviewUpdateDTO, Review>();
+
+            CreateMap<Location, LocationDTO>();
+            CreateMap<LocationDTO, Location>();
+            CreateMap<LocationUpdateDTO, Location>();
         }
     }
 }

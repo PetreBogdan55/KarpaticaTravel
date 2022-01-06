@@ -9,7 +9,7 @@ namespace KarpaticaTravelAPI.Processors.ReviewProcessor
     {
         Task<bool> CreateReview(ReviewDTO review);
         Task<bool> DeleteReview(Guid reviewId);
-        Task<ReviewDTO> GetReview(Guid id);
+        Task<IEnumerable<ReviewDTO>> GetReviewsByUser(Guid id);
         Task<IEnumerable<ReviewDTO>> GetReviews();
         Task<bool> UpdateReview(Guid id, ReviewUpdateDTO reviewToUpdate);
     }

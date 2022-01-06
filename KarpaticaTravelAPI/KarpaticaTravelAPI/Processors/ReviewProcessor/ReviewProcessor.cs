@@ -70,10 +70,10 @@ namespace KarpaticaTravelAPI.Processors.ReviewProcessor
             return new List<ReviewDTO>(_mapper.Map<IEnumerable<ReviewDTO>>(resultList));
         }
 
-        public async Task<ReviewDTO> GetReview(Guid id)
+        public async Task<IEnumerable<ReviewDTO>> GetReviewsByUser(Guid id)
         {
-            Review result = await _reviewRepository.GetReview(id).ConfigureAwait(false);
-            return (_mapper.Map<Review, ReviewDTO>(result));
+            IEnumerable<Review> resultList = await _reviewRepository.GetReviewsByUser(id).ConfigureAwait(false);
+            return new List<ReviewDTO>(_mapper.Map<IEnumerable<ReviewDTO>>(resultList));
         }
 
         public async Task<bool> UpdateReview(Guid id, ReviewUpdateDTO reviewToUpdate)

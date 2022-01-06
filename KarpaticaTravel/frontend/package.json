@@ -27,8 +27,10 @@
     "ngx-captcha": "^10.0.0",
     "ngx-device-detector": "^3.0.0",
     "ngx-mat-intl-tel-input": "^4.1.0",
+    "ngx-star-rating": "^2.1.0",
     "ngx-toastr": "^14.2.1",
     "rxjs": "~6.6.0",
+    "simple-line-icons": "^2.5.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

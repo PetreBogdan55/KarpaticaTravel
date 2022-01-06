@@ -1,7 +1,102 @@
-<ng-container *ngFor="let location of locations">
-  <div>location.name</div>
-  <div>location.address</div>
-  <div>location.pricePerDay</div>
-  <div>location.distanceFromCityCenter</div>
-  <div>location.isAvailable</div>
-</ng-container>
+<div class="main-container">
+  <div class="child1">
+    <h1>Filters</h1>
+    <p class="text16">Maximum distance from city center</p>
+    <mat-slider
+      min="1"
+      max="200"
+      step="1"
+      (input)="onDistanceChange($event)"
+      [value]="distanceSliderValue"
+    ></mat-slider
+    >{{ distanceSliderValue }} km
+    <br />
+    <button (click)="onSortByAscendingDistance()">
+      Sort by ascending distance
+    </button>
+    <br />
+    <button (click)="onSortByDescendingDistance()">
+      Sort by descending distance
+    </button>
+    <br />
+    <p class="text16">Maximum price per day</p>
+    <mat-slider
+      min="1"
+      max="2000"
+      step="1"
+      (input)="onPriceChange($event)"
+      [value]="priceSliderValue"
+    ></mat-slider
+    >{{ priceSliderValue }} EUR
+    <br />
+    <button (click)="onSortByAscendingPrice()">Sort by ascending price</button>
+    <br />
+    <button (click)="onSortByDescendingPrice()">
+      Sort by descending price
+    </button>
+    <br />
+  </div>
+  <div class="child2">
+    <h1>Results</h1>
+    <p class="text18">
+      {{
+        finalLocations.length == 1
+          ? "1 location"
+          : finalLocations.length + " locations"
+      }}
+      found in {{ searchService.searchFiltersObject.chosenCity }},
+      {{ searchService.searchFiltersObject.chosenCountry }}
+    </p>
+    <p class="text14">
+      Check-In: {{ searchService.searchFiltersObject.chosenDate }} | Number of
+      nights:
+      {{ searchService.searchFiltersObject.chosenNumberOfNights }}
+    </p>
+    <p class="text14">
+      Searching for
+      {{ searchService.searchFiltersObject.chosenNumberOfRooms }}
+      {{ searchService.searchFiltersObject.chosenRoomType }}
+      {{
+        searchService.searchFiltersObject.chosenNumberOfRooms == 1
+          ? "room"
+          : "rooms"
+      }}
+      | {{ searchService.searchFiltersObject.chosenPackage }}
+    </p>
+    <br />
+    <table>
+      <tr *ngFor="let location of finalLocations">
+        <td><img src="{{ location.photo }}" /></td>
+        <td>
+          <p class="text22">{{ location.name }}</p>
+          <p class="text18">{{ location.address }}</p>
+          <p class="text14">
+            Distance from city center:
+            <B>{{ location.distanceFromCenter }} km</B>
+          </p>
+        </td>
+        <td>
+          <p class="text20price">
+            {{ location.pricePerDay }}<sup>{{ 99 }}</sup>
+            EUR
+          </p>
+          <p class="text18" *ngIf="location.isAvailable" style="color: green">
+            Available
+          </p>
+          <p class="text18" *ngIf="!location.isAvailable" style="color: red">
+            Not available
+          </p>
+          <button [routerLink]="[location.id]">See details</button>
+        </td>
+      </tr>
+      <tr *ngIf="finalLocations.length == 0">
+        <td>
+          <p class="text18error">
+            Sorry, no locations matched your search. Please try again later!
+          </p>
+        </td>
+      </tr>
+      <tr></tr>
+    </table>
+  </div>
+</div>

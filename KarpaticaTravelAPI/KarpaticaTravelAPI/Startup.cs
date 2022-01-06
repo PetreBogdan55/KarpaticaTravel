@@ -28,6 +28,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using KarpaticaTravelAPI.Processors.LocationProcessor;
+using KarpaticaTravelAPI.Repositories.LocationRepository;
+using KarpaticaTravelAPI.Repositories.BookingRepository;
+using KarpaticaTravelAPI.Processors.BookingProcessor;
 
 namespace KarpaticaTravelAPI
 {
@@ -76,12 +80,16 @@ namespace KarpaticaTravelAPI
             services.TryAddScoped<ICountryRepository, CountryRepository>();
             services.TryAddScoped<IActivityRepository, ActivityRepository>();
             services.TryAddScoped<IReviewRepository, ReviewRepository>();
+            services.TryAddScoped<ILocationRepository, LocationRepository>();
+            services.TryAddScoped<IBookingRepository, BookingRepository>();
 
             services.TryAddScoped<IUserProcessor, UserProcessor>();
             services.TryAddScoped<ICityProcessor, CityProcessor>();
             services.TryAddScoped<IActivityProcessor, ActivityProcessor>();
             services.TryAddScoped<ICountryProcessor, CountryProcessor>();
             services.TryAddScoped<IReviewProcessor, ReviewProcessor>();
+            services.TryAddScoped<ILocationProcessor, LocationProcessor>();
+            services.TryAddScoped<IBookingProcessor, BookingProcessor>();
 
             services.AddScoped<ITokenManager, TokenManager>();
 
@@ -132,8 +140,8 @@ namespace KarpaticaTravelAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseAuthentication();
 
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

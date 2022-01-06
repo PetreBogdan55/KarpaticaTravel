@@ -1,7 +1,8 @@
 export interface User {
-  _userId: string;
+  id: string;
   email: string;
   username: string;
   password: string;
   phone: string;
+  isOwner: boolean;
 }

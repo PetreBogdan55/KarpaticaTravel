@@ -23,6 +23,10 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
+  clearToken() {
+    localStorage.clear();
+  }
+
   getToken() {
     return localStorage.getItem('token');
   }
@@ -35,12 +39,12 @@ export class AuthService {
     return localStorage.getItem('id');
   }
 
-  saveName(name: string) {
-    localStorage.setItem('name', name);
+  saveUsername(username: string) {
+    localStorage.setItem('username', username);
   }
 
-  getName() {
-    return localStorage.getItem('name');
+  getUsername() {
+    return localStorage.getItem('username');
   }
 
   isAuthenticated() {
