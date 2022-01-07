@@ -1,3 +1,40 @@
+body,
+button,
+input,
+select,
+textarea {
+  font-size: 20px !important;
+  color: #6e6e6e;
+  font-family: Karla !important;
+  background-color: white;
+}
+
+a {
+  color: #5c7cfb;
+  text-decoration: none;
+}
+a {
+  background-color: transparent;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  margin-top: 0;
+  color: #6e6e6e;
+  font-family: Karla !important;
+  margin: 0px;
+}
+
 .cont {
   width: 100%;
   max-width: fit-content;
@@ -11,9 +48,14 @@
   overflow: hidden;
 }
 
+.mat-divider{
+  width: 40vw;
+}
+
 div.stars {
-  width: 270px;
-  display: inline-block;
+  display: flex;
+  justify-content: flex-start;
+
 }
 
 .reviews {
@@ -22,50 +64,18 @@ div.stars {
 }
 
 .title {
-  width: 600px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  text-align: center;
-  background: rgb(70, 83, 207);
-  color: #eee;
-  border-radius: 5px;
-  border: thin solid #444;
   font-size: 32px;
-  color: yellow;
-}
-
-.location {
-  width: 200px;
-  padding-top: 45px;
-  padding-bottom: 45px;
-  text-align: center;
-  background: rgb(70, 83, 207);
-  color: #eee;
-  border-radius: 5px;
-  border: thin solid #444;
-  font-size: 32px;
-  color: yellow;
+  color: black;
 }
 
 .description {
-  width: 600px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  text-align: center;
-  background: rgb(70, 83, 207);
-  color: #eee;
-  border-radius: 5px;
-  border: thin solid #444;
+  color: black;
   font-size: 18px;
 }
 
 .pageTitle {
   font-size: 36px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  margin-left: 30%;
-  margin-right: 30%;
-}
+  }
 
 .bottom {
   height: 75px;
