@@ -35,8 +35,16 @@ export class AuthService {
     localStorage.setItem('id', id);
   }
 
+  saveIsOwner(isOwner: string) {
+    localStorage.setItem('isOwner', isOwner);
+  }
+
   getId() {
     return localStorage.getItem('id');
+  }
+
+  getIsOwner() {
+    return localStorage.getItem('isOwner');
   }
 
   saveUsername(username: string) {

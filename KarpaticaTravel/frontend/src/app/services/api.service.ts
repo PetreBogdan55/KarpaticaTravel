@@ -26,7 +26,7 @@ export class ApiService {
     return this.http.put(`${environment.API_URL}/Users/` + userId, editedUser);
   }
 
-  getUser(userId: number) {
+  getUser(userId: string) {
     return this.http.get(`${environment.API_URL}/Users/` + userId);
   }
 

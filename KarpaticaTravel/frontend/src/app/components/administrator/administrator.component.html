@@ -1,0 +1,14 @@
+<body>
+  <div *ngIf="authService.getIsOwner() == 'false'">
+    <div>
+      <h1>
+        <code>Access Denied</code>
+      </h1>
+      <h3>You dont have permission to view this site.</h3>
+      <h6>error code:403 forbidden</h6>
+    </div>
+  </div>
+  <div *ngIf="authService.getIsOwner() == 'true'">
+    <p>administrator !</p>
+  </div>
+</body>

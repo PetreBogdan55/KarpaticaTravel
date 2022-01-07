@@ -40,7 +40,8 @@ namespace KarpaticaTravelAPI.Processors.UserProcessor
                     Token = _tokenManager.GenerateJwtToken(user.Email, user.Username),
                     Username = user.Username,
                     Email = user.Email,
-                    Id = user.Id
+                    Id = user.Id,
+                    IsOwner = user.IsOwner
                 };
             }
 
