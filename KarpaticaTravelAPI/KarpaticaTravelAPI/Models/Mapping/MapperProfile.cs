@@ -1,5 +1,6 @@
 using AutoMapper;
 using KarpaticaTravelAPI.Models.ActivityModel;
+using KarpaticaTravelAPI.Models.BookingModel;
 using KarpaticaTravelAPI.Models.CityModel;
 using KarpaticaTravelAPI.Models.CountryModel;
 using KarpaticaTravelAPI.Models.LocationModel;
@@ -35,6 +36,10 @@ namespace KarpaticaTravelAPI.Models.Mapping
             CreateMap<Location, LocationDTO>();
             CreateMap<LocationDTO, Location>();
             CreateMap<LocationUpdateDTO, Location>();
+
+            CreateMap<Booking, BookingDTO>();
+            CreateMap<BookingDTO, Booking>();
+            CreateMap<BookingUpdateDTO, Booking>();
         }
     }
 }
