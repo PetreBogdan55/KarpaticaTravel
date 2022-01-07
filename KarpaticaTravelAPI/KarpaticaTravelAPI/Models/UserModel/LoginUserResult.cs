@@ -13,5 +13,7 @@ namespace KarpaticaTravelAPI.Models.UserModel
 
         public string Username{ get; set; }
 
+        public bool IsOwner { get; set; }
+
     }
 }

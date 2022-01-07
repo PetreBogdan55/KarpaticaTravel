@@ -17,7 +17,7 @@ namespace KarpaticaTravelAPI.Models.UserModel
 
         public string Phone { get; set; }
 
-        // public bool IsOwner { get; set; }
+        //public bool IsOwner { get; set; }
 
     }
 }

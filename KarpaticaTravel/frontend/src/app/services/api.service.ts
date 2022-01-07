@@ -27,7 +27,7 @@ export class ApiService {
     return this.http.put(`${environment.API_URL}/Users/` + userId, editedUser);
   }
 
-  getUser(userId: number) {
+  getUser(userId: string) {
     return this.http.get(`${environment.API_URL}/Users/` + userId);
   }
 
@@ -57,5 +57,13 @@ export class ApiService {
 
   getReviewsByUser(Id: string) :Observable<Review[]>{
     return this.http.get<Review[]>(`${environment.API_URL}/Reviews/` + Id);
+  }
+
+  getReviewsByLocation(Id: string) {
+    return this.http.get(`${environment.API_URL}/Reviews/Location/` + Id);
+  }
+
+  getBookingsByUser(Id: string) {
+    return this.http.get(`${environment.API_URL}/Bookings/Users/` + Id);
   }
 }

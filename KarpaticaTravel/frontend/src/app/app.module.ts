@@ -26,6 +26,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NgxStarsModule } from 'ngx-stars';
 import { RouterModule } from '@angular/router';
+import { AdministratorComponent } from './components/administrator/administrator.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RouterModule } from '@angular/router';
     ActivitiesComponent,
     HomeComponent,
     FooterComponent,
+    AdministratorComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ import { BookingsComponent } from './components/bookings/bookings.component';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
+import { AdministratorComponent } from './components/administrator/administrator.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,9 +22,18 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'results', component: ResultsComponent },
+  {
+    path: 'admin',
+    component: AdministratorComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'activities', component: ActivitiesComponent },
   { path: 'results/:id', component: LocationDetailsComponent },
-  { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'bookings/:id',
+    component: BookingsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'footer', component: FooterComponent },
   {
     path: 'reviews/:id',

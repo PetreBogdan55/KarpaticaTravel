@@ -4,6 +4,7 @@ import { Location } from 'src/app/models/location';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-location-details',
@@ -24,6 +25,13 @@ export class LocationDetailsComponent implements OnInit {
       let apiLocation = this.apiService.getLocation(params['id']);
       apiLocation.subscribe((next: any) => {
         this.location = next as Location;
+
+        this.apiService
+          .getReviewsByLocation(this.location.id.toString())
+          .pipe()
+          .subscribe((reviews) => {
+            console.log(reviews);
+          });
       });
     });
   }

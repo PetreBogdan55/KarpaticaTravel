@@ -54,7 +54,7 @@ export class AppComponent {
   }
 
   public navigateToBookings() {
-    this._router.navigate(['bookings']);
+    this._router.navigate(['bookings/' + this.authService.getId()]);
   }
 
   public navigateToActivities() {
