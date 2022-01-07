@@ -25,6 +25,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [

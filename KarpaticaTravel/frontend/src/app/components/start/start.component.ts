@@ -2,10 +2,12 @@ import { SearchService } from './../../services/search.service';
 import { SearchFilters } from './../../models/searchFilters';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, Scroll } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Search } from 'src/app/models/search';
 import { Image } from 'src/app/models/image';
+import { filter } from 'rxjs/operators';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-start',
@@ -22,6 +24,7 @@ export class StartComponent implements OnInit {
   constructor(
     private _router: Router,
     public searchService: SearchService,
+    private viewportScroller: ViewportScroller,
     private toastr: ToastrService //private apiService: ApiService
   ) {
     let date = new Date();
