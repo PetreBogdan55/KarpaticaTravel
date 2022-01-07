@@ -1,6 +1,6 @@
 <div class="wrapper">
   <mat-card>
-    <div class="location-photo">
+    <div class="location-photo" *ngIf="location">
       <img [src]="location.photo" alt="photo" [width]="400" [height]="300" />
     </div>
     <div class="location-details" *ngIf="location">

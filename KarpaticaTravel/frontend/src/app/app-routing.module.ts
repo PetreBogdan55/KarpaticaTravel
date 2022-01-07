@@ -23,7 +23,11 @@ const routes: Routes = [
   { path: 'results', component: ResultsComponent },
   { path: 'activities', component: ActivitiesComponent },
   { path: 'results/:id', component: LocationDetailsComponent },
-  { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'bookings/:id',
+    component: BookingsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'footer', component: FooterComponent },
   {
     path: 'reviews/:id',

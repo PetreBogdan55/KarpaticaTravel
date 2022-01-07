@@ -57,4 +57,12 @@ export class ApiService {
   getReviewsByUser(Id: string) {
     return this.http.get(`${environment.API_URL}/Reviews/` + Id);
   }
+
+  getReviewsByLocation(Id: string) {
+    return this.http.get(`${environment.API_URL}/Reviews/Location/` + Id);
+  }
+
+  getBookingsByUser(Id: string) {
+    return this.http.get(`${environment.API_URL}/Bookings/Users/` + Id);
+  }
 }
