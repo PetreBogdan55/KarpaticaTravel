@@ -39,7 +39,7 @@ namespace KarpaticaTravelAPI.Controllers
             return Ok(res);
         }
 
-        [HttpGet]
+        [HttpGet("Users/{id}")]
         [ProducesResponseType(typeof(IEnumerable<BookingDTO>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]

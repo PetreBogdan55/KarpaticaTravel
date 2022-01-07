@@ -16,7 +16,5 @@ namespace KarpaticaTravelAPI.Models.BookingModel
         public DateTime CheckOutDate { get; set; }
         
         public bool IsCancellable { get; set; }
-        
-        public string Flag { get; set; }
     }
 }
