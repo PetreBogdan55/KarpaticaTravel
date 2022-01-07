@@ -31,7 +31,7 @@ export class ReviewsComponent implements OnInit {
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe((reviews) => {
           this.reviews = reviews as Review[];
-          for (let review of this.reviews) {
+          for (let review of reviews) {
             this.apiService
               .getLocation(review.locationId.toString())
               .pipe(takeUntil(this.unsubscribe$))

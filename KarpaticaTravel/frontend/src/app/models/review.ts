@@ -4,5 +4,5 @@ export interface Review {
   locationId: number;
   title: string;
   description: string;
-  rating: string;
+  rating: number;
 }

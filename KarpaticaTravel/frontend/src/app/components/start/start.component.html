@@ -2,10 +2,10 @@
   <a id="top"></a>
   <div class="centered">
     <table>
-      <tr>
+      <tr id=tr1>
         <th colspan="5"><h1>Search for a location...</h1></th>
       </tr>
-      <tr>
+      <tr id=tr2>
         <td>
           <ul class="dropdown">
             <li>
@@ -48,6 +48,7 @@
         <td>
           <ul class="dropdown">
             <li>
+              <i class="icons icon-plane"></i>
               <a>{{
                 searchService.searchFiltersObject.chosenCountry !=
                   "Select Country" &&
@@ -109,6 +110,7 @@
         <td>
           <ul class="dropdown">
             <li>
+              <i class="icons icon-calendar"></i>
               <a>{{
                 searchService.searchFiltersObject.chosenDate +
                   ", " +
@@ -128,7 +130,6 @@
                       min="{{ minSearchDate }}"
                       max="{{ maxSearchDate }}"
                   /></a>
-                  >
                 </li>
                 <li>
                   <a>
@@ -259,11 +260,14 @@
           </ul>
         </td>
         <td>
-          <button (click)="onSearch()">Search for packages...</button>
+          <button class="searchBtn" (click)="onSearch()">
+            Search
+          </button>
         </td>
       </tr>
     </table>
   </div>
+  <div class="search-bar"></div>
   <div class="activity-wrapper">
     <div class="activity-content-area">
       <div class="page-header">
