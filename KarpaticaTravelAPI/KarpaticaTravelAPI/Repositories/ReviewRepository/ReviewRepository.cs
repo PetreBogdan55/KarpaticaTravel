@@ -95,5 +95,19 @@ namespace KarpaticaTravelAPI.Repositories.ReviewRepository
 
             return true;
         }
+
+        public async Task<IEnumerable<Review>> GetReviewsByLocation(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
+            var reviews = await _context.Review.Where(b => b.LocationId == id).ToListAsync();
+
+            return reviews;
+
+        }
+
     }
 }

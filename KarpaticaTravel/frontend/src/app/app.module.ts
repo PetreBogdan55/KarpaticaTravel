@@ -6,7 +6,7 @@ import {
   ToastNoAnimation,
   ToastNoAnimationModule,
 } from 'ngx-toastr';
-
+import { NgxStarRatingModule } from 'ngx-star-rating';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +25,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     BrowserAnimationsModule,
     HttpClientModule,
     NgxMatIntlTelInputModule,
+    NgxStarRatingModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       progressBar: true,

@@ -17,10 +17,11 @@
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
     <mat-icon>person_pin</mat-icon>
     <br />
-    <p>Welcome!</p>
+    <p *ngIf="authService.isAuthenticated()">Welcome {{ username }}!</p>
+    <p *ngIf="!authService.isAuthenticated()">Please login</p>
     <mat-divider></mat-divider>
     <button mat-button class="menu-button">
-      <mat-icon>person</mat-icon>
+      <mat-icon>login</mat-icon>
       <span (click)="navigateToLogin()" id="account">Authenticate</span>
     </button>
 
@@ -29,17 +30,25 @@
       class="menu-button"
       *ngIf="authService.isAuthenticated()"
     >
-      <mat-icon>person</mat-icon>
+      <mat-icon>logout</mat-icon>
       <span (click)="signOut()" id="account">Sign Out</span>
     </button>
 
-    <button mat-button class="menu-button">
-      <mat-icon>person</mat-icon>
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="authService.isAuthenticated()"
+    >
+      <mat-icon>bookmarks</mat-icon>
       <span (click)="navigateToBookings()" id="account">My Bookings</span>
     </button>
 
-    <button mat-button class="menu-button">
-      <mat-icon>person</mat-icon>
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="authService.isAuthenticated()"
+    >
+      <mat-icon>reviews</mat-icon>
       <span (click)="navigateToReviews()" id="account">My Reviews</span>
     </button>
 
@@ -53,12 +62,12 @@
     <mat-divider></mat-divider>
 
     <button mat-button class="menu-button">
-      <mat-icon>home</mat-icon>
+      <mat-icon>local_activity</mat-icon>
       <span (click)="navigateToActivities()" id="account">All Activities</span>
     </button>
 
     <button mat-button class="menu-button">
-      <mat-icon>home</mat-icon>
+      <mat-icon>dashboard</mat-icon>
       <span (click)="navigateToDashboard()">Dashboard</span>
     </button>
 

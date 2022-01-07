@@ -11,6 +11,7 @@ namespace KarpaticaTravelAPI.Processors.BookingProcessor
         Task<bool> DeleteBooking(Guid id);
         Task<bool> UpdateBooking(Guid id, BookingUpdateDTO bookingToUpdate);
         Task<BookingDTO> GetBooking(Guid id);
+        Task<IEnumerable<BookingDTO>> GetBookingsByUser(Guid id);
         Task<IEnumerable<BookingDTO>> GetBookings();
     }
 }

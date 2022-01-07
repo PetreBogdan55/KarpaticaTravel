@@ -10,6 +10,7 @@ namespace KarpaticaTravelAPI.Repositories.ReviewRepository
         Task<Review> CreateReview(Review review);
         Task<bool> DeleteReview(Guid id);
         Task<IEnumerable<Review>> GetReviewsByUser(Guid id);
+        Task<IEnumerable<Review>> GetReviewsByLocation(Guid id);
         Task<IEnumerable<Review>> GetReviews();
         Task<bool> UpdateReview(Guid id, Review review);
     }

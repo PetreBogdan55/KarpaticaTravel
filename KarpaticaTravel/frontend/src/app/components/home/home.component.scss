@@ -3,25 +3,26 @@ button,
 input,
 select,
 textarea {
-  font-size: 20px !important;
-  color: #6e6e6e;
-  font-family: Karla !important;
+  font-size       : 20px !important;
+  color           : #6e6e6e;
+  font-family     : Karla !important;
   background-color: white;
-  margin: 0px !important;
-  padding: 0px !important;
+  margin          : 0px !important;
+  padding         : 0px !important;
 }
 
 a {
-  color: #5c7cfb;
+  color          : #5c7cfb;
   text-decoration: none;
 }
+
 a {
   background-color: transparent;
 }
 
 img {
-  height: auto;
-  max-width: 100%;
+  height: 300px !important;
+  width : 400px !important;
 }
 
 h1,
@@ -30,23 +31,23 @@ h3,
 h4,
 h5,
 h6 {
-  clear: both;
-  margin-top: 0;
-  color: #6e6e6e;
+  clear      : both;
+  margin-top : 0;
+  color      : #6e6e6e;
   font-family: Karla !important;
 }
 
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  margin   : 0.67em 0;
 }
 
 .description {
-  margin-left: 100px;
-  margin-right: 100px;
-  padding: 100px;
+  margin-left   : 100px;
+  margin-right  : 100px;
+  padding       : 100px;
   padding-bottom: 0px;
-  padding-top: 30px;
+  padding-top   : 30px;
 }
 
 .center {
@@ -55,40 +56,40 @@ h1 {
 }
 
 .title {
-  font-size: 55px;
+  font-size  : 55px;
   font-weight: bolder;
 }
 
 .subtitle {
-  font-size: 25px;
+  font-size  : 25px;
   font-weight: bolder;
-  margin-top: 40px;
+  margin-top : 40px;
 }
 
 .subtitle-2 {
-  font-size: 25px;
+  font-size  : 25px;
   font-weight: bolder;
-  margin-top: 0px;
+  margin-top : 0px;
 }
 
 .grid-subtitle {
-  font-size: 25px;
-  font-weight: bolder;
+  font-size    : 25px;
+  font-weight  : bolder;
   margin-bottom: 20px;
-  margin-top: 20px;
+  margin-top   : 20px;
 }
 
 .grid-container {
-  display: grid;
+  display              : grid;
   grid-template-columns: auto auto auto;
-  padding: 10px;
-  margin: 30px 100px 10px 100px;
+  padding              : 10px;
+  margin               : 30px 100px 10px 100px;
 }
 
 .grid-item {
-  padding: 20px;
+  padding      : 20px;
   margin-bottom: 50px;
-  text-align: center;
+  text-align   : center;
 }
 
 img {
@@ -101,23 +102,23 @@ img {
 }
 
 .primary-btn {
-  display: inline-block;
-  background: #fc2850;
-  color: white;
-  padding: 14px 43px;
-  line-height: 1.6875em;
-  font-size: 0.8em;
-  font-weight: 700;
-  border: 1px solid #fc2850;
-  border-radius: 100px;
-  transition: ease, 0.2s;
+  display       : inline-block;
+  background    : #fc2850;
+  color         : white;
+  padding       : 14px 43px;
+  line-height   : 1.6875em;
+  font-size     : 0.8em;
+  font-weight   : 700;
+  border        : 1px solid #fc2850;
+  border-radius : 100px;
+  transition    : ease, 0.2s;
   text-transform: uppercase;
 }
 
 .primary-btn:hover,
 .primary-btn:focus {
-  background: #ffffff;
-  border-color: #fc2850;
-  color: #fc2850;
+  background     : #ffffff;
+  border-color   : #fc2850;
+  color          : #fc2850;
   text-decoration: none;
 }

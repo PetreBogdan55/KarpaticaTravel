@@ -20,12 +20,14 @@ export class AppComponent {
   deviceType = 'Unknown';
   browser = 'Unknown';
   browserVersion = 'Unknown';
+  username: string | null;
 
   constructor(
     private _router: Router,
     private deviceService: DeviceDetectorService,
     public authService: AuthService
   ) {
+    this.username = this.authService.getUsername();
     this.detectDevice();
   }
 
