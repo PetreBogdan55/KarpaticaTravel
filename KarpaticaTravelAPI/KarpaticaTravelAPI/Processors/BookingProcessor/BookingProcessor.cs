@@ -81,5 +81,10 @@ namespace KarpaticaTravelAPI.Processors.BookingProcessor
             }
         }
 
+        public async Task<IEnumerable<BookingDTO>> GetBookingsByUser(Guid id)
+        {
+            IEnumerable<Booking> resList = await _bookingRepository.GetBookingsByUser(id).ConfigureAwait(false);
+            return new List<BookingDTO>(_mapper.Map<IEnumerable<BookingDTO>>(resList));
+        }
     }
 }

@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using FluentValidation;
+using KarpaticaTravelAPI.Models.Requests.Booking;
+using KarpaticaTravelAPI.Models.ReviewModel;
 
 namespace KarpaticaTravelAPI.Controllers
 {
@@ -34,6 +37,33 @@ namespace KarpaticaTravelAPI.Controllers
             }
 
             return Ok(res);
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<BookingDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
+
+        public async Task<IActionResult> GetBookingsByUserAsync(GetBookingsRequest request)
+        {
+            try
+            {
+                var rules = new GetBookingsRequestValidator();
+                await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
+
+                var result = await _bookingProcessor.GetBookingsByUser(request.Id).ConfigureAwait(false);
+
+                if (result == null)
+                {
+                    return NotFound("No reviews found.");
+                }
+
+                return Ok(result);
+            }
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
         [HttpGet("{id}")]
