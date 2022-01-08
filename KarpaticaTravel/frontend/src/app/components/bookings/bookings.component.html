@@ -1,1 +1,29 @@
-<p>bookings works!</p>
+<body>
+  <div class="bookings">
+    <div class="page-title">{{ username }}'s Bookings</div>
+    <div class="bookings-wrapper">
+      <div
+        class="booking"
+        *ngFor="let booking of bookings; let i = index"
+        [attr.data-index]="i"
+      >
+      <div class="booking-image" *ngIf="locations[i]">
+        <img src="{{locations[i].photo}}" alt="{{locations[i].name}}">
+      </div>
+      <div class="booking-wrapper">
+        <div class="location-name" *ngIf="locations[i]">
+          <h2>{{ locations[i].name }}</h2>
+        </div>
+        <div class="chekin-chekout">
+          <h3>Date: {{ booking.checkInDate }} - {{ booking.checkOutDate }}</h3>
+        </div>
+        <div class="cancellable">
+          <h4>Is cancellable: {{ booking.isCancellable }}</h4>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+  <app-footer></app-footer>
+</body>
