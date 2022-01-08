@@ -2,10 +2,10 @@
   <a id="top"></a>
   <div class="centered">
     <table>
-      <tr id=tr1>
+      <tr id="tr1">
         <th colspan="5"><h1>Search for a location...</h1></th>
       </tr>
-      <tr id=tr2>
+      <tr id="tr2">
         <td>
           <ul class="dropdown">
             <li>
@@ -260,9 +260,7 @@
           </ul>
         </td>
         <td>
-          <button class="searchBtn" (click)="onSearch()">
-            Search
-          </button>
+          <button class="searchBtn" (click)="onSearch()">Search</button>
         </td>
       </tr>
     </table>
@@ -310,7 +308,7 @@
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
               <a href="https://yolotravel.ro/activitati/off-the-beaten-track/">
-                Off the beaten track</a
+                {{ this.activities[5].name }}</a
               ><span class="trip-count">(7 Trips)</span>
             </h2>
           </div>
@@ -347,7 +345,7 @@
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
               <a href="https://yolotravel.ro/activitati/vacanta-cu-charter/">
-                Pachete charter</a
+                {{ this.activities[4].name }}</a
               ><span class="trip-count">(15 Trips)</span>
             </h2>
           </div>
@@ -382,7 +380,7 @@
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
               <a href="https://yolotravel.ro/activitati/la-ski-prin-europa/">
-                Pe skiuri</a
+                {{ this.activities[0].name }}</a
               ><span class="trip-count">(2 Trips)</span>
             </h2>
           </div>
@@ -423,7 +421,7 @@
               <a
                 href="https://yolotravel.ro/activitati/relaxare-in-vila-privata/"
               >
-                Relaxare in vila privata</a
+                {{ this.activities[2].name }}</a
               ><span class="trip-count">(3 Trips)</span>
             </h2>
           </div>
@@ -458,7 +456,7 @@
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
               <a href="https://yolotravel.ro/activitati/excursii-pe-mare/">
-                Sailing</a
+                {{ this.activities[1].name }}</a
               ><span class="trip-count">(2 Trips)</span>
             </h2>
           </div>
@@ -495,7 +493,7 @@
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
               <a href="https://yolotravel.ro/activitati/tailor-made-trips/">
-                Tailor made trips</a
+                {{ this.activities[3].name }}</a
               ><span class="trip-count">(10 Trips)</span>
             </h2>
           </div>

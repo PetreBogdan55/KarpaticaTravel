@@ -13,5 +13,6 @@ namespace KarpaticaTravelAPI.Repositories.LocationRepository
         Task<Location> CreateLocation(Location location);
         Task<bool> DeleteLocation(Guid id);
         Task<Location> GetLocation(Guid id);
+        Task<IEnumerable<Location>> GetLocationsByActivity(Guid atcivityId);
     }
 }

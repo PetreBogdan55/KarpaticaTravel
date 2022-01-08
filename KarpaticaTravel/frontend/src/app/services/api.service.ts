@@ -9,6 +9,9 @@ import { Location } from 'src/app/models/location';
 import { User } from '../models/user';
 import { Review } from '../models/review';
 
+import { map } from 'rxjs/operators';
+import { Activity } from '../models/activity';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -44,7 +47,9 @@ export class ApiService {
   }
 
   getActivities() {
-    return this.http.get(`${environment.API_URL}/Activities`);
+    return this.http.get(`${environment.API_URL}/Activities`, {
+      responseType: 'json',
+    });
   }
 
   getLocations(): Observable<Location[]> {
@@ -55,7 +60,7 @@ export class ApiService {
     return this.http.get(`${environment.API_URL}/Locations/` + Id);
   }
 
-  getReviewsByUser(Id: string) :Observable<Review[]>{
+  getReviewsByUser(Id: string): Observable<Review[]> {
     return this.http.get<Review[]>(`${environment.API_URL}/Reviews/` + Id);
   }
 

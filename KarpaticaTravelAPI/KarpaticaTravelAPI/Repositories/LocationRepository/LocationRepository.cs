@@ -93,5 +93,15 @@ namespace KarpaticaTravelAPI.Repositories.LocationRepository
 
             return true;
         }
+
+        public async Task<IEnumerable<Location>> GetLocationsByActivity(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+
+            return await _context.Location.Where((loc) => loc.ActivityId == id).ToListAsync();
+        }
     }
 }
