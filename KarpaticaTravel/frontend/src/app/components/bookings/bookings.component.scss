@@ -1,0 +1,114 @@
+body,
+button,
+input,
+select,
+textarea {
+  font-size: 20px !important;
+  color: #6e6e6e;
+  font-family: Karla !important;
+  background-color: white;
+}
+
+a {
+  color: #5c7cfb;
+  text-decoration: none;
+}
+a {
+  background-color: transparent;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  margin-top: 0;
+  color: #6e6e6e;
+  font-family: Karla !important;
+  margin: 0px;
+}
+
+.mat-divider {
+  width: 40vw;
+}
+
+.booking {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+  padding: 7px;
+  padding-bottom: 10px;
+  border-radius: 2px;
+  box-shadow: 0 1px 8px 0 rgb(0 0 0 / 12%), 0 2px 3px -1px rgb(0 0 0 / 20%);
+}
+
+.booking-image {
+  max-width: 200px;
+  img {
+    border-radius: 15%;
+  }
+}
+
+.page-title {
+  margin-top: 100px;
+  margin-bottom: 70px;
+  display: flex;
+  justify-content: center;
+  font-size: 36px;
+  color: black;
+  font-weight: 900;
+}
+
+div.stars {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 15px;
+}
+
+.bookings {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.booking-wrapper {
+  margin-left: 20px;
+}
+
+.location-name {
+  h2 {
+    font-weight: 800 !important;
+    color: black !important;
+  }
+}
+
+.chekin-chekout {
+  font-size: 32px;
+  padding-top: 10px;
+
+  h3 {
+    font-weight: 500 !important;
+    color: #262626 !important;
+  }
+}
+
+.cancellable {
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  h4 {
+    font-weight: 500 !important;
+    color: #262626 !important;
+  }
+}
+
+.bottom {
+  height: 75px;
+}

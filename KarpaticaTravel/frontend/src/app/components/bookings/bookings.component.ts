@@ -1,3 +1,4 @@
+import { Location } from 'src/app/models/location';
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -12,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class BookingsComponent implements OnInit {
   public bookings: Booking[] = [];
+  public locations: Location[] = [];
   public username: string | null;
   private readonly unsubscribe$ = new Subject<void>();
 
@@ -29,7 +31,16 @@ export class BookingsComponent implements OnInit {
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe((bookings) => {
           this.bookings = bookings as Booking[];
+          for (let booking of this.bookings) {
+            this.apiService
+              .getLocation(booking.locationId)
+              .pipe(takeUntil(this.unsubscribe$))
+              .subscribe((location) => {
+                this.locations.push(location as Location);
+              });
+          }
           console.log(this.bookings);
+          console.log(this.locations);
           // for (let review of this.reviews) {
           //   this.apiService
           //     .getLocation(review.locationId.toString())
