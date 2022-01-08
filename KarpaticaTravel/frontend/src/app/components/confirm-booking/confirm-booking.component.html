@@ -1,0 +1,88 @@
+<form [formGroup]="formGroup">
+  <mat-horizontal-stepper #stepper>
+    <form [formGroup]="formGroup">
+      <mat-step label="Select the check-in date" class="center-flex">
+        <div class="column-flex">
+          <div class="center-flex">
+            <mat-form-field appearance="fill" class="date-picker">
+              <mat-label>Check-in date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="checkInPicker"
+                readonly
+                formControlName="checkIn"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="checkInPicker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #checkInPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="end-flex">
+            <div class="flex-center-bottom">
+              <button (click)="nextStep(stepper)">Next step</button>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+
+      <mat-step label="Select the check-out date" class="center-flex">
+        <div class="column-flex">
+          <div class="center-flex">
+            <mat-form-field appearance="fill" class="date-picker">
+              <mat-label>Check-out date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="checkOutPicker"
+                readonly
+                formControlName="checkOut"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="checkOutPicker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #checkOutPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="row-flex">
+            <div class="start-flex">
+              <div class="flex-center-bottom">
+                <button (click)="previousStep(stepper)">Previous step</button>
+              </div>
+            </div>
+            <div class="end-flex">
+              <div class="flex-center-bottom">
+                <button (click)="nextStep(stepper)">Next step</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+
+      <mat-step label="Confirm booking" class="center-flex">
+        <div class="column-flex-confirm">
+          <div class="row-flex">
+            <div class="start-flex">
+              <div class="flex-center-bottom">
+                <button (click)="previousStep(stepper)">Previous step</button>
+              </div>
+            </div>
+            <div class="end-flex">
+              <div class="flex-center-bottom">
+                <button
+                  mat-flat-button
+                  class="confirm-button"
+                  (click)="confirm()"
+                >
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-step>
+    </form>
+  </mat-horizontal-stepper>
+</form>

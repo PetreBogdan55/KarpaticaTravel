@@ -1,8 +1,7 @@
-
 export interface Booking {
-  userId: number;
-  locationId: number;
-  id: number;
+  userId: string;
+  locationId: string;
+  id: string;
   checkInDate: Date;
   checkOutDate: Date;
   isCancellable: boolean;

@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgxStarsComponent } from 'ngx-stars';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmBookingComponent } from '../confirm-booking/confirm-booking.component';
 
 @Component({
   selector: 'app-location-details',
@@ -22,7 +24,8 @@ export class LocationDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private apiService: ApiService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnDestroy(): void {
@@ -39,7 +42,15 @@ export class LocationDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  book() {}
+  book() {
+    this.dialog.open(ConfirmBookingComponent, {
+      width: '1000px',
+      height: '600px',
+      autoFocus: true,
+      disableClose: true,
+      data: { locationId: this.location.id },
+    });
+  }
 
   loadReviews() {
     this.apiService
@@ -56,7 +67,6 @@ export class LocationDetailsComponent implements OnInit, OnDestroy {
 
         this.averageRating /= this.reviews.length;
         this.cardStars.setRating(this.averageRating);
-        console.log(this.reviews);
       });
   }
 }
