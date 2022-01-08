@@ -79,4 +79,8 @@ export class StartComponent implements OnInit {
     }
     this._router.navigate(['results']);
   }
+
+  getLocationsByActivity(activitiyId: string): void {
+    localStorage.setItem('locFilteredActivity', activitiyId);
+  }
 }

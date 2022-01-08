@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using KarpaticaTravelAPI.Models.Requests.Booking;
 using KarpaticaTravelAPI.Models.ReviewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KarpaticaTravelAPI.Controllers
 {

@@ -64,7 +64,7 @@
       | {{ searchService.searchFiltersObject.chosenPackage }}
     </p>
     <br />
-    <table>
+    <table *ngIf="!isFilteredLocationsActivity">
       <tr *ngFor="let location of finalLocations">
         <td><img src="{{ location.photo }}" /></td>
         <td>
@@ -90,6 +90,41 @@
         </td>
       </tr>
       <tr *ngIf="finalLocations.length == 0">
+        <td>
+          <p class="text18error">
+            Sorry, no locations matched your search. Please try again later!
+          </p>
+        </td>
+      </tr>
+      <tr></tr>
+    </table>
+
+    <table *ngIf="isFilteredLocationsActivity">
+      <tr *ngFor="let location of locationsByActivity">
+        <td><img src="{{ location.photo }}" /></td>
+        <td>
+          <p class="text22">{{ location.name }}</p>
+          <p class="text18">{{ location.address }}</p>
+          <p class="text14">
+            Distance from city center:
+            <B>{{ location.distanceFromCenter }} km</B>
+          </p>
+        </td>
+        <td>
+          <p class="text20price">
+            {{ location.pricePerDay }}<sup>{{ 99 }}</sup>
+            EUR
+          </p>
+          <p class="text18" *ngIf="location.isAvailable" style="color: green">
+            Available
+          </p>
+          <p class="text18" *ngIf="!location.isAvailable" style="color: red">
+            Not available
+          </p>
+          <button [routerLink]="[location.id]">See details</button>
+        </td>
+      </tr>
+      <tr *ngIf="locationsByActivity.length == 0">
         <td>
           <p class="text18error">
             Sorry, no locations matched your search. Please try again later!

@@ -60,6 +60,12 @@ export class ApiService {
     return this.http.get(`${environment.API_URL}/Locations/` + Id);
   }
 
+  getLocationsByActivity(activityID: string) {
+    return this.http.get(
+      `${environment.API_URL}/Locations/byActivity/` + activityID
+    );
+  }
+
   getReviewsByUser(Id: string): Observable<Review[]> {
     return this.http.get<Review[]>(`${environment.API_URL}/Reviews/` + Id);
   }

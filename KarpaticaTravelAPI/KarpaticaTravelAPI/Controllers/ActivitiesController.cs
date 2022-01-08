@@ -1,6 +1,7 @@
 ﻿
 using KarpaticaTravelAPI.Models.ActivityModel;
 using KarpaticaTravelAPI.Processors.ActivityProcessor;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NotesAPI.Controllers;
@@ -21,6 +22,7 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetActivitiesAsync()
@@ -36,6 +38,7 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -57,6 +60,7 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -83,6 +87,7 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -109,6 +114,7 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
