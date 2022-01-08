@@ -1,8 +1,9 @@
 export interface Review {
-  id: number;
-  userId: number;
-  locationId: number;
+  id: string;
+  userId: string;
+  locationId: string;
   title: string;
   description: string;
   rating: number;
+  author: string;
 }
