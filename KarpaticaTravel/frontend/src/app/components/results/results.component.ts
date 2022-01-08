@@ -7,6 +7,7 @@ import { MatSliderChange } from '@angular/material/slider';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { MatTreeFlatDataSource } from '@angular/material/tree';
 
 @Component({
   selector: 'app-results',
@@ -18,6 +19,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
   priceSliderValue: number;
   public finalLocations: Location[] = [];
   public locations: Location[] = [];
+  public locationsByActivity: Location[] = [];
+  public isFilteredLocationsActivity: boolean = false;
   private readonly unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -38,11 +41,23 @@ export class ResultsComponent implements OnInit, OnDestroy {
         this.locations = locations;
         this.findLocationsThatMatch();
       });
+
+    if (localStorage.getItem('locFilteredActivity') != null) {
+      this.apiService
+        .getLocationsByActivity(
+          <string>localStorage.getItem('locFilteredActivity')
+        )
+        .subscribe((res) => {
+          this.locationsByActivity = <Location[]>res;
+          this.isFilteredLocationsActivity = true;
+        });
+    }
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+    localStorage.removeItem('locFilteredActivity');
   }
 
   onDistanceChange(event: MatSliderChange) {
