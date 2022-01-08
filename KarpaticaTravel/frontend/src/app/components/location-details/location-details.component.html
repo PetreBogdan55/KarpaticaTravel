@@ -23,15 +23,18 @@
     </div>
     <div>
       <div class="booking-section">
-        <div>
-          <ngx-stars
-            #cardStars
-            [initialStars]="averageRating"
-            [readonly]="true"
-            [size]="1"
-            [customPadding]="'2'"
-            [color]="'black'"
-          ></ngx-stars>
+        <div class="average-rating">
+          <span class="inline">
+            Avg:
+            <ngx-stars
+              #cardStars
+              [initialStars]="averageRating"
+              [readonly]="true"
+              [size]="1"
+              [customPadding]="'2'"
+              [color]="'black'"
+            ></ngx-stars>
+          </span>
         </div>
         <button
           mat-button

@@ -22,7 +22,9 @@
 
           <div class="end-flex">
             <div class="flex-center-bottom">
-              <button (click)="nextStep(stepper)">Next step</button>
+              <button mat-flat-button class="next" (click)="nextStep(stepper)">
+                Next step <mat-icon>arrow_forward</mat-icon>
+              </button>
             </div>
           </div>
         </div>
@@ -49,12 +51,24 @@
           <div class="row-flex">
             <div class="start-flex">
               <div class="flex-center-bottom">
-                <button (click)="previousStep(stepper)">Previous step</button>
+                <button
+                  mat-flat-button
+                  class="previous"
+                  (click)="previousStep(stepper)"
+                >
+                  <mat-icon>arrow_back</mat-icon> Previous step
+                </button>
               </div>
             </div>
             <div class="end-flex">
               <div class="flex-center-bottom">
-                <button (click)="nextStep(stepper)">Next step</button>
+                <button
+                  mat-flat-button
+                  class="next"
+                  (click)="nextStep(stepper)"
+                >
+                  Next step <mat-icon>arrow_forward</mat-icon>
+                </button>
               </div>
             </div>
           </div>
@@ -63,10 +77,25 @@
 
       <mat-step label="Confirm booking" class="center-flex">
         <div class="column-flex-confirm">
+          <div class="selected-dates">
+            You have selected:
+            <div class="selected-check-in">
+              Check in: {{ this.formGroup.value.checkIn }}
+            </div>
+            <div class="selected-check-out">
+              Check out: {{ this.formGroup.value.checkOut }}
+            </div>
+          </div>
           <div class="row-flex">
             <div class="start-flex">
               <div class="flex-center-bottom">
-                <button (click)="previousStep(stepper)">Previous step</button>
+                <button
+                  mat-flat-button
+                  class="previous"
+                  (click)="previousStep(stepper)"
+                >
+                  <mat-icon>arrow_back</mat-icon> Previous step
+                </button>
               </div>
             </div>
             <div class="end-flex">
@@ -76,7 +105,7 @@
                   class="confirm-button"
                   (click)="confirm()"
                 >
-                  Confirm
+                  Confirm <mat-icon>domain_verification</mat-icon>
                 </button>
               </div>
             </div>

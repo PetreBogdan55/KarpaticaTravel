@@ -58,6 +58,10 @@ h4 {
   color: rgba(0, 26, 255, 0.527)
 }
 
+.inline {
+  display: inline-block;
+}
+
 .review {
   width : 25rem;
   height: auto;
@@ -118,10 +122,15 @@ mat-icon {
   color: red
 }
 
+.average-rating {
+  margin-left: 1rem;
+}
+
 .booking-section {
   margin-left    : 3rem;
   display        : flex;
   justify-content: flex-start;
+  gap            : 0;
 }
 
 .booking-button {
