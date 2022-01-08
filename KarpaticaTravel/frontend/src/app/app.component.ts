@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { AuthService } from './services/auth.service';
+import { EventService } from './services/event.service';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +26,12 @@ export class AppComponent {
   constructor(
     private _router: Router,
     private deviceService: DeviceDetectorService,
-    public authService: AuthService
+    public authService: AuthService,
+    private eventService: EventService
   ) {
-    this.username = this.authService.getUsername();
+    this.eventService.loginEventListener().subscribe((username) => {
+      this.username = username;
+    });
     this.detectDevice();
   }
 

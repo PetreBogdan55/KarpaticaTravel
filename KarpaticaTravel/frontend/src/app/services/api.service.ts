@@ -30,8 +30,8 @@ export class ApiService {
     return this.http.put(`${environment.API_URL}/Users/` + userId, editedUser);
   }
 
-  getUser(userId: string) {
-    return this.http.get(`${environment.API_URL}/Users/` + userId);
+  getUser(userId: string): Observable<User> {
+    return this.http.get<User>(`${environment.API_URL}/Users/` + userId);
   }
 
   getUsers() {
@@ -70,8 +70,10 @@ export class ApiService {
     return this.http.get<Review[]>(`${environment.API_URL}/Reviews/` + Id);
   }
 
-  getReviewsByLocation(Id: string) {
-    return this.http.get(`${environment.API_URL}/Reviews/Location/` + Id);
+  getReviewsByLocation(Id: string): Observable<Review[]> {
+    return this.http.get<Review[]>(
+      `${environment.API_URL}/Reviews/Location/` + Id
+    );
   }
 
   getBookingsByUser(Id: string) {

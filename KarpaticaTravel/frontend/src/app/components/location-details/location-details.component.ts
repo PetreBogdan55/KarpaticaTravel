@@ -1,40 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Review } from 'src/app/models/review';
 import { Location } from 'src/app/models/location';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { NgxStarsComponent } from 'ngx-stars';
 
 @Component({
   selector: 'app-location-details',
   templateUrl: './location-details.component.html',
   styleUrls: ['./location-details.component.scss'],
 })
-export class LocationDetailsComponent implements OnInit {
+export class LocationDetailsComponent implements OnInit, OnDestroy {
   public reviews: Review[];
   public location: Location;
+  public averageRating: number = 0;
+  @ViewChild('cardStars') cardStars: NgxStarsComponent;
+  private readonly unsubscribe$ = new Subject<void>();
 
   constructor(
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute
   ) {}
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.complete();
+  }
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       let apiLocation = this.apiService.getLocation(params['id']);
-      apiLocation.subscribe((next: any) => {
+      apiLocation.pipe(takeUntil(this.unsubscribe$)).subscribe((next: any) => {
         this.location = next as Location;
-
-        this.apiService
-          .getReviewsByLocation(this.location.id.toString())
-          .pipe()
-          .subscribe((reviews) => {
-            console.log(reviews);
-          });
+        this.loadReviews();
       });
     });
   }
 
   book() {}
+
+  loadReviews() {
+    this.apiService
+      .getReviewsByLocation(this.location.id)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((next) => {
+        this.reviews = next as Review[];
+        this.reviews.forEach((review) => {
+          this.averageRating += review.rating;
+          this.apiService.getUser(review.userId).subscribe((user) => {
+            review.author = user.username;
+          });
+        });
+
+        this.averageRating /= this.reviews.length;
+        this.cardStars.setRating(this.averageRating);
+        console.log(this.reviews);
+      });
+  }
 }
