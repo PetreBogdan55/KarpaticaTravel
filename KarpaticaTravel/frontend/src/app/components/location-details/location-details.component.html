@@ -6,22 +6,29 @@
     <div class="location-details" *ngIf="location">
       <div class="details">
         <h1 class="name">{{ location.name }}</h1>
-        <h2>{{ location.address }} {{ location.distanceFromCenter }}</h2>
-        <h2>
-          Price per day: {{ location.pricePerDay }} <mat-icon>euro</mat-icon>
+        <h2 class="row-flex">
+          {{ location.address }} <mat-icon>circle</mat-icon>
+          <h4>{{ location.distanceFromCenter }} km from center</h4>
         </h2>
-        <h2
-          [ngClass]="{
-            available: location.isAvailable == true,
-            'not-available': location.isAvailable == false
-          }"
-        >
-          Available
-        </h2>
+        <div class="lower-half">
+          <h2>
+            Price / night: {{ location.pricePerDay }} <mat-icon>euro</mat-icon>
+          </h2>
+          <h2 class="available" *ngIf="location.isAvailable">Available</h2>
+          <h2 class="not-available" *ngIf="!location.isAvailable">
+            Not available
+          </h2>
+        </div>
       </div>
     </div>
     <div class="booking">
-      <button mat-button mat-ripple (click)="book()" mat-raised-button>
+      <button
+        mat-button
+        mat-ripple
+        (click)="book()"
+        mat-raised-button
+        [disabled]="!location.isAvailable"
+      >
         Book
       </button>
     </div>

@@ -1,7 +1,18 @@
 .location-details {
-  width     : 50vw;
-  height    : 30vh;
-  margin-top: 4rem;
+  width : 10rem;
+  height: auto;
+}
+
+.row-flex {
+  display        : flex;
+  flex-direction : row;
+  align-items    : center;
+  justify-content: center;
+  gap            : 0.5rem;
+}
+
+.lower-half {
+  margin-top: 5rem;
 }
 
 .details {
@@ -10,6 +21,7 @@
   justify-content: flex-start;
   flex-direction : column;
   font-size      : large;
+  width          : 15rem;
 }
 
 .location-photo {
@@ -20,6 +32,18 @@
   left          : 0%;
 }
 
+
+.booking {
+  margin-left: 5rem;
+}
+
+mat-icon {
+  margin-top: 0.5rem;
+}
+
+h4 {
+  margin-top: 1rem;
+}
 
 
 .reviews-header {
@@ -37,16 +61,18 @@
 mat-card {
   display       : flex !important;
   flex-direction: row;
-  gap           : 10rem;
-  width         : 60vw;
+  gap           : 4rem;
+  width         : 45vw;
 
 }
 
 .right {
-  padding-left: 21rem;
-  font-size   : 2rem;
+  padding-left: 23rem;
 }
 
+mat-panel-title {
+  margin-top: 1rem;
+}
 
 
 .review {}

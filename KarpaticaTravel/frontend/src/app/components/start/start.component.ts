@@ -8,6 +8,7 @@ import { Search } from 'src/app/models/search';
 import { Image } from 'src/app/models/image';
 import { filter } from 'rxjs/operators';
 import { ViewportScroller } from '@angular/common';
+import { Activity } from 'src/app/models/activity';
 
 @Component({
   selector: 'app-start',
@@ -16,6 +17,8 @@ import { ViewportScroller } from '@angular/common';
 })
 export class StartComponent implements OnInit {
   images: Array<Image> = new Array<Image>();
+  activities: Activity[] = [];
+
   public minSearchDate: string;
   public maxSearchDate: string;
 
@@ -25,7 +28,8 @@ export class StartComponent implements OnInit {
     private _router: Router,
     public searchService: SearchService,
     private viewportScroller: ViewportScroller,
-    private toastr: ToastrService //private apiService: ApiService
+    private toastr: ToastrService,
+    private apiService: ApiService
   ) {
     let date = new Date();
     let maxDate = new Date();
@@ -49,6 +53,10 @@ export class StartComponent implements OnInit {
     */
     //this.countries = this.apiService.getCountries();
     //this.cities = this.apiService.getCities();
+
+    this.apiService.getActivities().subscribe((res) => {
+      this.activities = <Activity[]>res;
+    });
   }
 
   onSearch(): void {

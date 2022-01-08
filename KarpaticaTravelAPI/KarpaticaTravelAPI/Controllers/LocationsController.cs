@@ -8,6 +8,7 @@ using System.Net;
 using FluentValidation;
 using KarpaticaTravelAPI.Models.Requests.Location;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace KarpaticaTravelAPI.Controllers
 {
@@ -140,6 +141,33 @@ namespace KarpaticaTravelAPI.Controllers
                 }
 
                 return Ok(result);
+            }
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
+
+        [ProducesResponseType(typeof(IEnumerable<LocationDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
+        [AllowAnonymous]
+        [HttpGet("byActivity/{activityId}")]
+        public async Task<IActionResult> GetLocationsByActivity(GetLocationsByActivityRequest request)
+        {
+            try
+            {
+                GetLocationsByActivityRequestValidator rules = new GetLocationsByActivityRequestValidator();
+                await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
+
+                IEnumerable<LocationDTO> resList = await _locationProcessor.GetLocationsByActivity(request.ActivityId).ConfigureAwait(false);
+
+                if (resList is null || !resList.Any())
+                {
+                    return NotFound("No locations found for the specified activity");
+                }
+
+                return Ok(resList);
             }
             catch (ValidationException exception)
             {
