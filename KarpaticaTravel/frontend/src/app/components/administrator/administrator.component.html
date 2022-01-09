@@ -1,5 +1,22 @@
-<body>
-  <div *ngIf="authService.getIsOwner() == 'false'">
+<body class="admin-wrapper">
+  <div class="search-bar">
+    <form [formGroup]="form">
+      <mat-form-field class="search-form">
+        <span class="row-flex">
+          <input
+            matInput
+            type="text"
+            (input)="inputChange()"
+            formControlName="searchWord"
+            placeholder="Filter locations by name..."
+          />
+
+          <mat-icon>search</mat-icon>
+        </span>
+      </mat-form-field>
+    </form>
+  </div>
+  <div *ngIf="!authService.getIsOwner()">
     <div>
       <h1>
         <code>Access Denied</code>
@@ -8,7 +25,54 @@
       <h6>error code:403 forbidden</h6>
     </div>
   </div>
-  <div *ngIf="authService.getIsOwner() == 'true'">
-    <p>administrator !</p>
+  <div *ngIf="authService.getIsOwner()">
+    <table>
+      <tr *ngFor="let location of finalLocations">
+        <div>
+          <td><img src="{{ location.photo }}" /></td>
+          <td>
+            <p class="text22">{{ location.name }}</p>
+            <p class="text18">{{ location.address }}</p>
+            <p class="text14">
+              Distance from city center:
+              <B>{{ location.distanceFromCenter }} km</B>
+            </p>
+          </td>
+          <td>
+            <p class="text20price">
+              {{ location.pricePerDay }}<sup>{{ 99 }}</sup>
+              EUR
+            </p>
+            <p class="text18" *ngIf="location.isAvailable" style="color: green">
+              Available
+            </p>
+            <p class="text18" *ngIf="!location.isAvailable" style="color: red">
+              Not available
+            </p>
+            <button (click)="deleteLocation(location.id)">
+              <sub>
+                <mat-icon>delete</mat-icon>
+              </sub>
+              Remove location
+            </button>
+          </td>
+        </div>
+      </tr>
+      <tr *ngIf="finalLocations.length == 0">
+        <td>
+          <p class="text18error">
+            Sorry, no locations matched your search. Please try again later!
+          </p>
+        </td>
+      </tr>
+      <tr></tr>
+    </table>
+    <mat-icon
+      class="add-location"
+      (click)="addLocation()"
+      matTooltip="Add location"
+      matTooltipPosition="left"
+      >add_circle</mat-icon
+    >
   </div>
 </body>

@@ -11,16 +11,16 @@ namespace KarpaticaTravelAPI.Models.LocationModel
     {
         public LocationDTOValidator()
         {
-            RuleFor(x => x.ActivityId).NotNull().NotEmpty();
+            RuleFor(x => x.ActivityId).NotNull();
             RuleFor(x => x.Address).NotNull().NotEmpty();
-            RuleFor(x => x.CityId).NotNull().NotEmpty();
+            RuleFor(x => x.CityId).NotNull();
             RuleFor(x => x.DistanceFromCenter).NotNull().NotEmpty();
             RuleFor(x => x.IsAvailable).NotNull().NotEmpty();
             RuleFor(x => x.Name).NotNull().NotEmpty();
-            RuleFor(x => x.OwnerId).NotNull().NotEmpty();
+            RuleFor(x => x.OwnerId).NotNull();
             RuleFor(x => x.PricePerDay).NotNull().NotEmpty();
             RuleFor(x => x.Photo).NotNull().NotEmpty();
-            RuleFor(x => x.Capacity).NotNull().NotEmpty();
+            RuleFor(x => x.Capacity).NotNull();
         }
 
         protected override bool PreValidate(ValidationContext<LocationDTO> context, ValidationResult result)

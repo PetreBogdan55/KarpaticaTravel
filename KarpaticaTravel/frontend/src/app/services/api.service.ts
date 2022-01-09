@@ -105,4 +105,15 @@ export class ApiService {
       responseType: 'text',
     });
   }
+  deleteLocation(locationId: string) {
+    return this.http.delete(`${environment.API_URL}/Locations/` + locationId, {
+      responseType: 'text',
+    });
+  }
+
+  createLocation(location: Location) {
+    return this.http.post(`${environment.API_URL}/Locations`, location, {
+      responseType: 'text',
+    });
+  }
 }

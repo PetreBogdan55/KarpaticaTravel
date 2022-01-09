@@ -1,8 +1,8 @@
 export interface Location {
   id: string;
-  cityId: number;
-  ownerId: number;
-  activityId: number;
+  cityId: string;
+  ownerId: string;
+  activityId: string;
   name: string;
   address: string;
   distanceFromCenter: number;

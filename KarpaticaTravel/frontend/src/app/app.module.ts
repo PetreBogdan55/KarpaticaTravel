@@ -27,7 +27,7 @@ import { NgxStarsModule } from 'ngx-stars';
 import { RouterModule } from '@angular/router';
 import { AdministratorComponent } from './components/administrator/administrator.component';
 import { ConfirmBookingComponent } from './components/confirm-booking/confirm-booking.component';
-
+import { AddLocationComponent } from './components/add-location/add-location.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +43,7 @@ import { ConfirmBookingComponent } from './components/confirm-booking/confirm-bo
     FooterComponent,
     AdministratorComponent,
     ConfirmBookingComponent,
+    AddLocationComponent,
   ],
   imports: [
     BrowserModule,
