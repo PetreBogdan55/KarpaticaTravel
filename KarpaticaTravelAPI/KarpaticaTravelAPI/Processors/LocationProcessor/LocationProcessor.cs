@@ -109,5 +109,11 @@ namespace KarpaticaTravelAPI.Processors.LocationProcessor
             IEnumerable<Location> locationsList = await _locationRepository.GetLocationsByActivity(activityId).ConfigureAwait(false);
             return new List<LocationDTO>(_mapper.Map<IEnumerable<LocationDTO>>(locationsList));
         }
+
+        public async Task<IEnumerable<LocationDTO>> GetLocationsByCountryAndCity(Guid countryId, Guid cityId)
+        {
+            IEnumerable<Location> locationsList = await _locationRepository.GetLocationsByCountryAndCity(countryId, cityId).ConfigureAwait(false);
+            return new List<LocationDTO>(_mapper.Map<IEnumerable<LocationDTO>>(locationsList));
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using KarpaticaTravelAPI.Models;
+using KarpaticaTravelAPI.Models.CityModel;
+using KarpaticaTravelAPI.Models.CountryModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -102,6 +104,17 @@ namespace KarpaticaTravelAPI.Repositories.LocationRepository
             }
 
             return await _context.Location.Where((loc) => loc.ActivityId == id).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Location>> GetLocationsByCountryAndCity(Guid countryId, Guid cityId)
+        {
+            if (countryId == Guid.Empty || cityId == Guid.Empty)
+            {
+                throw new ArgumentNullException("id", "Id is null or empty.");
+            }
+            City city = await _context.City.Where((city) => city.Id == cityId && city.CountryId == countryId).FirstOrDefaultAsync();
+
+            return await _context.Location.Where((loc) => loc.CityId== city.Id).ToListAsync();
         }
     }
 }

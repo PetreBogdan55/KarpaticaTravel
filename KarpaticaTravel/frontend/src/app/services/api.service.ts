@@ -46,6 +46,10 @@ export class ApiService {
     return this.http.get(`${environment.API_URL}/Cities`);
   }
 
+  getCity(Id: string) {
+    return this.http.get(`${environment.API_URL}/Cities/` + Id);
+  }
+
   getActivities() {
     return this.http.get(`${environment.API_URL}/Activities`, {
       responseType: 'json',
@@ -62,6 +66,15 @@ export class ApiService {
 
   getReviewsByUser(Id: string): Observable<Review[]> {
     return this.http.get<Review[]>(`${environment.API_URL}/Reviews/` + Id);
+  }
+
+  GetLocationsByCountryAndCity(
+    CountryId: string,
+    CityId: string
+  ): Observable<Location[]> {
+    return this.http.get<Location[]>(
+      `${environment.API_URL}/Locations/` + CountryId + `/` + CityId
+    );
   }
 
   getReviewsByLocation(Id: string) {
