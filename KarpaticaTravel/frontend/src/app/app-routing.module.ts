@@ -15,7 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AdministratorComponent } from './components/administrator/administrator.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'start', component: StartComponent },

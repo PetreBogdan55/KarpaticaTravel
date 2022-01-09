@@ -73,14 +73,12 @@ export class ResultsComponent implements OnInit, OnDestroy {
   onDistanceChange(event: MatSliderChange) {
     if (event.value) {
       this.distanceSliderValue = event.value;
-      this.findLocationsThatMatch();
     }
   }
 
   onPriceChange(event: MatSliderChange) {
     if (event.value) {
       this.priceSliderValue = event.value;
-      this.findLocationsThatMatch();
     }
   }
 
@@ -112,20 +110,6 @@ export class ResultsComponent implements OnInit, OnDestroy {
         }
     }
   }
-
-  // verifyIfLocationMatchFilters(location: Location): boolean {
-  //   //TO DO IF ACTIVITY/CITY -> return true;
-
-  //   this.getCityCountry(this.city);
-
-  //   if (this.city[0]) console.log(this.city[0].name);
-  //   if (
-  //     this.city[0] &&
-  //     this.searchService.searchFiltersObject.chosenCity == this.city[0].name
-  //   )
-  //     return true;
-  //   return false;
-  // }
 
   onSortByAscendingPrice() {
     this.finalLocations = this.finalLocations.sort(
