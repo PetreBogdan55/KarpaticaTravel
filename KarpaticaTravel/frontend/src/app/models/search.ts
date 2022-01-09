@@ -28,7 +28,7 @@ export class Search {
       .pipe()
       .subscribe((cities) => {
         let citiesName: string[] = [];
-        this.countries = [];
+        this.cities = [];
         for (let city of cities as City[]) citiesName.push(city.name);
         this.cities = citiesName;
       });
