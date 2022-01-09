@@ -1,3 +1,4 @@
+import { City } from './../../models/city';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -8,6 +9,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MatTreeFlatDataSource } from '@angular/material/tree';
+import { CountryCode } from 'ngx-mat-intl-tel-input/lib/data/country-code';
+import { Country } from 'src/app/models/country';
 
 @Component({
   selector: 'app-results',
@@ -22,6 +25,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   public locationsByActivity: Location[] = [];
   public isFilteredLocationsActivity: boolean = false;
   private readonly unsubscribe$ = new Subject<void>();
+  public countries: Country[] = [];
 
   constructor(
     private _router: Router,
@@ -34,6 +38,12 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.apiService
+      .getCountries()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((countries) => {
+        this.countries = countries as Country[];
+      });
     this.apiService
       .getLocations()
       .pipe(takeUntil(this.unsubscribe$))
@@ -81,9 +91,41 @@ export class ResultsComponent implements OnInit, OnDestroy {
         location.distanceFromCenter <= this.distanceSliderValue &&
         location.pricePerDay <= this.priceSliderValue
       )
-        this.finalLocations.push(location);
+        for (let country of this.countries) {
+          if (
+            country.name == this.searchService.searchFiltersObject.chosenCountry
+          ) {
+            this.apiService
+              .GetLocationsByCountryAndCity(
+                country.id,
+                location.cityId.toString()
+              )
+              .pipe(takeUntil(this.unsubscribe$))
+              .subscribe((next: Location[]) => {
+                for (let n of next) {
+                  if (n.name == location.name) {
+                    this.finalLocations.push(location);
+                  }
+                }
+              });
+          }
+        }
     }
   }
+
+  // verifyIfLocationMatchFilters(location: Location): boolean {
+  //   //TO DO IF ACTIVITY/CITY -> return true;
+
+  //   this.getCityCountry(this.city);
+
+  //   if (this.city[0]) console.log(this.city[0].name);
+  //   if (
+  //     this.city[0] &&
+  //     this.searchService.searchFiltersObject.chosenCity == this.city[0].name
+  //   )
+  //     return true;
+  //   return false;
+  // }
 
   onSortByAscendingPrice() {
     this.finalLocations = this.finalLocations.sort(

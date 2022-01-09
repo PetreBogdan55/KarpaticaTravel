@@ -174,5 +174,33 @@ namespace KarpaticaTravelAPI.Controllers
                 return BadRequest(exception.Message);
             }
         }
+
+
+        [ProducesResponseType(typeof(IEnumerable<LocationDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
+        [AllowAnonymous]
+        [HttpGet("{countryId}/{cityId}")]
+        public async Task<IActionResult> GetLocationsByCountryAndCity(GetLocationsByCountryAndCityRequest request)
+        {
+            try
+            {
+                GetLocationsByCountryAndCityRequestValidator rules = new GetLocationsByCountryAndCityRequestValidator();
+                await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
+
+                IEnumerable<LocationDTO> resList = await _locationProcessor.GetLocationsByCountryAndCity(request.CountryId, request.CityId).ConfigureAwait(false);
+
+                if (resList is null || !resList.Any())
+                {
+                    return NotFound("No locations found for the specified activity");
+                }
+
+                return Ok(resList);
+            }
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
     }
 }
