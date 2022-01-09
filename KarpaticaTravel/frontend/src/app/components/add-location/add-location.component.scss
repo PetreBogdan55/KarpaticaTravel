@@ -1,0 +1,44 @@
+.column-flex {
+  display        : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items    : center;
+}
+
+.photo-section {
+  gap: 4rem;
+}
+
+
+.row-flex {
+  display       : flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items    : center;
+
+}
+
+.buttons {
+  bottom: 0;
+  gap   : 5rem;
+}
+
+.image-preview {
+  max-width : 300px;
+  max-height: 300px;
+}
+
+.cancel {
+  background: red;
+}
+
+.add-location {
+  background: purple;
+}
+
+.cancel:hover,
+.add-location:hover {
+
+  transform: scale(1.1, 1.1);
+}

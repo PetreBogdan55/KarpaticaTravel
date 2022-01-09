@@ -113,27 +113,18 @@ namespace KarpaticaTravelAPI.Models
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Photo)
+                entity.Property(e => e.ActivityId)
                     .IsRequired()
                     .HasMaxLength(1000);
+                entity.Property(e => e.OwnerId)
+                    .IsRequired()
+                    .HasMaxLength(1000);
+                entity.Property(e => e.CityId)
+                    .IsRequired()
+                    .HasMaxLength(1000);
+         
 
-                entity.HasOne(d => d.Activity)
-                    .WithMany(p => p.Location)
-                    .HasForeignKey(d => d.ActivityId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Location_City");
-
-                entity.HasOne(d => d.City)
-                    .WithMany(p => p.Location)
-                    .HasForeignKey(d => d.CityId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Location_City1");
-
-                entity.HasOne(d => d.Owner)
-                    .WithMany(p => p.Location)
-                    .HasForeignKey(d => d.OwnerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Location_User");
+                
             });
 
             modelBuilder.Entity<Review>(entity =>

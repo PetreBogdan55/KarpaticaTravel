@@ -37,6 +37,17 @@
       <mat-icon>logout</mat-icon>
       <span (click)="signOut()" id="account">Sign Out</span>
     </button>
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="
+        authService.isAuthenticated() && authService.getIsOwner() == 'true'
+      "
+      routerLink="/admin"
+    >
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span id="account">Admin Panel</span>
+    </button>
 
     <button
       mat-button
