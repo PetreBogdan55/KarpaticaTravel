@@ -6,10 +6,23 @@
     <div class="location-details" *ngIf="location">
       <div class="details">
         <h1 class="name">{{ location.name }}</h1>
-        <h2 class="row-flex">
-          {{ location.address }} <mat-icon>circle</mat-icon>
-          <h4>{{ location.distanceFromCenter }} km from center</h4>
-        </h2>
+        <div class="average-rating">
+          <div class="inline">
+            <h1>Average rating:</h1>
+            <ngx-stars
+              #cardStars
+              [initialStars]="averageRating"
+              [readonly]="true"
+              [size]="1"
+              [customPadding]="'2'"
+              [color]="'black'"
+            ></ngx-stars>
+          </div>
+        </div>
+        <div class="col-flex">
+          <h2>Location: {{ location.address }}</h2>
+          <h2>{{ location.distanceFromCenter }} km from center</h2>
+        </div>
         <div class="lower-half">
           <h2>
             Price / night: {{ location.pricePerDay }} <mat-icon>euro</mat-icon>
@@ -20,22 +33,7 @@
           </h2>
         </div>
       </div>
-    </div>
-    <div>
       <div class="booking-section">
-        <div class="average-rating">
-          <span class="inline">
-            Avg:
-            <ngx-stars
-              #cardStars
-              [initialStars]="averageRating"
-              [readonly]="true"
-              [size]="1"
-              [customPadding]="'2'"
-              [color]="'black'"
-            ></ngx-stars>
-          </span>
-        </div>
         <button
           mat-button
           mat-ripple
@@ -44,19 +42,20 @@
           [disabled]="!location?.isAvailable"
           class="booking-button"
         >
-          Book
+          <h2>Book</h2>
         </button>
       </div>
     </div>
   </mat-card>
-  <div>
-    <mat-accordion multi="true">
+  <div class="reviews">
+    <h1 class="name">Reviews</h1>
+    <mat-accordion multi="true" >
       <mat-expansion-panel *ngFor="let review of reviews" class="review">
         <mat-expansion-panel-header>
           <div class="review-header">
-            <span>
-              {{ review.title }}
-            </span>
+            <div>
+              <h3>{{ review.title }}</h3>
+            </div>
             <div class="stars">
               <ngx-stars
                 [initialStars]="review.rating"
@@ -73,7 +72,6 @@
             <h2>
               {{ review.author }}
             </h2>
-
             <p>
               {{ review.description }}
             </p>

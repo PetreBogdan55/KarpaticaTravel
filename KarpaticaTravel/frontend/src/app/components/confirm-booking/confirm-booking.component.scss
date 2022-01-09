@@ -1,104 +1,103 @@
 .center-flex {
-  display        : flex;
+  display: flex;
   justify-content: center;
-  align-items    : center;
+  align-items: center;
 }
 
 .center-row-flex {
-  display        : flex;
+  display: flex;
   justify-content: center;
-  align-items    : center;
-  flex-direction : row;
-
+  align-items: center;
+  flex-direction: row;
 }
 
 .row-flex {
-  display       : flex;
+  display: flex;
   flex-direction: row;
-  gap           : 40rem;
+  gap: 40rem;
 }
 
 .dates-flex {
-  margin-bottom : 10rem;
-  margin-right  : 10rem;
-  display       : flex;
+  margin-bottom: 10rem;
+  margin-right: 10rem;
+  display: flex;
   flex-direction: column;
-  gap           : 3rem;
+  gap: 3rem;
 }
 
 .column-flex {
-  display       : flex;
+  display: flex;
   flex-direction: column;
-  gap           : 17rem;
+  gap: 17rem;
 }
 
 .column-flex-confirm {
-  height         : 46vh;
-  display        : flex;
-  flex-direction : column;
+  height: 46vh;
+  display: flex;
+  flex-direction: column;
   justify-content: flex-end;
-  align-items    : flex-end;
-  gap            : 0;
+  align-items: flex-end;
+  gap: 0;
 }
 
 .flex-center-bottom {
-  background-color: #739FD0;
-  color           : #000000;
-  display         : flex;
-  flex-direction  : row;
-  flex-wrap       : wrap;
-  justify-content : flex - end;
-  align-content   : center;
-  align-items     : center;
+  color: #000000;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex - end;
+  align-content: center;
+  align-items: center;
 }
 
 .flex-item-center {
-  border    : solid 2 px #4675AA;
-  order     : 0;
-  flex      : 0 1 auto;
+  border: solid 2 px #4675aa;
+  order: 0;
+  flex: 0 1 auto;
   align-self: center;
 }
 
 .end-flex {
-  display        : flex;
-  flex-direction : row;
+  display: flex;
+  flex-direction: row;
   justify-content: end;
-  align-items    : flex-end;
+  align-items: flex-end;
 }
 
 .start-flex {
-  display        : flex;
-  flex-direction : row;
+  display: flex;
+  flex-direction: row;
   justify-content: start;
-  align-items    : flex-start;
+  align-items: flex-start;
 }
 
 .date-picker {
-  width     : 30%;
+  width: 30%;
   margin-top: 5rem;
 }
 
 .flex-center-bottom {
-
-  display        : flex;
-  flex-direction : row;
-  flex-wrap      : wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-end;
-  align-content  : flex-end;
-  align-items    : flex-end;
+  align-content: flex-end;
+  align-items: flex-end;
 }
-
 
 .previous {
   background: orange;
+  color: white;
 }
 
 .next {
-  background: rgb(47, 68, 255);
+  background: #2f44ff;
+  color: white;
 }
 
 .confirm-button {
-  background: greenyellow;
+  background: rgb(78, 129, 0);
+  color: white;
 }
 
 .next:hover,

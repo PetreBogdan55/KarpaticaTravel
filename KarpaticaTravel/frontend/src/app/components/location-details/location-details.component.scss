@@ -1,37 +1,75 @@
+body,
+button,
+input,
+select,
+textarea {
+  font-size: 20px !important;
+  color: #6e6e6e;
+  font-family: Karla !important;
+  background-color: white;
+}
+
+.remove-booking {
+  display: inline-block;
+  position: relative;
+  right: 0%;
+  cursor: pointer;
+}
+
+a {
+  color: #5c7cfb;
+  text-decoration: none;
+}
+
+a {
+  background-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  margin-top: 0;
+  color: black;
+  font-family: Karla !important;
+  margin: 0px;
+}
+
 .location-details {
-  width : 10rem;
+  width: 10rem;
   height: auto;
 }
 
-.row-flex {
-  display        : flex;
-  flex-direction : row;
-  align-items    : center;
-  justify-content: center;
-  gap            : 0.5rem;
+.col-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin-top: 10px;
 }
 
 .lower-half {
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .details {
-  display        : flex;
-  align-items    : flex-start;
+  display: flex;
+  align-items: flex-start;
   justify-content: flex-start;
-  flex-direction : column;
-  font-size      : large;
-  width          : 15rem;
+  flex-direction: column;
+  font-size: large;
+  width: 15rem;
 }
 
 .location-photo {
-  display       : flex;
+  display: flex;
   flex-direction: column;
-  position      : relative;
-  top           : 0%;
-  left          : 0%;
+  position: relative;
+  justify-content:space-around;
 }
-
 
 .booking {
   margin-left: 5rem;
@@ -41,21 +79,22 @@ mat-icon {
   margin-top: 0.5rem;
 }
 
-h4 {
-  margin-top: 1rem;
-}
-
-
 .reviews-header {
-  display        : flex;
-  flex-direction : row;
+  display: flex;
+  flex-direction: row;
   justify-content: start;
-  align-items    : start;
-  width          : 25vw;
+  align-items: start;
+  width: 25vw;
 }
 
 .name {
-  color: rgba(0, 26, 255, 0.527)
+  color: black;
+  font-weight: 900;
+}
+
+.wrapper{
+  grid-gap: 0 !important;
+  gap: 0 !important;
 }
 
 .inline {
@@ -63,16 +102,15 @@ h4 {
 }
 
 .review {
-  width : 25rem;
+  width: 25rem;
   height: auto;
 }
 
 mat-card {
-  display       : flex !important;
+  display: flex !important;
   flex-direction: row;
-  gap           : 4rem;
-  width         : 48vw;
-
+  gap: 4rem;
+  width: 48vw;
 }
 
 .right {
@@ -80,10 +118,10 @@ mat-card {
 }
 
 .stars {
-  display        : flex;
+  display: flex;
   justify-content: flex-end;
-  flex-direction : row;
-  align-items    : flex-end;
+  flex-direction: row;
+  align-items: flex-end;
 }
 
 mat-panel-title {
@@ -91,54 +129,55 @@ mat-panel-title {
 }
 
 .column-flex {
-  display       : flex;
+  display: flex;
   flex-direction: column;
-
 }
-
-.average-rating {}
-
-.review {}
 
 mat-icon {
   font-size: 1rem;
 }
 
 .wrapper {
-  display        : flex;
-  align-items    : center;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top     : 3rem;
-  gap            : 6rem;
-  flex-direction : column;
+  margin-top: 3rem;
+  gap: 6rem;
+  flex-direction: column;
 }
 
-
 .available {
-  color: green
+  color: green;
+  font-weight: 600;
 }
 
 .not-available {
-  color: red
+  color: red;
+  font-weight: 600;
 }
 
 .average-rating {
-  margin-left: 1rem;
+  margin-top: 20px;
 }
 
 .booking-section {
-  margin-left    : 3rem;
-  display        : flex;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
   justify-content: flex-start;
-  gap            : 0;
 }
 
-.booking-button {
-  margin-top: 17rem;
+.reviews{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
 }
 
 .review-header {
-  display       : flex;
+  display: flex;
   flex-direction: row;
-  gap           : 8rem;
+  gap: 8rem;
 }
