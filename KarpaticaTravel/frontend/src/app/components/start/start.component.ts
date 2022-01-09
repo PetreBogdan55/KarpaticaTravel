@@ -22,7 +22,7 @@ export class StartComponent implements OnInit {
   public minSearchDate: string;
   public maxSearchDate: string;
 
-  public searchObject: Search = new Search();
+  public searchObject: Search;
 
   constructor(
     private _router: Router,
@@ -31,6 +31,7 @@ export class StartComponent implements OnInit {
     private toastr: ToastrService,
     private apiService: ApiService
   ) {
+    this.searchObject = new Search(this.apiService);
     let date = new Date();
     let maxDate = new Date();
     this.searchService.searchFiltersObject.chosenDate = date
