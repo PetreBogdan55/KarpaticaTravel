@@ -1,22 +1,37 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
-    <mat-card-header>
+    <mat-card-header class="login-title">
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
 
-    <form #form="ngForm" class="example-form" (ngSubmit)="login(form)">
+    <form
+      [formGroup]="this.formService.form"
+      #form="ngForm"
+      class="example-form"
+      (ngSubmit)="login(this.formService.form)"
+    >
       <mat-card-content>
         <mat-form-field class="example-full-width">
           <input
             type="text"
-            name="username"
+            name="email"
             matInput
-            placeholder="Username"
+            placeholder="Email"
             required
             ngModel
-            minlength="3"
+            formControlName="email"
+            maxlength="30"
           />
         </mat-form-field>
+        <div *ngIf="this.formService.isInvalid(this.formService.getEmail())">
+          <mat-error *ngIf="this.formService.getEmail()?.errors?.maxlength">
+            *At most 30 characters</mat-error
+          >
+
+          <mat-error *ngIf="this.formService.getEmail()?.errors?.required">
+            *Please enter your email
+          </mat-error>
+        </div>
 
         <mat-form-field class="example-full-width">
           <input
@@ -25,10 +40,24 @@
             matInput
             placeholder="Password"
             required
+            formControlName="password"
             ngModel
             minlength="5"
+            maxlength="15"
           />
         </mat-form-field>
+        <div *ngIf="this.formService.isInvalid(this.formService.getPassword())">
+          <mat-error *ngIf="this.formService.getPassword()?.errors?.minlength"
+            >*At least 5 characters</mat-error
+          >
+          <mat-error *ngIf="this.formService.getPassword()?.errors?.maxlength"
+            >*At most 15 characters</mat-error
+          >
+
+          <mat-error *ngIf="this.formService.getPassword()?.errors?.required">
+            *Please enter your password
+          </mat-error>
+        </div>
       </mat-card-content>
       <button
         mat-stroked-button

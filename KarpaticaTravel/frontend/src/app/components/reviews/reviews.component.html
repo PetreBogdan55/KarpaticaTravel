@@ -1,0 +1,34 @@
+<body>
+  <div class="reviews">
+    <div class="page-title">{{ username }}'s Reviews</div>
+    <div class="reviews-wrapper">
+      <div
+        class="review"
+        *ngFor="let review of reviews; let i = index"
+        [attr.data-index]="i"
+      >
+        <div class="stars">
+          <ngx-stars
+            [initialStars]="review.rating"
+            [readonly]="true"
+            [size]="1"
+            [customPadding]="'2'"
+            [color]="'black'"
+          ></ngx-stars>
+        </div>
+        <div class="location-name" *ngIf="locations[i]">
+          <h3>{{ locations[i].name }}</h3>
+        </div>
+        <div class="title">
+          <h1>{{ review.title }}</h1>
+        </div>
+        <div class="description">
+          <h2>{{ review.description }}</h2>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+  <app-footer></app-footer>
+</body>

@@ -1,0 +1,183 @@
+body,
+button,
+input,
+select,
+textarea {
+  font-size: 20px !important;
+  color: #6e6e6e;
+  font-family: Karla !important;
+  background-color: white;
+}
+
+.remove-booking {
+  display: inline-block;
+  position: relative;
+  right: 0%;
+  cursor: pointer;
+}
+
+a {
+  color: #5c7cfb;
+  text-decoration: none;
+}
+
+a {
+  background-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  margin-top: 0;
+  color: black;
+  font-family: Karla !important;
+  margin: 0px;
+}
+
+.location-details {
+  width: 10rem;
+  height: auto;
+}
+
+.col-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.lower-half {
+  margin-top: 3rem;
+}
+
+.details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  font-size: large;
+  width: 15rem;
+}
+
+.location-photo {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content:space-around;
+}
+
+.booking {
+  margin-left: 5rem;
+}
+
+mat-icon {
+  margin-top: 0.5rem;
+}
+
+.reviews-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  width: 25vw;
+}
+
+.name {
+  color: black;
+  font-weight: 900;
+}
+
+.wrapper{
+  grid-gap: 0 !important;
+  gap: 0 !important;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.review {
+  width: 25rem;
+  height: auto;
+}
+
+mat-card {
+  display: flex !important;
+  flex-direction: row;
+  gap: 4rem;
+  width: 48vw;
+}
+
+.right {
+  padding-left: 23rem;
+}
+
+.stars {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+mat-panel-title {
+  margin-top: 1rem;
+}
+
+.column-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-icon {
+  font-size: 1rem;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  gap: 6rem;
+  flex-direction: column;
+}
+
+.available {
+  color: green;
+  font-weight: 600;
+}
+
+.not-available {
+  color: red;
+  font-weight: 600;
+}
+
+.average-rating {
+  margin-top: 20px;
+}
+
+.booking-section {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.reviews{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.review-header {
+  display: flex;
+  flex-direction: row;
+  gap: 8rem;
+}

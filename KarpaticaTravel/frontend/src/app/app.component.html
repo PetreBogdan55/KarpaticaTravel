@@ -1,1 +1,89 @@
-<router-outlet></router-outlet>
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  <span class="title"> KarpaticaTravel </span>
+  <p style="font-size: medium; vertical-align: bottom; margin: 0 0 -4px">
+    &nbsp;{{ version_x }}.{{ version_y }}.{{ version_z }}
+  </p>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <mat-icon>person_pin</mat-icon>
+    <br />
+    <p *ngIf="authService.isAuthenticated()">Welcome {{ username }}!</p>
+    <p *ngIf="!authService.isAuthenticated()">Please login</p>
+    <mat-divider></mat-divider>
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="!authService.isAuthenticated()"
+    >
+      <mat-icon>login</mat-icon>
+      <span (click)="navigateToLogin()" id="account">Authenticate</span>
+    </button>
+
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="authService.isAuthenticated()"
+    >
+      <mat-icon>logout</mat-icon>
+      <span (click)="signOut()" id="account">Sign Out</span>
+    </button>
+
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="authService.isAuthenticated()"
+    >
+      <mat-icon>bookmarks</mat-icon>
+      <span (click)="navigateToBookings()" id="account">My Bookings</span>
+    </button>
+
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="authService.isAuthenticated()"
+    >
+      <mat-icon>reviews</mat-icon>
+      <span (click)="navigateToReviews()" id="account">My Reviews</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <span (click)="navigateToHome()" id="account">Home</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon>local_activity</mat-icon>
+      <a href="/start#activities" id="account">All Activities</a>
+    </button>
+
+    <button mat-button class="menu-button">
+      <mat-icon>dashboard</mat-icon>
+      <span (click)="navigateToDashboard()">Dashboard</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <br /><br /><br />
+    <p>{{ deviceType }} - {{ os }}</p>
+    <p>{{ browser }} {{ browserVersion }}</p>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

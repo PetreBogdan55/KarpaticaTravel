@@ -20,15 +20,17 @@ namespace KarpaticaTravelAPI.Models
             Review = new HashSet<Review>();
         }
 
-        public int LocationId { get; set; }
-        public int CityId { get; set; }
-        public int ActivityId { get; set; }
+        public string Photo { get; set; }
+        public int Capacity { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public double DistanceFromUser { get; set; }
+        public double DistanceFromCenter { get; set; }
         public double PricePerDay { get; set; }
         public bool IsAvailable { get; set; }
-        public int OwnerId { get; set; }
+        public Guid Id { get; set; }
+        public Guid CityId { get; set; }
+        public Guid ActivityId { get; set; }
+        public Guid OwnerId { get; set; }
 
         public virtual Activity Activity { get; set; }
         public virtual City City { get; set; }

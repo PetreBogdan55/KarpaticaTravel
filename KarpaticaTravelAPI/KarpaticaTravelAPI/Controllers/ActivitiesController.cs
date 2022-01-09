@@ -1,6 +1,7 @@
 ﻿
 using KarpaticaTravelAPI.Models.ActivityModel;
 using KarpaticaTravelAPI.Processors.ActivityProcessor;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NotesAPI.Controllers;
@@ -21,6 +22,7 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetActivitiesAsync()
@@ -36,15 +38,16 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> GetActivityAsync(int id)
+        public async Task<IActionResult> GetActivityAsync(Guid id)
         {
-            if (id < 0)
-            {
-                return BadRequest("Invalid id");
-            }
+            /* if (id < 0)
+             {
+                 return BadRequest("Invalid id");
+             }*/
 
             var activity = await _activityProcessor.GetActivity(id).ConfigureAwait(false);
 
@@ -57,14 +60,20 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> PostActivityAsync([FromBody] ActivityDTO activityToPost)
         {
-            if (string.IsNullOrWhiteSpace(activityToPost.Name) || activityToPost.ActivityId < 0)
+            if (string.IsNullOrWhiteSpace(activityToPost.Name))
             {
                 return BadRequest("Invalid parameters for activity creation");
+            }
+
+            if (activityToPost.Id == Guid.Empty)
+            {
+                activityToPost.Id = Guid.NewGuid();
             }
 
             bool res = await _activityProcessor.CreateActivity(activityToPost).ConfigureAwait(false);
@@ -78,11 +87,17 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> PutActivityAsync(int id, [FromBody] ActivityUpdateDTO updateActivity)
+        public async Task<IActionResult> PutActivityAsync(Guid id, [FromBody] ActivityUpdateDTO updateActivity)
         {
+            if (id.Equals(Guid.Empty))
+            {
+                return BadRequest("Invalid activity id");
+            }
+
             if (string.IsNullOrWhiteSpace(updateActivity.Name))
             {
                 return BadRequest("Invalid parameters for activty update");
@@ -99,14 +114,15 @@ namespace KarpaticaTravelAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> DeleteActivityAsync(int id)
+        public async Task<IActionResult> DeleteActivityAsync(Guid id)
         {
-            if (id < 0)
+            if (id == Guid.Empty)   
             {
-                return BadRequest("Invalid parameter for activity deletion");
+                return BadRequest("Invalid activity id");
             }
 
             bool res = await _activityProcessor.DeleteActivity(id).ConfigureAwait(false);

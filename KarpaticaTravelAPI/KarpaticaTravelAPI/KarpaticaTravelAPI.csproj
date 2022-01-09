@@ -8,11 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\DtoModels\**" />
+    <Content Remove="Models\DtoModels\**" />
+    <EmbeddedResource Remove="Models\DtoModels\**" />
+    <None Remove="Models\DtoModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="FluentValidation" Version="10.3.3" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.20">
       <PrivateAssets>all</PrivateAssets>
@@ -21,10 +29,15 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\DtoModels\" />
+    <Folder Include="Models\Requests\Activity\" />
+    <Folder Include="Models\Requests\City\" />
+    <Folder Include="Models\Requests\City\" />
+    <Folder Include="Models\Requests\Activity\" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
 
 

@@ -1,5 +1,5 @@
 export interface Activity {
-  _activityId: number
+  id: string
   name: string
   description: string
 }

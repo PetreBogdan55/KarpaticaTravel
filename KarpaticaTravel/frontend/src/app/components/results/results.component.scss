@@ -1,0 +1,128 @@
+.main-container {
+  border : 3px solid #fff;
+  padding: 20px;
+}
+
+.row-flex {
+  display        : flex;
+  flex-direction : row;
+  justify-content: center;
+  align-items    : center;
+}
+
+.child1 {
+  width        : fit-content;
+  float        : left;
+  padding      : 20px;
+  padding-right: 50px;
+}
+
+.column-flex {
+  display       : flex;
+  flex-direction: column;
+
+}
+
+.child2 {
+  width  : fit-content;
+  float  : left;
+  padding: 20px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table tr {
+  border-top: 1px solid black;
+}
+
+table td {
+  vertical-align: top;
+}
+
+td:nth-child(2) {
+  padding-top  : 10px;
+  padding-right: 150px;
+}
+
+td:nth-child(3) {
+  text-align: right;
+}
+
+img {
+  width  : 200px;
+  height : 150px;
+  padding: 10px;
+}
+
+p {
+  margin: 4px;
+}
+
+.text12 {
+  font-size: 12px;
+}
+
+.text12bold {
+  font-size  : 12px;
+  font-weight: bold;
+}
+
+.text14 {
+  font-size: 14px;
+}
+
+.text16 {
+  font-size: 16px;
+}
+
+.text18 {
+  font-size: 18px;
+}
+
+.text18error {
+  font-size  : 18px;
+  color      : red;
+  font-weight: bold;
+}
+
+.text20 {
+  font-size: 20px;
+}
+
+.text20price {
+  font-size  : 20px;
+  color      : rgb(211, 62, 17);
+  font-weight: bold;
+}
+
+.text22 {
+  font-size: 22px;
+}
+
+button {
+  background-color: #4749d4;
+  border          : none;
+  color           : white;
+  padding         : 12px;
+  text-align      : center;
+  text-decoration : none;
+  display         : inline-block;
+  font-size       : 15px;
+  margin          : 4px 2px;
+  cursor          : pointer;
+}
+
+button:hover {
+  background-color: #4f19b3;
+  border          : none;
+  color           : white;
+  padding         : 12px;
+  text-align      : center;
+  text-decoration : none;
+  display         : inline-block;
+  font-size       : 15px;
+  margin          : 4px 2px;
+  cursor          : pointer;
+}

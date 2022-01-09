@@ -1,9 +1,18 @@
 using FluentValidation.AspNetCore;
+using KarpaticaTravelAPI.Infrastructure;
 using KarpaticaTravelAPI.Models;
 using KarpaticaTravelAPI.Models.Mapping;
 using KarpaticaTravelAPI.Processors.ActivityProcessor;
 using KarpaticaTravelAPI.Processors.CityProcessor;
-using KarpaticaTravelAPI.Repositories;
+using KarpaticaTravelAPI.Processors.CountryProcessor;
+using KarpaticaTravelAPI.Processors.ReviewProcessor;
+using KarpaticaTravelAPI.Processors.UserProcessor;
+using KarpaticaTravelAPI.Repositories.ActivityRepository;
+using KarpaticaTravelAPI.Repositories.CityRepository;
+using KarpaticaTravelAPI.Repositories.CountryRepository;
+using KarpaticaTravelAPI.Repositories.ReviewRepository;
+using KarpaticaTravelAPI.Repositories.UserRepository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +21,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using KarpaticaTravelAPI.Processors.LocationProcessor;
+using KarpaticaTravelAPI.Repositories.LocationRepository;
+using KarpaticaTravelAPI.Repositories.BookingRepository;
+using KarpaticaTravelAPI.Processors.BookingProcessor;
 
 namespace KarpaticaTravelAPI
 {
@@ -38,21 +53,74 @@ namespace KarpaticaTravelAPI
 
             services.AddDbContext<KarpaticaTravelContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KarpaticaDbConnectionString")));
 
+            services
+                .AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetSection("JwtKey").ToString())),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+
             services.AddAutoMapper(typeof(MapperProfile));
 
             services.TryAddScoped<IUserRepository, UserRepository>();
             services.TryAddScoped<ICityRepository, CityRepository>();
             services.TryAddScoped<ICountryRepository, CountryRepository>();
             services.TryAddScoped<IActivityRepository, ActivityRepository>();
+            services.TryAddScoped<IReviewRepository, ReviewRepository>();
+            services.TryAddScoped<ILocationRepository, LocationRepository>();
+            services.TryAddScoped<IBookingRepository, BookingRepository>();
 
+            services.TryAddScoped<IUserProcessor, UserProcessor>();
             services.TryAddScoped<ICityProcessor, CityProcessor>();
             services.TryAddScoped<IActivityProcessor, ActivityProcessor>();
+            services.TryAddScoped<ICountryProcessor, CountryProcessor>();
+            services.TryAddScoped<IReviewProcessor, ReviewProcessor>();
+            services.TryAddScoped<ILocationProcessor, LocationProcessor>();
+            services.TryAddScoped<IBookingProcessor, BookingProcessor>();
+
+            services.AddScoped<ITokenManager, TokenManager>();
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressInferBindingSourcesForParameters = true);
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KarpaticaTravelAPI", Version = "v1" });
+
+                var securitySchema = new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                };
+
+                c.AddSecurityDefinition("Bearer", securitySchema);
+
+                var securityRequirement = new OpenApiSecurityRequirement
+                {
+                    { securitySchema, new[] { "Bearer" } }
+                };
+
+                c.AddSecurityRequirement(securityRequirement);
             });
         }
 
@@ -65,17 +133,17 @@ namespace KarpaticaTravelAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "KarpaticaTravelAPI v1"));
             }
-
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "KarpaticaTravelAPI v1"));
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            //app.UseAuthorization();
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

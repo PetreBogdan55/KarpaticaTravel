@@ -1,0 +1,85 @@
+<div class="wrapper">
+  <mat-card>
+    <div class="location-photo" *ngIf="location">
+      <img [src]="location.photo" alt="photo" [width]="400" [height]="300" />
+    </div>
+    <div class="location-details" *ngIf="location">
+      <div class="details">
+        <h1 class="name">{{ location.name }}</h1>
+        <div class="average-rating">
+          <div class="inline">
+            <h1>Average rating:</h1>
+            <ngx-stars
+              #cardStars
+              [initialStars]="averageRating"
+              [readonly]="true"
+              [size]="1"
+              [customPadding]="'2'"
+              [color]="'black'"
+            ></ngx-stars>
+          </div>
+        </div>
+        <div class="col-flex">
+          <h2>Location: {{ location.address }}</h2>
+          <h2>{{ location.distanceFromCenter }} km from center</h2>
+        </div>
+        <div class="lower-half">
+          <h2>
+            Price / night: {{ location.pricePerDay }} <mat-icon>euro</mat-icon>
+          </h2>
+          <h2 class="available" *ngIf="location.isAvailable">Available</h2>
+          <h2 class="not-available" *ngIf="!location.isAvailable">
+            Not available
+          </h2>
+        </div>
+      </div>
+      <div class="booking-section">
+        <button
+          mat-button
+          mat-ripple
+          (click)="book()"
+          mat-raised-button
+          [disabled]="!location?.isAvailable"
+          class="booking-button"
+        >
+          <h2>Book</h2>
+        </button>
+      </div>
+    </div>
+  </mat-card>
+  <div class="reviews">
+    <h1 class="name">Reviews</h1>
+    <mat-accordion multi="true" >
+      <mat-expansion-panel *ngFor="let review of reviews" class="review">
+        <mat-expansion-panel-header>
+          <div class="review-header">
+            <div>
+              <h3>{{ review.title }}</h3>
+            </div>
+            <div class="stars">
+              <ngx-stars
+                [initialStars]="review.rating"
+                [readonly]="true"
+                [size]="1"
+                [customPadding]="'2'"
+                [color]="'black'"
+              ></ngx-stars>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <div class="column-flex">
+            <h2>
+              {{ review.author }}
+            </h2>
+            <p>
+              {{ review.description }}
+            </p>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+
+<app-footer></app-footer>

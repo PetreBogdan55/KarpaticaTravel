@@ -33,12 +33,11 @@ namespace KarpaticaTravelAPI.Models
         public virtual DbSet<Review> Review { get; set; }
         public virtual DbSet<User> User { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Activity>(entity =>
             {
-                entity.Property(e => e.ActivityId).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -51,17 +50,11 @@ namespace KarpaticaTravelAPI.Models
 
             modelBuilder.Entity<Booking>(entity =>
             {
-                entity.Property(e => e.BookingId)
-                    .HasColumnName("BookingID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.CheckInDate).HasColumnType("datetime");
 
                 entity.Property(e => e.CheckOutDate).HasColumnType("datetime");
-
-                entity.Property(e => e.LocationId).HasColumnName("LocationID");
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Booking)
@@ -110,35 +103,31 @@ namespace KarpaticaTravelAPI.Models
 
             modelBuilder.Entity<Location>(entity =>
             {
-                entity.Property(e => e.LocationId)
-                    .HasColumnName("LocationID")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.ActivityId).HasColumnName("ActivityID");
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .IsRequired()
                     .HasMaxLength(300);
 
-                entity.Property(e => e.CityId).HasColumnName("CityID");
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.OwnerId).HasColumnName("OwnerID");
+                entity.Property(e => e.Photo)
+                    .IsRequired()
+                    .HasMaxLength(1000);
 
                 entity.HasOne(d => d.Activity)
                     .WithMany(p => p.Location)
                     .HasForeignKey(d => d.ActivityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Location_Activity");
+                    .HasConstraintName("FK_Location_City");
 
                 entity.HasOne(d => d.City)
                     .WithMany(p => p.Location)
                     .HasForeignKey(d => d.CityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Location_City");
+                    .HasConstraintName("FK_Location_City1");
 
                 entity.HasOne(d => d.Owner)
                     .WithMany(p => p.Location)
@@ -149,21 +138,15 @@ namespace KarpaticaTravelAPI.Models
 
             modelBuilder.Entity<Review>(entity =>
             {
-                entity.Property(e => e.ReviewId)
-                    .HasColumnName("ReviewID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasMaxLength(400);
 
-                entity.Property(e => e.LocationId).HasColumnName("LocationID");
-
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(100);
-
-                entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.Review)
@@ -192,7 +175,11 @@ namespace KarpaticaTravelAPI.Models
 
                 entity.Property(e => e.Phone)
                     .IsRequired()
-                    .HasMaxLength(10);
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Salt)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Username)
                     .IsRequired()
