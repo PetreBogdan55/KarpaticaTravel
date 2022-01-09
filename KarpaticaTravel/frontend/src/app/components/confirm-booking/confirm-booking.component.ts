@@ -22,8 +22,8 @@ export class ConfirmBookingComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { locationId: string }
   ) {}
   formGroup: FormGroup;
-  checkInDate: any;
-  checkOutDate: any;
+  checkInDate: Date;
+  checkOutDate: Date;
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
@@ -34,11 +34,12 @@ export class ConfirmBookingComponent implements OnInit {
 
   confirm() {
     console.log(this.formGroup.value);
+    this.checkInDate = this.formGroup.value.checkIn;
 
     this.apiService
       .createBooking({
-        checkOutDate: this.formGroup.value.checkOut,
-        checkInDate: this.formGroup.value.checkIn,
+        checkOutDate: this.formGroup.value.checkOut as Date,
+        checkInDate: this.formGroup.value.checkIn as Date,
         id: '00000000-0000-0000-0000-000000000000',
         isCancellable: true,
         locationId: this.data.locationId,

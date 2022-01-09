@@ -4,10 +4,26 @@
   align-items    : center;
 }
 
+.center-row-flex {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  flex-direction : row;
+
+}
+
 .row-flex {
   display       : flex;
   flex-direction: row;
   gap           : 40rem;
+}
+
+.dates-flex {
+  margin-bottom : 10rem;
+  margin-right  : 10rem;
+  display       : flex;
+  flex-direction: column;
+  gap           : 3rem;
 }
 
 .column-flex {

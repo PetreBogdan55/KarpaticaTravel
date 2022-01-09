@@ -53,10 +53,6 @@ export class AppComponent {
     this._router.navigate(['start']);
   }
 
-  public navigateToSettings() {
-    this._router.navigate(['settings']);
-  }
-
   public navigateToBookings() {
     this._router.navigate(['bookings/' + this.authService.getId()]);
   }

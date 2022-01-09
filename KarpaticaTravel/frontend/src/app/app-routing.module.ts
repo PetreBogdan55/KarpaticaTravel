@@ -2,7 +2,6 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ResultsComponent } from './components/results/results.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'start', component: StartComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'results', component: ResultsComponent },
   {
     path: 'admin',

@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Booking } from 'src/app/models/booking';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bookings',
@@ -19,10 +20,11 @@ export class BookingsComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {
+  getBookings() {
     const id = this.authService.getId();
     if (id) {
       this.username = this.authService.getUsername();
@@ -39,18 +41,25 @@ export class BookingsComponent implements OnInit {
                 this.locations.push(location as Location);
               });
           }
-          console.log(this.bookings);
-          console.log(this.locations);
-          // for (let review of this.reviews) {
-          //   this.apiService
-          //     .getLocation(review.locationId.toString())
-          //     .pipe(takeUntil(this.unsubscribe$))
-          //     .subscribe((location) => {
-          //       this.locations.push(location as unknown as Location);
-          //     });
-          // }
         });
     }
+  }
+
+  ngOnInit(): void {
+    this.getBookings();
+  }
+
+  removeBooking(booking: Booking) {
+    this.apiService
+      .deleteBooking(booking.id)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => {
+        this.getBookings();
+        this.toastr.success(
+          'Booking deleted successfully!',
+          'Booking deletion status'
+        );
+      });
   }
 
   ngOnDestroy(): void {

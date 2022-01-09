@@ -99,4 +99,10 @@ export class ApiService {
       responseType: 'text',
     });
   }
+
+  deleteBooking(bookingId: string) {
+    return this.http.delete(`${environment.API_URL}/Bookings/` + bookingId, {
+      responseType: 'text',
+    });
+  }
 }

@@ -20,7 +20,11 @@
     <p *ngIf="authService.isAuthenticated()">Welcome {{ username }}!</p>
     <p *ngIf="!authService.isAuthenticated()">Please login</p>
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button">
+    <button
+      mat-button
+      class="menu-button"
+      *ngIf="!authService.isAuthenticated()"
+    >
       <mat-icon>login</mat-icon>
       <span (click)="navigateToLogin()" id="account">Authenticate</span>
     </button>
@@ -72,11 +76,6 @@
     </button>
 
     <mat-divider></mat-divider>
-
-    <button mat-button class="menu-button">
-      <mat-icon>settings</mat-icon>
-      <span (click)="navigateToSettings()">Settings</span>
-    </button>
 
     <br /><br /><br />
     <p>{{ deviceType }} - {{ os }}</p>
