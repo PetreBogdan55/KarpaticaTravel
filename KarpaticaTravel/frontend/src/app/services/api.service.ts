@@ -75,11 +75,11 @@ export class ApiService {
     return this.http.get<Review[]>(`${environment.API_URL}/Reviews/` + Id);
   }
 
-
   getReviewsByLocation(Id: string): Observable<Review[]> {
     return this.http.get<Review[]>(
       `${environment.API_URL}/Reviews/Location/` + Id
     );
+  }
 
   GetLocationsByCountryAndCity(
     CountryId: string,
@@ -88,10 +88,6 @@ export class ApiService {
     return this.http.get<Location[]>(
       `${environment.API_URL}/Locations/` + CountryId + `/` + CityId
     );
-  }
-
-  getReviewsByLocation(Id: string) {
-    return this.http.get(`${environment.API_URL}/Reviews/Location/` + Id);
   }
 
   getBookingsByUser(Id: string) {
