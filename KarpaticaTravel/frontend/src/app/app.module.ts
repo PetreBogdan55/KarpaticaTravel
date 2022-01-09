@@ -27,6 +27,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { NgxStarsModule } from 'ngx-stars';
 import { RouterModule } from '@angular/router';
 import { AdministratorComponent } from './components/administrator/administrator.component';
+import { ConfirmBookingComponent } from './components/confirm-booking/confirm-booking.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AdministratorComponent } from './components/administrator/administrator
     HomeComponent,
     FooterComponent,
     AdministratorComponent,
+    ConfirmBookingComponent,
   ],
   imports: [
     BrowserModule,

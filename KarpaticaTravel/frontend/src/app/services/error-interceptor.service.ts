@@ -5,15 +5,21 @@ import {
   HttpEvent,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ErrorInterceptorService implements HttpInterceptor {
-  constructor(private toastrService: ToastrService) {}
+  constructor(
+    private toastrService: ToastrService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -25,6 +31,8 @@ export class ErrorInterceptorService implements HttpInterceptor {
         if (err.status === 401) {
           //refresh token or navigate to login
           message = 'Token has expired or you should be logged in';
+          this.authService.clearToken();
+          this.router.navigateByUrl('home');
         } else if (err.status === 404) {
           message = '404';
         } else if (err.status === 400) {

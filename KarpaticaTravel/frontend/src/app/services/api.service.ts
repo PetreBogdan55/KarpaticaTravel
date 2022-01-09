@@ -8,6 +8,7 @@ import { Location } from 'src/app/models/location';
 
 import { User } from '../models/user';
 import { Review } from '../models/review';
+import { Booking } from '../models/booking';
 
 import { map } from 'rxjs/operators';
 import { Activity } from '../models/activity';
@@ -95,5 +96,11 @@ export class ApiService {
 
   getBookingsByUser(Id: string) {
     return this.http.get(`${environment.API_URL}/Bookings/Users/` + Id);
+  }
+
+  createBooking(booking: Booking) {
+    return this.http.post(`${environment.API_URL}/Bookings`, booking, {
+      responseType: 'text',
+    });
   }
 }
