@@ -12,7 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { StartComponent } from './components/start/start.component';
 import { RegisterComponent } from './components/register/register.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { ResultsComponent } from './components/results/results.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
@@ -35,7 +34,6 @@ import { ConfirmBookingComponent } from './components/confirm-booking/confirm-bo
     StartComponent,
     LoginComponent,
     RegisterComponent,
-    SettingsComponent,
     ResultsComponent,
     BookingsComponent,
     LocationDetailsComponent,

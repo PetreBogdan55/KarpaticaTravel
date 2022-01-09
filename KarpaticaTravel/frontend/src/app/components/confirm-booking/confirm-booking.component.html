@@ -11,6 +11,7 @@
                 [matDatepicker]="checkInPicker"
                 readonly
                 formControlName="checkIn"
+                [max]="formGroup.value.checkOut"
               />
               <mat-datepicker-toggle
                 matSuffix
@@ -40,6 +41,7 @@
                 [matDatepicker]="checkOutPicker"
                 readonly
                 formControlName="checkOut"
+                [min]="formGroup.value.checkIn"
               />
               <mat-datepicker-toggle
                 matSuffix
@@ -75,15 +77,15 @@
         </div>
       </mat-step>
 
-      <mat-step label="Confirm booking" class="center-flex">
+      <mat-step label="Confirm booking">
         <div class="column-flex-confirm">
-          <div class="selected-dates">
-            You have selected:
-            <div class="selected-check-in">
-              Check in: {{ this.formGroup.value.checkIn }}
+          <div class="selected-dates dates-flex">
+            <div class="center-row-flex"><p>You have selected:</p></div>
+            <div class="selected-check-in center-row-flex">
+              <p>Check in: {{ this.formGroup.value.checkIn }}</p>
             </div>
-            <div class="selected-check-out">
-              Check out: {{ this.formGroup.value.checkOut }}
+            <div class="selected-check-out center-row-flex">
+              <p>Check out: {{ this.formGroup.value.checkOut }}</p>
             </div>
           </div>
           <div class="row-flex">

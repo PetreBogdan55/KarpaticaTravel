@@ -47,7 +47,7 @@ export class LocationDetailsComponent implements OnInit, OnDestroy {
       width: '1000px',
       height: '600px',
       autoFocus: true,
-      disableClose: true,
+      disableClose: false,
       data: { locationId: this.location.id },
     });
   }
