@@ -114,7 +114,17 @@ namespace KarpaticaTravelAPI.Repositories.LocationRepository
             }
             City city = await _context.City.Where((city) => city.Id == cityId && city.CountryId == countryId).FirstOrDefaultAsync();
 
-            return await _context.Location.Where((loc) => loc.CityId== city.Id).ToListAsync();
+            return await _context.Location.Where((loc) => loc.CityId == city.Id).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Location>> GetLocationsByCity(Guid cityId)
+        {
+            if (cityId == Guid.Empty)
+            {
+                throw new ArgumentNullException("cityId", "cityId is null or empty.");
+            }
+
+            return await _context.Location.Where((loc) => loc.CityId == cityId).ToListAsync();
         }
     }
 }

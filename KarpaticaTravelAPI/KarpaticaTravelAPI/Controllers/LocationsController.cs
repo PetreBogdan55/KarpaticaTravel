@@ -175,12 +175,38 @@ namespace KarpaticaTravelAPI.Controllers
             }
         }
 
+        [ProducesResponseType(typeof(IEnumerable<LocationDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
+        [AllowAnonymous]
+        [HttpGet("byCity/{cityId}")]
+        public async Task<IActionResult> GetLocationsByCity(GetLocationsByCityRequest request)
+        {
+            try
+            {
+                GetLocationsByCityRequestValidator rules = new GetLocationsByCityRequestValidator();
+                await rules.ValidateAndThrowAsync(request).ConfigureAwait(false);
+
+                IEnumerable<LocationDTO> resList = await _locationProcessor.GetLocationsByCity(request.CityId).ConfigureAwait(false);
+
+                if (resList is null || !resList.Any())
+                {
+                    return NotFound("No locations found for the specified city");
+                }
+
+                return Ok(resList);
+            }
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
 
         [ProducesResponseType(typeof(IEnumerable<LocationDTO>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.InternalServerError)]
         [AllowAnonymous]
-        [HttpGet("{countryId}/{cityId}")]
+        [HttpGet("byCountryAndCity/{countryId}/{cityId}")]
         public async Task<IActionResult> GetLocationsByCountryAndCity(GetLocationsByCountryAndCityRequest request)
         {
             try
@@ -192,7 +218,7 @@ namespace KarpaticaTravelAPI.Controllers
 
                 if (resList is null || !resList.Any())
                 {
-                    return NotFound("No locations found for the specified activity");
+                    return NotFound("No locations found for the specified country and city");
                 }
 
                 return Ok(resList);

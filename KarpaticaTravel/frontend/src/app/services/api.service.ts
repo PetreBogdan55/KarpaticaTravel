@@ -86,7 +86,7 @@ export class ApiService {
     CityId: string
   ): Observable<Location[]> {
     return this.http.get<Location[]>(
-      `${environment.API_URL}/Locations/` + CountryId + `/` + CityId
+      `${environment.API_URL}/Locations/ByCountryAndCity` + CountryId + `/` + CityId
     );
   }
 
