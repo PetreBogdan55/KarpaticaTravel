@@ -42,7 +42,7 @@
       </div>
       <div class="child2">
         <h1>Results</h1>
-        <p class="text18">
+        <p class="text18" *ngIf="isFinalLocations">
           {{
             finalLocations.length == 1
               ? "1 location"
@@ -51,12 +51,12 @@
           found in {{ searchService.searchFiltersObject.chosenCity }},
           {{ searchService.searchFiltersObject.chosenCountry }}
         </p>
-        <p class="text14">
+        <p class="text14" *ngIf="isFinalLocations">
           Check-In: {{ searchService.searchFiltersObject.chosenDate }} | Number
           of nights:
           {{ searchService.searchFiltersObject.chosenNumberOfNights }}
         </p>
-        <p class="text14">
+        <p class="text14" *ngIf="isFinalLocations">
           Searching for
           {{ searchService.searchFiltersObject.chosenNumberOfRooms }}
           {{ searchService.searchFiltersObject.chosenRoomType }}
