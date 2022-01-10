@@ -14,8 +14,8 @@ namespace KarpaticaTravelAPI.Processors.LocationProcessor
         Task<IEnumerable<LocationDTO>> GetLocations();
         Task<bool> UpdateLocation(Guid id, LocationUpdateDTO locationToUpdate);
         Task<IEnumerable<LocationDTO>> GetLocationsByActivity(Guid activityId);
-
         Task<IEnumerable<LocationDTO>> GetLocationsByCountryAndCity(Guid countryId, Guid cityId);
+        Task<IEnumerable<LocationDTO>> GetLocationsByCity(Guid cityId);
 
     }
 }
