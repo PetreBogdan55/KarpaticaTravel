@@ -26,8 +26,10 @@ export class ResultsComponent implements OnInit, OnDestroy {
   public locationsByCity: Location[] = [];
   public isFilteredLocationsActivity: boolean = false;
   public isFilteredLocationsCity: boolean = false;
+  public isFinalLocations: boolean = true;
   private readonly unsubscribe$ = new Subject<void>();
   public countries: Country[] = [];
+  public cities: City[] = [];
 
   constructor(
     private _router: Router,
@@ -46,15 +48,16 @@ export class ResultsComponent implements OnInit, OnDestroy {
       .subscribe((countries) => {
         this.countries = countries as Country[];
       });
+
     this.apiService
-      .getLocations()
+      .getCities()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((locations) => {
-        this.locations = locations;
-        this.findLocationsThatMatch();
+      .subscribe((cities) => {
+        this.cities = cities as City[];
       });
 
     if (localStorage.getItem('locFilteredActivity') != null) {
+      this.isFinalLocations = false;
       this.apiService
         .getLocationsByActivity(
           <string>localStorage.getItem('locFilteredActivity')
@@ -66,11 +69,22 @@ export class ResultsComponent implements OnInit, OnDestroy {
     }
 
     if (localStorage.getItem('locFilteredCity') != null) {
+      this.isFinalLocations = false;
       this.apiService
         .getLocationsByCity(<string>localStorage.getItem('locFilteredCity'))
         .subscribe((res) => {
           this.locationsByCity = <Location[]>res;
           this.isFilteredLocationsCity = true;
+        });
+    }
+
+    if (this.isFinalLocations) {
+      this.apiService
+        .getLocations()
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe((locations) => {
+          this.locations = locations;
+          this.findLocationsThatMatch();
         });
     }
   }
@@ -94,33 +108,57 @@ export class ResultsComponent implements OnInit, OnDestroy {
     }
   }
 
+  // lolFindLocationssThatMatch(): void {
+  //   this.finalLocations = [];
+  //   for (let location of this.locations) {
+  //     if (
+  //       location.distanceFromCenter <= this.distanceSliderValue &&
+  //       location.pricePerDay <= this.priceSliderValue
+  //     )
+  //       for (let country of this.countries) {
+  //         if (
+  //           country.name == this.searchService.searchFiltersObject.chosenCountry
+  //         ) {
+  //           this.apiService
+  //             .GetLocationsByCountryAndCity(
+  //               country.id,
+  //               location.cityId.toString()
+  //             )
+  //             .pipe(takeUntil(this.unsubscribe$))
+  //             .subscribe((next: Location[]) => {
+  //               for (let n of next) {
+  //                 if (n.name == location.name) {
+  //                   this.finalLocations.push(n);
+  //                 }
+  //               }
+  //             });
+  //         }
+  //       }
+  //   }
+  // }
+
   findLocationsThatMatch(): void {
-    this.finalLocations = [];
-    for (let location of this.locations) {
-      if (
-        location.distanceFromCenter <= this.distanceSliderValue &&
-        location.pricePerDay <= this.priceSliderValue
-      )
-        for (let country of this.countries) {
-          if (
-            country.name == this.searchService.searchFiltersObject.chosenCountry
-          ) {
-            this.apiService
-              .GetLocationsByCountryAndCity(
-                country.id,
-                location.cityId.toString()
-              )
-              .pipe(takeUntil(this.unsubscribe$))
-              .subscribe((next: Location[]) => {
-                for (let n of next) {
-                  if (n.name == location.name) {
-                    this.finalLocations.push(location);
-                  }
-                }
-              });
-          }
-        }
-    }
+    const chosenCountryId: string = this.getIdFromCountry(
+      this.searchService.searchFiltersObject.chosenCountry
+    );
+
+    const chosenCityd: string = this.getIdFromCity(
+      this.searchService.searchFiltersObject.chosenCity
+    );
+
+    this.apiService
+      .GetLocationsByCountryAndCity(chosenCountryId, chosenCityd)
+      .subscribe((res) => {
+        this.finalLocations = res;
+      });
+  }
+
+  getIdFromCity(cityName: string): any {
+    return this.cities.find((city) => city.name === cityName)?.id;
+  }
+
+  getIdFromCountry(countryName: string): any {
+    return this.countries.find((country) => country.name === countryName)?.id;
   }
 
   onSortByAscendingPrice() {
