@@ -9,6 +9,7 @@ import { Image } from 'src/app/models/image';
 import { filter } from 'rxjs/operators';
 import { ViewportScroller } from '@angular/common';
 import { Activity } from 'src/app/models/activity';
+import { City } from 'src/app/models/city';
 
 @Component({
   selector: 'app-start',
@@ -18,6 +19,7 @@ import { Activity } from 'src/app/models/activity';
 export class StartComponent implements OnInit {
   images: Array<Image> = new Array<Image>();
   activities: Activity[] = [];
+  cities: City[] = [];
 
   public minSearchDate: string;
   public maxSearchDate: string;
@@ -58,6 +60,13 @@ export class StartComponent implements OnInit {
     this.apiService.getActivities().subscribe((res) => {
       this.activities = <Activity[]>res;
     });
+
+    this.apiService.getCities().subscribe((res) => {
+      this.cities = <City[]>res;
+    });
+
+    localStorage.removeItem('locFilteredActivity');
+    localStorage.removeItem('locFilteredCity');
   }
 
   onSearch(): void {
@@ -83,5 +92,9 @@ export class StartComponent implements OnInit {
 
   getLocationsByActivity(activitiyId: string): void {
     localStorage.setItem('locFilteredActivity', activitiyId);
+  }
+
+  getLocationsByCity(cityId: string): void {
+    localStorage.setItem('locFilteredCity', cityId);
   }
 }

@@ -44,7 +44,9 @@ export class ApiService {
   }
 
   getCities() {
-    return this.http.get(`${environment.API_URL}/Cities`);
+    return this.http.get(`${environment.API_URL}/Cities`, {
+      responseType: 'json',
+    });
   }
 
   getCity(Id: string) {
@@ -71,6 +73,10 @@ export class ApiService {
     );
   }
 
+  getLocationsByCity(cityId: string) {
+    return this.http.get(`${environment.API_URL}/Locations/ByCity/` + cityId);
+  }
+
   getReviewsByUser(Id: string): Observable<Review[]> {
     return this.http.get<Review[]>(`${environment.API_URL}/Reviews/` + Id);
   }
@@ -86,7 +92,10 @@ export class ApiService {
     CityId: string
   ): Observable<Location[]> {
     return this.http.get<Location[]>(
-      `${environment.API_URL}/Locations/ByCountryAndCity` + CountryId + `/` + CityId
+      `${environment.API_URL}/Locations/ByCountryAndCity` +
+        CountryId +
+        `/` +
+        CityId
     );
   }
 

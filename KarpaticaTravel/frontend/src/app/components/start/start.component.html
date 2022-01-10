@@ -539,7 +539,10 @@
             <div class="wpte-trip-category-overlay">
               <div class="wpte-trip-subcat-wrap"></div>
               <div class="wpte-trip-category-btn">
-                <a [routerLink]="['/results']" class="wpte-trip-cat-btn"
+                <a
+                  class="wpte-trip-cat-btn"
+                  [routerLink]="['/results']"
+                  (click)="getLocationsByCity(this.cities[0].id)"
                   >View All</a
                 >
               </div>
@@ -547,8 +550,7 @@
           </div>
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
-              <a href="https://yolotravel.ro/activitati/off-the-beaten-track/">
-                Off the beaten track</a
+              <a> {{ this.cities[0].name }}</a
               ><span class="trip-count">(7 Trips)</span>
             </h2>
           </div>
@@ -574,7 +576,10 @@
             <div class="wpte-trip-category-overlay">
               <div class="wpte-trip-subcat-wrap"></div>
               <div class="wpte-trip-category-btn">
-                <a [routerLink]="['/results']" class="wpte-trip-cat-btn"
+                <a
+                  class="wpte-trip-cat-btn"
+                  [routerLink]="['/results']"
+                  (click)="getLocationsByCity(this.cities[1].id)"
                   >View All</a
                 >
               </div>
@@ -582,7 +587,7 @@
           </div>
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
-              <a [routerLink]="['/results']"> Pachete charter</a
+              <a [routerLink]="['/results']"> {{ this.cities[1].name }}</a
               ><span class="trip-count">(15 Trips)</span>
             </h2>
           </div>
@@ -606,7 +611,10 @@
             <div class="wpte-trip-category-overlay">
               <div class="wpte-trip-subcat-wrap"></div>
               <div class="wpte-trip-category-btn">
-                <a [routerLink]="['/results']" class="wpte-trip-cat-btn"
+                <a
+                  class="wpte-trip-cat-btn"
+                  [routerLink]="['/results']"
+                  (click)="getLocationsByCity(this.cities[2].id)"
                   >View All</a
                 >
               </div>
@@ -614,8 +622,7 @@
           </div>
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
-              <a href="https://yolotravel.ro/activitati/la-ski-prin-europa/">
-                Pe skiuri</a
+              <a> {{ this.cities[2].name }}</a
               ><span class="trip-count">(2 Trips)</span>
             </h2>
           </div>
@@ -643,7 +650,10 @@
             <div class="wpte-trip-category-overlay">
               <div class="wpte-trip-subcat-wrap"></div>
               <div class="wpte-trip-category-btn">
-                <a [routerLink]="['/results']" class="wpte-trip-cat-btn"
+                <a
+                  class="wpte-trip-cat-btn"
+                  [routerLink]="['/results']"
+                  (click)="getLocationsByCity(this.cities[3].id)"
                   >View All</a
                 >
               </div>
@@ -651,10 +661,7 @@
           </div>
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
-              <a
-                href="https://yolotravel.ro/activitati/relaxare-in-vila-privata/"
-              >
-                Relaxare in vila privata</a
+              <a> {{ this.cities[3].name }}</a
               ><span class="trip-count">(3 Trips)</span>
             </h2>
           </div>
@@ -678,7 +685,10 @@
             <div class="wpte-trip-category-overlay">
               <div class="wpte-trip-subcat-wrap"></div>
               <div class="wpte-trip-category-btn">
-                <a [routerLink]="['/results']" class="wpte-trip-cat-btn"
+                <a
+                  class="wpte-trip-cat-btn"
+                  [routerLink]="['/results']"
+                  (click)="getLocationsByCity(this.cities[4].id)"
                   >View All</a
                 >
               </div>
@@ -686,8 +696,7 @@
           </div>
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
-              <a href="https://yolotravel.ro/activitati/excursii-pe-mare/">
-                Sailing</a
+              <a> {{ this.cities[4].name }}</a
               ><span class="trip-count">(2 Trips)</span>
             </h2>
           </div>
@@ -713,7 +722,10 @@
             <div class="wpte-trip-category-overlay">
               <div class="wpte-trip-subcat-wrap"></div>
               <div class="wpte-trip-category-btn">
-                <a [routerLink]="['/results']" class="wpte-trip-cat-btn"
+                <a
+                  class="wpte-trip-cat-btn"
+                  [routerLink]="['/results']"
+                  (click)="getLocationsByCity(this.cities[5].id)"
                   >View All</a
                 >
               </div>
@@ -721,8 +733,7 @@
           </div>
           <div class="wpte-trip-category-text-wrap">
             <h2 class="wpte-trip-category-title" itemprop="name">
-              <a href="https://yolotravel.ro/activitati/tailor-made-trips/">
-                Tailor made trips</a
+              <a> {{ this.cities[5].name }}</a
               ><span class="trip-count">(10 Trips)</span>
             </h2>
           </div>

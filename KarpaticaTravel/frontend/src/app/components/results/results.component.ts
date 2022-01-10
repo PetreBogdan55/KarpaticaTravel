@@ -23,7 +23,9 @@ export class ResultsComponent implements OnInit, OnDestroy {
   public finalLocations: Location[] = [];
   public locations: Location[] = [];
   public locationsByActivity: Location[] = [];
+  public locationsByCity: Location[] = [];
   public isFilteredLocationsActivity: boolean = false;
+  public isFilteredLocationsCity: boolean = false;
   private readonly unsubscribe$ = new Subject<void>();
   public countries: Country[] = [];
 
@@ -62,12 +64,22 @@ export class ResultsComponent implements OnInit, OnDestroy {
           this.isFilteredLocationsActivity = true;
         });
     }
+
+    if (localStorage.getItem('locFilteredCity') != null) {
+      this.apiService
+        .getLocationsByCity(<string>localStorage.getItem('locFilteredCity'))
+        .subscribe((res) => {
+          this.locationsByCity = <Location[]>res;
+          this.isFilteredLocationsCity = true;
+        });
+    }
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
     localStorage.removeItem('locFilteredActivity');
+    localStorage.removeItem('locFilteredCity');
   }
 
   onDistanceChange(event: MatSliderChange) {
