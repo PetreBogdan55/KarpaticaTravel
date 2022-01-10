@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { ToastrService } from 'ngx-toastr';
-import { ApiService } from 'src/app/services/api.service';
-import { Location } from '../../models/location';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup } from '@angular/forms'
+import { MatDialogRef } from '@angular/material/dialog'
+import { ToastrService } from 'ngx-toastr'
+import { ApiService } from 'src/app/services/api.service'
+import { Location } from '../../models/location'
 
 @Component({
   selector: 'app-add-location',
@@ -11,14 +11,14 @@ import { Location } from '../../models/location';
   styleUrls: ['./add-location.component.scss'],
 })
 export class AddLocationComponent implements OnInit {
-  form: FormGroup;
-  newLocation: Location;
+  form: FormGroup
+  newLocation: Location
 
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<AddLocationComponent>,
     private apiService: ApiService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -29,10 +29,10 @@ export class AddLocationComponent implements OnInit {
       photoURL: '',
       isAvailable: '',
       distanceFromCenter: '',
-    });
+    })
   }
   closeDialog() {
-    this.dialogRef.close(this.newLocation);
+    this.dialogRef.close(this.newLocation)
   }
 
   addLocation() {
@@ -48,12 +48,12 @@ export class AddLocationComponent implements OnInit {
       ownerId: '13e34d8f-9b1f-4a3d-8273-03827fca67ef',
       photo: this.form.value.photoURL,
       pricePerDay: this.form.value.pricePerDay,
-    };
+    }
     this.apiService.createLocation(this.newLocation).subscribe(() => {
       this.toastr.success(
         'Location added successfully!',
-        'Add operation status'
-      );
-    });
+        'Add operation status',
+      )
+    })
   }
 }

@@ -11,18 +11,15 @@
 
 
 .row-flex {
-  display       : flex;
-  flex-direction: row;
-
+  display        : flex;
+  flex-direction : row;
+  gap            : 4rem;
   justify-content: center;
   align-items    : center;
 
 }
 
-.buttons {
-  bottom: 0;
-  gap   : 5rem;
-}
+
 
 .image-preview {
   max-width : 300px;
@@ -41,4 +38,8 @@
 .add-location:hover {
 
   transform: scale(1.1, 1.1);
+}
+
+.buttons {
+  margin-top: 5vh;
 }

@@ -1,56 +1,37 @@
-<form [formGroup]="form" (ngSubmit)="addLocation()">
+<form [formGroup]="form">
   <div class="column-flex">
+    <h1>Add location</h1>
     <mat-form-field appearance="outline">
       <input matInput type="text" formControlName="name" placeholder="Name" />
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input
-        matInput
-        type="text"
-        formControlName="address"
-        placeholder="Address"
-      />
+      <input matInput type="text" formControlName="address" placeholder="Address" />
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input
-        matInput
-        type="number"
-        formControlName="pricePerDay"
-        placeholder="Price per night"
-      />
+      <input matInput type="number" formControlName="pricePerDay" placeholder="Price per night" />
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input
-        matInput
-        type="number"
-        formControlName="distanceFromCenter"
-        placeholder="Distance from center"
-      />
+      <input matInput type="number" formControlName="distanceFromCenter" placeholder="Distance from center" />
     </mat-form-field>
 
-    <span
-      >Is available
+    <span>Is available
 
       <mat-checkbox matInput formControlName="isAvailable"></mat-checkbox>
     </span>
 
-    <div class="photo-section">
+    <div class="photo-section row-flex">
       <mat-form-field appearance="outline">
-        <input
-          matInput
-          type="text"
-          formControlName="photoURL"
-          placeholder="Photo URL"
-        />
+        <input matInput type="text" formControlName="photoURL" placeholder="Photo URL" />
       </mat-form-field>
       Preview:
       <img [src]="form.value.photoURL" class="image-preview" alt="" />
     </div>
-  </div>
-  <div class="buttons row-flex">
-    <button mat-flat-button class="cancel" (click)="closeDialog()">
-      Cancel
-    </button>
-    <button mat-flat-button class="add-location">Add location</button>
+
+    <div class="buttons row-flex">
+      <button mat-flat-button class="cancel" (click)="closeDialog()">
+        Cancel
+      </button>
+      <button mat-flat-button class="add-location" (click)="addLocation()">Add location</button>
+    </div>
   </div>
 </form>

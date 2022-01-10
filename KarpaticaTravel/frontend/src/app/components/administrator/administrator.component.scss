@@ -160,12 +160,16 @@ button:hover {
 }
 
 .add-location {
-  position     : absolute;
+  position     : fixed;
   bottom       : 0;
   right        : 0;
   margin-right : 5vw;
   margin-bottom: 5vh;
   transform    : scale(2, 2);
+}
+
+.add-location:hover {
+  transform: scale(2.2, 2.2);
 }
 
 .admin-wrapper {

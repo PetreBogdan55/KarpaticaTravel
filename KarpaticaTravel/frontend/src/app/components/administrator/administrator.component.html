@@ -3,20 +3,15 @@
     <form [formGroup]="form">
       <mat-form-field class="search-form">
         <span class="row-flex">
-          <input
-            matInput
-            type="text"
-            (input)="inputChange()"
-            formControlName="searchWord"
-            placeholder="Filter locations by name..."
-          />
+          <input matInput type="text" (input)="inputChange()" formControlName="searchWord"
+            placeholder="Filter locations by name..." />
 
           <mat-icon>search</mat-icon>
         </span>
       </mat-form-field>
     </form>
   </div>
-  <div *ngIf="!authService.getIsOwner()">
+  <div *ngIf="authService.getIsOwner() == 'false'">
     <div>
       <h1>
         <code>Access Denied</code>
@@ -25,7 +20,7 @@
       <h6>error code:403 forbidden</h6>
     </div>
   </div>
-  <div *ngIf="authService.getIsOwner()">
+  <div *ngIf="authService.getIsOwner() == 'true'">
     <table>
       <tr *ngFor="let location of finalLocations">
         <div>
@@ -67,12 +62,10 @@
       </tr>
       <tr></tr>
     </table>
-    <mat-icon
-      class="add-location"
-      (click)="addLocation()"
-      matTooltip="Add location"
-      matTooltipPosition="left"
-      >add_circle</mat-icon
-    >
+
+
+    <mat-icon class="add-location" (click)="addLocation()" matTooltip="Add location" matTooltipPosition="left">
+      add_circle</mat-icon>
+
   </div>
 </body>
