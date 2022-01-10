@@ -2,16 +2,20 @@
   <div class="column-flex">
     <h1>Add location</h1>
     <mat-form-field appearance="outline">
-      <input matInput type="text" formControlName="name" placeholder="Name" />
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" placeholder="Enter the name..." />
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input matInput type="text" formControlName="address" placeholder="Address" />
+      <mat-label>Address</mat-label>
+      <input matInput type="text" formControlName="address" placeholder="Enter the address..." />
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input matInput type="number" formControlName="pricePerDay" placeholder="Price per night" />
+      <mat-label>Price per night</mat-label>
+      <input matInput type="number" formControlName="pricePerDay" placeholder="Enter the price per night..." />
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <input matInput type="number" formControlName="distanceFromCenter" placeholder="Distance from center" />
+      <mat-label>Distance from center</mat-label>
+      <input matInput type="number" formControlName="distanceFromCenter" placeholder="Enter the distance..." />
     </mat-form-field>
 
     <span>Is available
@@ -21,7 +25,8 @@
 
     <div class="photo-section row-flex">
       <mat-form-field appearance="outline">
-        <input matInput type="text" formControlName="photoURL" placeholder="Photo URL" />
+        <mat-label>Photo URL</mat-label>
+        <input matInput type="text" formControlName="photoURL" placeholder="Enter the photo URL..." />
       </mat-form-field>
       Preview:
       <img [src]="form.value.photoURL" class="image-preview" alt="" />
